@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Offscreen focusable element</title>
+    <meta name="description" content="Fixing offscreen cofucs">
+
+    <!-- Mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <div class="container">
+      <form>
+        <div class="row">
+          <label for="fName">First Name</label>
+          <input type="text" name="fName" id="fName" required>
+
+          <label for="lName">Last Name</label>
+          <input type="text" name="lName" id="lName">
+        </div>
+
+        <div class="row">
+          <label for="address">Enter your address</label><br>
+          <textarea id="address" name="addressTxt"></textarea>
+        </div>
+
+        <div class="row">
+          <label for="pSeatType" id="pSeatType">Preferred Seat Type</label>
+          <input type="radio" checked name="pSeatType" id="aisleSeat" value="aisleSeat">
+          <label for="aisleSeat">Aisle</label>
+          <input type="radio" name="pSeatType" id="windowSeat" value="windowSeat">
+          <label for="Window">Window</label>
+          <input type="radio" name="pSeatType" id="anySeat" value="anySeat">
+          <label for="anySeat">No Preference</label>
+        </div>
+
+        <div class="row">
+          <label for="eAddr">Email</label>
+          <input type="email" name="eAddr" id="eAddr">
+        </div>
+
+        <div class="row">
+          <label for="pTelephone">Primary Telephone</label>
+          <input type="tel" name="pTelephone" id="pTelephone">
+
+          <label for="pTelephoneType" id="pTelephoneType">Type of phone</label>
+          <select name="pTelephoneType" id="pTelephoneType">
+            <option>Business</option>
+            <option>Personal</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <label for="sTelephone">Secondary Telephone</label>
+          <input type="tel" name="sTelephone" id="sTelephone">
+
+          <label for="sTelephoneType" id="sTelephoneType">Type of phone</label>
+          <select name="sTelephoneType" id="sTelephoneType">
+            <option>Business</option>
+            <option>Personal</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <input type="checkbox" checked name="eNotification" id="eNotification">
+          <label for="eNotification">Notify by Email</label>
+
+          <input type="checkbox" name="tNotification" id="tNotification">
+          <label for="tNotification">Notify by Telephone</label>
+        </div>
+
+        <div class="row">
+          <button type="submit" id="submitBtn">Submit</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
