@@ -5,7 +5,14 @@
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
@@ -13,7 +20,8 @@ html, body {
   margin: 0 auto;
 }
 
-header {
+header,
+footer {
   background: #000000;
   color: #FAFAFA;
   padding: 16px 0;
@@ -36,11 +44,17 @@ nav {
   vertical-align: middle;
 }
 
-nav a {
+nav a,
+footer a {
   color: inherit;
   text-decoration: none;
   margin-right: 16px;
   font-size: 20px;
+}
+
+main {
+  margin: 64px 0;
+  flex: 1;
 }
 
 h2 {
@@ -95,6 +109,19 @@ select {
   margin-right: 0;
 }
 
+.trip-selector {
+  max-width: 400px;
+  margin: 0 auto;
+  padding-bottom: 16px;
+  text-align: center;
+  border-bottom: 1px solid gray;
+}
+
+.trip-selector label {
+  display: inline;
+  margin-right: 16px;
+}
+
 .sign-up {
   vertical-align: bottom;
 }
@@ -113,6 +140,11 @@ button[type="submit"] {
   font-size: 20px;
   font-family: inherit;
   font-weight: 100;
+}
+
+footer [class*="col-"] {
+  display: inline-block;
+  text-align: center;
 }
 
 /* Columns */
