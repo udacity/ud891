@@ -27,80 +27,82 @@
       </header>
 
       <main>
-        <div class="trip-selector">
-          <label>
-            <input type="radio" checked name="tType" value="0">
-            Round Trip
-          </label>
-          <label>
-            <input type="radio" name="tType" value="1">
-            One Way
-          </label>
-          <label>
-            <input type="radio" name="tType" value="2">
-            Multi City
-          </label>
-        </div>
+        <div class="card">
+          <div class="trip-selector">
+            <label>
+              <input type="radio" checked name="tType" value="0">
+              Round Trip
+            </label>
+            <label>
+              <input type="radio" name="tType" value="1">
+              One Way
+            </label>
+            <label>
+              <input type="radio" name="tType" value="2">
+              Multi City
+            </label>
+          </div>
 
-        <div class="container">
-          <h2>Where ya headed, mate?</h2>
-          <form>
-            <div class="row">
-              <label for="fName">Full Name</label>
-              <input type="text" name="fName" id="fName">
-            </div>
-
-            <div class="row">
-              <label for="address">Enter your address</label>
-              <textarea id="address" name="addressTxt"></textarea>
-            </div>
-
-            <div class="row">
-              <div class="inline-control col-2">
-                <label for="dest">Choose your destination</label>
-                <input type="text" list="cities" name="dest" id="dest">
-                <datalist id="cities">
-                  <option value="Sydney">
-                  <option value="Melbourne">
-                  <option value="Brisbane">
-                  <option value="Perth">
-                  <option value="Adelaide">
-                </datalist>
+          <div class="container">
+            <h2>Where ya headed, mate?</h2>
+            <form>
+              <div class="row">
+                <label for="fName">Full Name</label>
+                <input type="text" name="fName" id="fName">
               </div>
 
-              <div class="inline-control col-1">
-                <label for="dDate">Depart Date</label>
-                <input type="date" name="dDate" id="dDate">
+              <div class="row">
+                <label for="address">Enter your address</label>
+                <textarea id="address" name="addressTxt"></textarea>
               </div>
 
-              <div class="inline-control col-1">
-                <label for="rDate">Return Date</label>
-                <input type="date" name="rDate" id="rDate">
-              </div>
-            </div>
+              <div class="row">
+                <div class="inline-control col-2">
+                  <label for="dest">Choose your destination</label>
+                  <input type="text" list="cities" name="dest" id="dest">
+                  <datalist id="cities">
+                    <option value="Sydney">
+                    <option value="Melbourne">
+                    <option value="Brisbane">
+                    <option value="Perth">
+                    <option value="Adelaide">
+                  </datalist>
+                </div>
 
-            <div class="row">
-              <div class="inline-control col-2">
-                <label for="seatType">Preferred seat type</label>
-                <select name="seatType" id="seatType">
-                  <option value="0">No preference</option>
-                  <option value="1">Aisle seat</option>
-                  <option value="2">Window seat</option>
-                </select>
+                <div class="inline-control col-1">
+                  <label for="dDate">Depart Date</label>
+                  <input type="date" name="dDate" id="dDate">
+                </div>
+
+                <div class="inline-control col-1">
+                  <label for="rDate">Return Date</label>
+                  <input type="date" name="rDate" id="rDate">
+                </div>
               </div>
 
-              <div class="inline-control sign-up col-1">
-                <label>
-                  <input type="checkbox" checked name="jLetter">
-                  Sign up for promotional offers
-                </label>
-              </div>
+              <div class="row">
+                <div class="inline-control col-2">
+                  <label for="seatType">Preferred seat type</label>
+                  <select name="seatType" id="seatType">
+                    <option value="0">No preference</option>
+                    <option value="1">Aisle seat</option>
+                    <option value="2">Window seat</option>
+                  </select>
+                </div>
 
-              <div class="inline-control submit-form col-1">
-                <button type="submit" id="submitBtn">Search</button>
+                <div class="inline-control sign-up col-1">
+                  <label>
+                    <input type="checkbox" checked name="jLetter">
+                    Receive promotional offers?
+                  </label>
+                </div>
+
+                <div class="inline-control submit-form col-1">
+                  <button type="submit" id="submitBtn">Search</button>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </main>
 

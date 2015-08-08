@@ -7,6 +7,10 @@ html, body {
   padding: 0;
   height: 100%;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  background-image: url('https://images.unsplash.com/uploads/14126758789351371c7ec/aa322c2d?q=80&fm=jpg&s=2b648d0828ab09b915215b1003a1b633');
+  /*background-image: url('https://images.unsplash.com/photo-1428908799722-0a74e26ce7f6?q=80&fm=jpg&s=e6268bcc40c0f94684e0f37bf55857ea');*/
+  /*background-image: url('https://images.unsplash.com/photo-1416431168657-a6c4184348ab?q=80&fm=jpg&s=42fc76ae7e491e123c191ef11db2dd72');*/
+  background-size: cover;
 }
 
 .wrapper {
@@ -55,6 +59,15 @@ footer a {
 main {
   margin: 64px 0;
   flex: 1;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  max-width: 1000px;
+  padding: 32px 48px;
+  margin: 0 auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
 }
 
 h2 {
@@ -163,4 +176,17 @@ footer [class*="col-"] {
 
 .col-4 {
   width: 100%;
+}
+
+
+/* Breakpoints */
+
+@media (min-height: 1080px) {
+  .row {
+    margin-bottom: 32px;
+  }
+
+  main {
+    padding-top: 150px;
+  }
 }
