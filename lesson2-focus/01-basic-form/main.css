@@ -1,0 +1,134 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+header {
+  background: #000000;
+  color: #FAFAFA;
+  padding: 16px 0;
+}
+
+header h1 {
+  margin: 0 50px 0 0;
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: 100;
+}
+
+header h1 span {
+  font-family: 'Courgette';
+  color: #FFC107;
+}
+
+nav {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+nav a {
+  color: inherit;
+  text-decoration: none;
+  margin-right: 16px;
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 38px;
+  font-weight: 100;
+  text-align: center;
+}
+
+.row {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  color: #3F51B5;
+  margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="date"],
+textarea {
+  display: block;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #9E9E9E;
+  font-size: 18px;
+  padding: 8px;
+  font-family: inherit;
+  font-weight: 100;
+  color: #616161;
+}
+
+input[type="date"] {
+  padding: 6px 8px;
+}
+
+select {
+  font-size: 20px;
+  width: 100%;
+}
+
+.inline-control {
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 16px;
+}
+
+.inline-control:last-child {
+  margin-right: 0;
+}
+
+.sign-up {
+  vertical-align: bottom;
+}
+
+.submit-form {
+  vertical-align: bottom;
+}
+
+button[type="submit"] {
+  width: 100%;
+  height: 42px;
+  color: white;
+  background: #3F51B5;
+  border: none;
+  border-radius: 4px;
+  font-size: 20px;
+  font-family: inherit;
+  font-weight: 100;
+}
+
+/* Columns */
+
+.col-1 {
+  width: calc(25% - 14px);
+}
+
+.col-2 {
+  width: calc(50% - 14px);
+}
+
+.col-3 {
+  width: calc(75% - 14px);
+}
+
+.col-4 {
+  width: 100%;
+}
