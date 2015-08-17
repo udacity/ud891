@@ -1,0 +1,118 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin: 0 0 60px; /* bottom = newsletter height */
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+nav {
+  margin-bottom: 48px;
+  box-shadow: 0 0 8px #BBB;
+  border-bottom: 1px solid #AAA;
+}
+
+.logo {
+  text-align: center;
+  font-size: 32px;
+  margin: 0;
+  padding: 16px 0;
+  border-bottom: 1px solid #DDD;
+}
+
+.logo,
+.headline {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.menu {
+  padding: 16px 48px;
+}
+
+.menu a {
+  color: #000;
+  text-decoration: none;
+  font-size: 18px;
+  margin-right: 18px;
+}
+
+.menu a:last-child {
+  margin-right: 0;
+}
+
+article p {
+  line-height: 1.4;
+}
+
+.main-story {
+  clear: both;
+  overflow: hidden;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #AAA;
+}
+
+.main-story img {
+  width: 50%;
+}
+
+.main-story .info {
+  margin-right: 50%;
+  padding-right: 16px;
+}
+
+.side-by-side article {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.side-by-side article img {
+  max-width: 100%;
+}
+
+.side-by-side article:first-child {
+  width: 70%;
+  padding-right: 16px;
+  border-right: 1px solid #AAA;
+}
+
+.side-by-side article:last-child {
+  padding-left: 16px;
+  width: 29%; /* Account for whitespace gap from display: inline-block */
+}
+
+.side-by-side article:last-child .headline {
+  font-size: 18px;
+}
+
+.newsletter {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  background: #000;
+  color: #FFF;
+  border-top: 1px solid #AAA;
+}
+
+.newsletter h3 {
+  display: inline-block;
+  margin-right: 16px;
+}
+
+/* Helpers */
+.pull-right {
+  float: right;
+}
