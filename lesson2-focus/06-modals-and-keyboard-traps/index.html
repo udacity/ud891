@@ -34,7 +34,7 @@
         <label for="email">E-Mail Address</label>
         <input id="email" type="text">
       </div>
-      <button>Sign me up already!</button>
+      <button id="signup">Sign me up already!</button>
     </div>
 
     <div class="modal-overlay"></div>
@@ -42,20 +42,26 @@
     <script>
       var focusableElementsString = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
 
+      // Find the modal and its overlay
+      var modal = document.querySelector('.modal');
+      var modalOverlay = document.querySelector('.modal-overlay');
+
       var modalToggle = document.querySelector('.modal-toggle');
       modalToggle.addEventListener('click', openModal);
 
       function openModal() {
-        // Find the modal and its overlay
-        var modal = document.querySelector('.modal');
-        var modalOverlay = document.querySelector('.modal-overlay');
-
         // Save current focus
         var focusedElementBeforeModal = document.activeElement;
 
+        // Sign-Up button
+        var signUpBtn = modal.querySelector('#signup');
+
         // Listen for and trap the keyboard
         modal.addEventListener('keydown', trapTabKey);
+
+        // Listen for indicators to close the modal
         modalOverlay.addEventListener('click', closeModal);
+        signUpBtn.addEventListener('click', closeModal);
 
         // Find all focusable children
         var focusableElements = modal.querySelectorAll(focusableElementsString);
@@ -97,15 +103,15 @@
             closeModal();
           }
         }
+      }
 
-        function closeModal() {
-          // Hide the modal and overlay
-          modal.style.display = 'none';
-          modalOverlay.style.display = 'none';
+      function closeModal() {
+        // Hide the modal and overlay
+        modal.style.display = 'none';
+        modalOverlay.style.display = 'none';
 
-          // Set focus back to element that had it before the modal was opened
-          focusedElementBeforeModal.focus();
-        }
+        // Set focus back to element that had it before the modal was opened
+        focusedElementBeforeModal.focus();
       }
     </script>
   </body>
