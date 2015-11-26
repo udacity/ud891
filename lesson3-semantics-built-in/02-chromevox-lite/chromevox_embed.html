@@ -1,0 +1,274 @@
+<html>
+<head>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.cvoxembed {
+  height: 80px;
+  background: #ffe;
+  display: flex;
+  flex-direction: row;
+  font-family: arial, helvetica, sans-serif;
+  font-size: 11pt;
+}
+
+.header {
+  width: 64px;
+  height: 64px;
+  margin: 0;
+  padding: 0;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.content {
+}
+
+.controls {
+  float: left;
+  width: 100%;
+  height: 24px;
+  line-height: 32px;
+  padding: 2px 8px;
+}
+
+.controls span {
+  padding-right: 30px;
+}
+
+.caption {
+  float: left;
+  height: 24px;
+  line-height: 32px;
+  padding: 2px 8px;
+  white-space: nowrap;
+  overflow: clip;
+  text-overflow: ellipsis;
+  width: 600px;
+}
+
+.volume {
+  float: left;
+  height: 24px;
+  line-height: 32px;
+  padding: 2px 8px;
+  white-space: nowrap;
+  overflow: clip;
+  text-overflow: ellipsis;
+}
+
+.volume input {
+  position: relative;
+  top: 3px;
+  left: 2px;
+}
+
+.cvoxembed select {
+  max-width: 150px;
+}
+
+.cvoxembed button {
+  outline: none;
+  border: 1px solid #666;
+  background: #fec;
+  border-radius: 4px;
+}
+
+.cvoxembed button:hover {
+  background: #fda;
+}
+
+.header span {
+  height: 64px;
+  line-height: 64px;
+}
+</style>
+</head>
+<body>
+
+<div id="cvoxembed" class="cvoxembed" aria-hidden="true">
+  <div class="header">
+    <img src="chromevox-128.png" width="64" height="64" alt="">
+  </div>
+  <div class="content">
+    <div class="controls">
+      <span>
+        Voice:
+        <select id="voices">
+        </select>
+      </span>
+      <span>
+        Speech rate:
+        <select id="rates">
+          <option value="1.0">Beginner</option>
+          <option value="1.8">Intermediate</option>
+          <option value="3.0">
+              Advanced (normal for a blind person)
+          </option>
+        </select>
+      </span>
+      <span>
+        Navigate:
+        <button id="top">Top</button>
+        <button id="previous">Previous</button>
+        <button id="next">Next</button>
+        <button id="heading">Heading</button>
+        <button id="click">Click</button>
+      </span>
+    </div>
+    <div id="caption" class="caption">
+      Caption
+    </div>
+    <div class="volume">
+      Volume: <input id="volume" type="range" min=0 value=100 max=100>
+    </div>
+  </div>
+</div>
+
+<script>
+function $(e) {
+  return document.getElementById(e);
+}
+var caption = $('caption');
+var embed = $('cvoxembed');
+var voices = $('voices');
+var rates = $('rates');
+var volumeControl = $('volume');
+
+var ctrls = embed.querySelectorAll('button,select');
+var enabled;
+
+function cvoxEmbedEnable() {
+  window.parent.postMessage('enable', '*');
+  enabled = true;
+  for (var i = 0; i < ctrls.length; i++) {
+    ctrls[i].disabled = false;
+    ctrls[i].tabIndex = -1;
+  }
+}
+
+function cvoxEmbedDisable() {
+  window.parent.postMessage('disable', '*');
+  enabled = false;
+  for (var i = 0; i < ctrls.length; i++)
+    ctrls[i].disabled = true;
+}
+
+cvoxEmbedDisable();
+
+embed.addEventListener('mousedown', function(e) {
+  if (enabled && (e.target.tagName == 'SELECT' ||
+                  e.target.tagName == 'INPUT' ||
+                  e.target.tagName == 'BUTTON')) {
+    return;
+  }
+  if (enabled)
+    cvoxEmbedDisable();
+  else
+    cvoxEmbedEnable();
+}, true);
+
+$('next').addEventListener('click', function(e) {
+  window.parent.postMessage('next', '*');
+  e.stopPropagation();
+});
+$('previous').addEventListener('click', function(e) {
+  window.parent.postMessage('previous', '*');
+  e.stopPropagation();
+});
+$('top').addEventListener('click', function(e) {
+  window.parent.postMessage('top', '*');
+  e.stopPropagation();
+});
+$('heading').addEventListener('click', function(e) {
+  window.parent.postMessage('heading', '*');
+  e.stopPropagation();
+});
+$('click').addEventListener('click', function(e) {
+  window.parent.postMessage('click', '*');
+  e.stopPropagation();
+});
+
+var currentVoices = [];
+function updateVoices() {
+  console.log('Calling getVoices');
+  while (voices.firstChild)
+    voices.removeChild(voices.firstChild);
+  currentVoices = speechSynthesis.getVoices();
+  for (var i = 0; i < currentVoices.length; i++) {
+    var option = document.createElement('option');
+    option.innerText = currentVoices[i].name;
+    voices.appendChild(option);
+  }
+}
+
+speechSynthesis.onvoiceschanged = function() {
+  updateVoices();
+};
+
+updateVoices();
+
+var speechQueue = [];
+
+function speakNextUtterance() {
+  if (speechSynthesis.speaking)
+    return;
+
+  if (speechQueue.length == 0)
+    return;
+
+  var data = speechQueue.shift();
+  var rate = parseFloat(rates.selectedOptions[0].value);
+  var volume = volumeControl.value / 100.0;
+  var u = new SpeechSynthesisUtterance(data.text);
+  u.voice = currentVoices[voices.selectedIndex];
+  u.rate = rate;
+  u.pitch = 2 * data.params.pitch;
+  u.volume = volume;
+  console.log(u);
+  u.onend = function() {
+    window.setTimeout(function() {
+      speakNextUtterance();
+    }, 0);
+  }
+  speechSynthesis.speak(u);
+}
+
+window.addEventListener('message', function(e) {
+  console.log(e.data);
+  if (typeof e.data != 'string')
+    return;
+
+  if (e.data.substr(0, 6) == 'SPEAK:') {
+    var speakArgs = JSON.parse(e.data.substr(6));
+    var text = speakArgs[0];
+    var queueMode = speakArgs[1];
+    var params = speakArgs[2];
+    console.log('Speak ' + text + ' q=' + queueMode + ' params=' +
+        JSON.stringify(params));
+    if (queueMode == 0)
+      caption.innerHTML = '';
+    var str = '<span>' + text + '</span>&nbsp;&nbsp;';
+    if (params.pitch < 0.5) {
+      caption.innerHTML += '<i>' + text + '</i>&nbsp;';
+    } else {
+      caption.innerHTML += '<b>' + text + '</b>&nbsp;';
+    }
+
+    if (queueMode == 0) {
+      speechSynthesis.cancel();
+      speechQueue.length = 0;
+    }
+
+    speechQueue.push({text: text, queueMode: queueMode, params: params});
+    speakNextUtterance();
+  }
+});
+
+</script>
+
+</body>
+</html>
