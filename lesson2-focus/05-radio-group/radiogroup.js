@@ -37,8 +37,6 @@
           this.focusedIdx--;
         }
 
-        this.changeFocus(this.focusedIdx);
-
         break;
 
       }
@@ -54,11 +52,10 @@
           this.focusedIdx++;
         }
 
-        this.changeFocus(this.focusedIdx);
-
         break;
       }
 
+      this.changeFocus(this.focusedIdx);
     }
   };
 
