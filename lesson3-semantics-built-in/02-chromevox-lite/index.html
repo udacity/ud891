@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Basic Form</title>
+    <meta name="description" content="A basic form">
+
+    <!-- Mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="main.css">
+    <link href='http://fonts.googleapis.com/css?family=Courgette|Roboto:400,300' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="wrapper blur">
+      <header>
+        <div class="container">
+          <h1>Udacity <span>Down Under</span></h1>
+          <nav>
+            <a href="#">Flights</a>
+            <a href="#">Hotels</a>
+            <a href="#">Rental Cars</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <div class="card">
+          <div class="trip-selector">
+            <label>
+              <input type="radio" checked name="tType" value="0">
+              Round Trip
+            </label>
+            <label>
+              <input type="radio" name="tType" value="1">
+              One Way
+            </label>
+            <label>
+              <input type="radio" name="tType" value="2">
+              Multi City
+            </label>
+          </div>
+
+          <div class="container">
+            <h2>Where ya headed, mate?</h2>
+            <form>
+              <div class="row">
+                <label for="fName">Full Name</label>
+                <input type="text" name="fName" id="fName">
+              </div>
+
+              <div class="row">
+                <label for="address">Enter your address</label>
+                <textarea id="address" name="addressTxt"></textarea>
+              </div>
+
+              <div class="row">
+                <div class="inline-control col-2">
+                  <label for="dest">Choose your destination</label>
+                  <input type="text" list="cities" name="dest" id="dest">
+                  <datalist id="cities">
+                    <option value="Sydney">
+                    <option value="Melbourne">
+                    <option value="Brisbane">
+                    <option value="Perth">
+                    <option value="Adelaide">
+                  </datalist>
+                </div>
+
+                <div class="inline-control col-1">
+                  <label for="dDate">Depart Date</label>
+                  <input type="date" name="dDate" id="dDate">
+                </div>
+
+                <div class="inline-control col-1">
+                  <label for="rDate">Return Date</label>
+                  <input type="date" name="rDate" id="rDate">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="inline-control col-2">
+                  <label for="seatType">Preferred seat type</label>
+                  <select name="seatType" id="seatType">
+                    <option value="0">No preference</option>
+                    <option value="1">Aisle seat</option>
+                    <option value="2">Window seat</option>
+                  </select>
+                </div>
+
+                <div class="inline-control sign-up col-1">
+                  <label>
+                    <input type="checkbox" checked name="jLetter">
+                    Receive promotional offers?
+                  </label>
+                </div>
+
+                <div class="inline-control submit-form col-1">
+                  <button type="submit" id="submitBtn">Search</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+
+      <footer>
+        <div class="container">
+          <div class="col-1">
+            <a href="#">About us</a>
+          </div>
+          <div class="col-1">
+            <a href="#">Join our newsletter</a>
+          </div>
+          <div class="col-1">
+            <a href="#">Need Support?</a>
+          </div>
+          <div class="col-1">
+            <a href="#">© 2015 Udacity</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <style>
+      .cvoxembed {
+      z-index: 3;
+      width: 100%;
+      height: 80px;
+      border-top: 1px solid #000;
+      background: #ffe;
+      position: fixed;
+      left: 0px;
+      bottom: -60px;
+      right: 0px;
+      -webkit-box-shadow: 5px 5px 10px 10px #999;
+      display: flex;
+      flex-direction: row;
+      font-family: arial, helvetica, sans-serif;
+      font-size: 10pt;
+      opacity: 0.4;
+      transition: all 0.5s ease-in-out;
+      }
+
+      .cvoxembed:hover {
+      bottom: -50px;
+      opacity: 0.6;
+      }
+
+      .cvoxembed.cvoxembed-enabled {
+      bottom: 0px;
+      opacity: 1.0;
+      }
+    </style>
+
+    <iframe id="cvoxembed" class="cvoxembed" aria-hidden="true" src="chromevox_embed.html"></iframe>
+
+    <script>
+      // First inject stubs that do nothing.
+      window.accessibility = {};
+      window.accessibility.speak = function(text, queueMode, params) {
+      }
+      window.accessibility.isSpeaking = function() {
+      }
+      window.accessibility.stop = function() {
+      }
+      window.accessibility.braille = function() {};
+
+      // Prevent ChromeVox from playing an earcon on startup.
+      window.saveAudio = window.Audio;
+      window.Audio = function() {};
+    </script>
+
+    <script src="chromeandroidvox.js"></script>
+    <!-- script src="https://ssl.gstatic.com/accessibility/javascript/android/chromeandroidvox.js"></script -->
+    <script>
+      // Now disable ChromeVox.
+      window.setTimeout(function() {
+          // Hide chromevox indicator
+          var cvoxIndicator = document.querySelector('.cvox_indicator_container');
+          if (cvoxIndicator)
+              cvoxIndicator.parentElement.removeChild(cvoxIndicator);
+      }, 101);
+      cvox.ChromeVox.host.activateOrDeactivateChromeVox(false);
+      cvox.ChromeVoxEventWatcher.focusFollowsMouse=false;
+      cvox.ChromeVox.host.mustRedispatchClickEvent = function() { return false; }
+
+      var embed = document.getElementById('cvoxembed');
+
+      // ChromeVox embed commands.
+      function cvoxEmbedEnable() {
+          enabled = true;
+          embed.classList.add('cvoxembed-enabled');
+          cvox.ChromeVox.host.activateOrDeactivateChromeVox(true);
+          cvox.ChromeVoxEventWatcher.focusFollowsMouse=false;
+          cvox.ChromeVox.executeUserCommand('jumpToTop');
+      }
+
+      function cvoxEmbedDisable() {
+          enabled = false;
+          window.accessibility.stop();
+          cvox.ChromeVox.host.activateOrDeactivateChromeVox(false);
+          embed.classList.remove('cvoxembed-enabled');
+      }
+
+      function cvoxEmbedNext() {
+          cvox.ChromeVox.executeUserCommand('forward');
+      }
+      function cvoxEmbedPrevious() {
+          cvox.ChromeVox.executeUserCommand('backward');
+      }
+      function cvoxEmbedTop() {
+          cvox.ChromeVox.executeUserCommand('jumpToTop');
+      }
+      function cvoxEmbedHeading() {
+          cvox.ChromeVox.executeUserCommand('nextHeading');
+      }
+      function cvoxEmbedClick() {
+          cvox.ChromeVox.executeUserCommand('forceClickOnCurrentItem');
+      }
+
+      // Listen for messages from the iframe.
+      window.addEventListener('message', function(e) {
+          console.log(e.data);
+          switch (e.data) {
+          case 'enable': cvoxEmbedEnable(); break;
+          case 'disable': cvoxEmbedDisable(); break;
+          case 'next': cvoxEmbedNext(); break;
+          case 'previous': cvoxEmbedPrevious(); break;
+          case 'heading': cvoxEmbedHeading(); break;
+          case 'top': cvoxEmbedTop(); break;
+          case 'click': cvoxEmbedClick(); break;
+          }
+      });
+
+      // Stop talking if the user changes tab
+      window.addEventListener('blur', function(e) {
+          cvoxEmbedDisable();
+      });
+
+      window.addEventListener('keydown', function(e) {
+          console.log('keydown', e);
+          switch(e.keyCode) {
+          case 9: // tab
+              if (!enabled)
+                  cvoxEmbedEnable();
+          }
+          return false;
+      }, false);
+
+      cvoxEmbedDisable();
+
+      // Finally replace the stubs with a real implementation now
+      // that ChromeVox won't speak on startup.
+      window.accessibility.speak = function(text, queueMode, params) {
+          embed.contentWindow.postMessage(
+          'SPEAK:' + JSON.stringify([text, queueMode, params]), '*');
+      }
+      window.accessibility.isSpeaking = function() {
+      }
+      window.accessibility.stop = function() {
+         embed.contentWindow.postMessage('STOP', '*');
+      }
+      window.accessibility.braille = function() {};
+      window.Audio = window.saveAudio;
+      cvox.ChromeVox.earcons.audioMap = {};
+
+    </script>
+  </body>
+</html>
