@@ -254,8 +254,10 @@
       // Finally replace the stubs with a real implementation now
       // that ChromeVox won't speak on startup.
       window.accessibility.speak = function(text, queueMode, params) {
-          embed.contentWindow.postMessage(
-          'SPEAK:' + JSON.stringify([text, queueMode, params]), '*');
+          embed.contentWindow.postMessage({ command: 'SPEAK',
+                                            text: text,
+                                            queueMode: queueMode,
+                                            params: params}, '*');
       }
       window.accessibility.isSpeaking = function() {
       }

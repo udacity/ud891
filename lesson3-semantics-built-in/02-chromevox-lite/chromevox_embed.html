@@ -239,14 +239,14 @@ function speakNextUtterance() {
 
 window.addEventListener('message', function(e) {
   console.log(e.data);
-  if (typeof e.data != 'string')
+  if (!('command' in e.data))
     return;
-
-  if (e.data.substr(0, 6) == 'SPEAK:') {
-    var speakArgs = JSON.parse(e.data.substr(6));
-    var text = speakArgs[0];
-    var queueMode = speakArgs[1];
-    var params = speakArgs[2];
+  var command = e.data.command;
+  switch (command) {
+  case 'SPEAK':
+    var text = e.data.text;
+    var queueMode = e.data.queueMode;
+    var params = e.data.params;
     console.log('Speak ' + text + ' q=' + queueMode + ' params=' +
         JSON.stringify(params));
     if (queueMode == 0)
@@ -265,6 +265,7 @@ window.addEventListener('message', function(e) {
 
     speechQueue.push({text: text, queueMode: queueMode, params: params});
     speakNextUtterance();
+    break;
   }
 });
 
