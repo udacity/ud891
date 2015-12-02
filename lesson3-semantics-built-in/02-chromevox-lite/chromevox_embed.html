@@ -192,16 +192,45 @@ $('click').addEventListener('click', function(e) {
   e.stopPropagation();
 });
 
+function langsMatch(lang1, lang2) {
+  var lang1Test = document.createElement('test');
+  lang1Test.lang = lang1;
+  var lang2Test = document.createElement('test');
+  lang2Test.lang = lang2;
+  return lang2Test.matches(':lang(' + lang1 + ')') ||
+         lang1Test.matches(':lang(' + lang2 + ')');
+}
+
+var pageLang = navigator.language;
 var currentVoices = [];
 function updateVoices() {
   console.log('Calling getVoices');
   while (voices.firstChild)
     voices.removeChild(voices.firstChild);
   currentVoices = speechSynthesis.getVoices();
+  var foundDefaultLang = false;
   for (var i = 0; i < currentVoices.length; i++) {
     var option = document.createElement('option');
     option.innerText = currentVoices[i].name;
+    var chromeVoxLang = currentVoices[i].lang;
+    option.value = chromeVoxLang;
+    if (!foundDefaultLang) {
+      if (langsMatch(pageLang, chromeVoxLang)) {
+        option.defaultSelected = true;
+        foundDefaultLang = true;
+      }
+    }
     voices.appendChild(option);
+  }
+}
+
+function updateChromeVoxLang(chromeVoxLang) {
+  for (var option = voices.firstChild; option != null; option = option.nextSibling) {
+    var optionLang = option.value;
+    if (langsMatch(option.value, chromeVoxLang)) {
+      option.selected = true;
+      return;
+    }
   }
 }
 
@@ -243,7 +272,7 @@ window.addEventListener('message', function(e) {
     return;
   var command = e.data.command;
   switch (command) {
-  case 'SPEAK':
+  case 'speak':
     var text = e.data.text;
     var queueMode = e.data.queueMode;
     var params = e.data.params;
@@ -265,6 +294,11 @@ window.addEventListener('message', function(e) {
 
     speechQueue.push({text: text, queueMode: queueMode, params: params});
     speakNextUtterance();
+    break;
+  case 'stop':
+    break;
+  case 'setLang':
+    updateChromeVoxLang(e.data.lang);
     break;
   }
 });
