@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Styling with aria-states</title>
+  <link rel="stylesheet" href="../../styles/components.css">
+  <style>
+    html, body {
+      background: #FAFAFA;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    main {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button:hover, button:focus {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .card {
+      margin-top: 10px;
+      padding: 16px;
+      width: 200px;
+      text-align: center;
+      transition: opacity 0.3s ease-out;
+    }
+
+    .card[aria-hidden="true"] {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .card[aria-hidden="false"] {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+
+    <button aria-expanded="false" aria-controls="content">
+      Tequila <span class="icon" aria-hidden="true"></span>
+    </button>
+
+    <div id="content" aria-hidden="true" class="card arrow-up">Makes me happy</div>
+
+  </main>
+
+  <script>
+    var button = document.querySelector('button');
+    var content = document.getElementById('content');
+
+    button.addEventListener('click', toggleDisclosure);
+    button.addEventListener('keydown', toggleDisclosure);
+
+    function toggleDisclosure(e) {
+      var type = e.type;
+
+      // If the key pressed was not Space or Enter, return
+      if (type === 'keydown' && (event.keyCode !== 13 && event.keyCode !== 32)) {
+        return true;
+      }
+
+      e.preventDefault();
+
+      if (content.getAttribute('aria-hidden') === 'true') {
+        content.setAttribute('aria-hidden', 'false');
+        button.setAttribute('aria-expanded', 'true');
+      } else {
+        content.setAttribute('aria-hidden', 'true');
+        button.setAttribute('aria-expanded', 'false');
+      }
+    }
+  </script>
+
+</body>
+
+</html>
