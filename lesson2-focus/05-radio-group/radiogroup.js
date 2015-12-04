@@ -55,8 +55,9 @@
         break;
       }
 
-      this.changeFocus(this.focusedIdx);
     }
+    
+    this.changeFocus(this.focusedIdx);
   };
 
   RadioGroup.prototype.changeFocus = function(idx) {
