@@ -250,17 +250,21 @@
       }, false);
 
       cvoxEmbedDisable();
+      embed.contentWindow.postMessage({ command: 'setLang',
+                                        lang: document.documentElement.lang }, '*');
 
       // Finally replace the stubs with a real implementation now
       // that ChromeVox won't speak on startup.
       window.accessibility.speak = function(text, queueMode, params) {
-          embed.contentWindow.postMessage(
-          'SPEAK:' + JSON.stringify([text, queueMode, params]), '*');
+          embed.contentWindow.postMessage({ command: 'speak',
+                                            text: text,
+                                            queueMode: queueMode,
+                                            params: params}, '*');
       }
       window.accessibility.isSpeaking = function() {
       }
       window.accessibility.stop = function() {
-         embed.contentWindow.postMessage('STOP', '*');
+         embed.contentWindow.postMessage({ command: 'stop' }, '*');
       }
       window.accessibility.braille = function() {};
       window.Audio = window.saveAudio;

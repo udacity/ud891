@@ -192,16 +192,65 @@ $('click').addEventListener('click', function(e) {
   e.stopPropagation();
 });
 
+function matchesSelector(element, selector) {
+    if (element.matches)
+        return element.matches(selector);
+    if (element.webkitMatchesSelector)
+        return element.webkitMatchesSelector(selector);
+    if (element.mozMatchesSelector)
+        return element.mozMatchesSelector(selector);
+    if (element.msMatchesSelector)
+        return element.msMatchesSelector(selector);
+    return false;
+}
+
+/**
+ * Liberally match two language codes, for example:
+ * langsMatch('en-US', 'en') -> true
+ * langsMatch('en', 'en-US') -> true
+ * langsMatch('en-UK', 'en-US') -> false
+ * @param {string} lang1 An ISO language code
+ * @param {string} lang2 An ISO language code
+ * @return {boolean} Whether the two language match.
+ */
+function langsMatch(lang1, lang2) {
+  var lang1Test = document.createElement('test');
+  lang1Test.lang = lang1;
+  var lang2Test = document.createElement('test');
+  lang2Test.lang = lang2;
+  return matchesSelector(lang2Test, ':lang(' + lang1 + ')') ||
+         matchesSelector(lang1Test, ':lang(' + lang2 + ')');
+}
+
+var pageLang = navigator.language;
 var currentVoices = [];
 function updateVoices() {
-  console.log('Calling getVoices');
   while (voices.firstChild)
     voices.removeChild(voices.firstChild);
   currentVoices = speechSynthesis.getVoices();
+  var foundDefaultLang = false;
   for (var i = 0; i < currentVoices.length; i++) {
     var option = document.createElement('option');
     option.innerText = currentVoices[i].name;
+    var chromeVoxLang = currentVoices[i].lang;
+    option.value = chromeVoxLang;
+    if (!foundDefaultLang) {
+      if (langsMatch(pageLang, chromeVoxLang)) {
+        option.defaultSelected = true;
+        foundDefaultLang = true;
+      }
+    }
     voices.appendChild(option);
+  }
+}
+
+function updateChromeVoxLang(chromeVoxLang) {
+  for (var option = voices.firstChild; option != null; option = option.nextSibling) {
+    var optionLang = option.value;
+    if (langsMatch(option.value, chromeVoxLang)) {
+      option.selected = true;
+      return;
+    }
   }
 }
 
@@ -239,14 +288,14 @@ function speakNextUtterance() {
 
 window.addEventListener('message', function(e) {
   console.log(e.data);
-  if (typeof e.data != 'string')
+  if (!('command' in e.data))
     return;
-
-  if (e.data.substr(0, 6) == 'SPEAK:') {
-    var speakArgs = JSON.parse(e.data.substr(6));
-    var text = speakArgs[0];
-    var queueMode = speakArgs[1];
-    var params = speakArgs[2];
+  var command = e.data.command;
+  switch (command) {
+  case 'speak':
+    var text = e.data.text;
+    var queueMode = e.data.queueMode;
+    var params = e.data.params;
     console.log('Speak ' + text + ' q=' + queueMode + ' params=' +
         JSON.stringify(params));
     if (queueMode == 0)
@@ -265,6 +314,12 @@ window.addEventListener('message', function(e) {
 
     speechQueue.push({text: text, queueMode: queueMode, params: params});
     speakNextUtterance();
+    break;
+  case 'stop':
+    break;
+  case 'setLang':
+    updateChromeVoxLang(e.data.lang);
+    break;
   }
 });
 
