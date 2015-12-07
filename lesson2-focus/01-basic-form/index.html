@@ -123,5 +123,15 @@
         </div>
       </footer>
     </div>
+    <script>
+      // Set default date values
+      var tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      document.querySelector('#dDate').valueAsDate = tomorrow;
+
+      var nextWeek = new Date();
+      nextWeek.setDate(nextWeek.getDate() + 7);
+      document.querySelector('#rDate').valueAsDate = nextWeek;
+    </script>
   </body>
 </html>
