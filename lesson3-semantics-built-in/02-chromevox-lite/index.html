@@ -157,6 +157,15 @@
     <iframe id="cvoxembed" class="cvoxembed" aria-hidden="true" src="chromevox_embed.html"></iframe>
 
     <script>
+      // Set default date values
+      var tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      document.querySelector('#dDate').valueAsDate = tomorrow;
+
+      var nextWeek = new Date();
+      nextWeek.setDate(nextWeek.getDate() + 7);
+      document.querySelector('#rDate').valueAsDate = nextWeek;
+
       // First inject stubs that do nothing.
       window.accessibility = {};
       window.accessibility.speak = function(text, queueMode, params) {
