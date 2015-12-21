@@ -1,0 +1,19 @@
+button:focus, a:focus {
+  outline: none;
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav > li > a {
+  padding: 0 16px;
+}
+
+.nav > li > a:focus {
+  outline: none;
+  background-color: transparent;
+}
+
+.jumbotron .mdl-button {
+  background-color: #43A047;
+  color: #FFFFFF;
+}
