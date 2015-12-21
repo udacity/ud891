@@ -1,0 +1,51 @@
+html, body {
+  background: #FAFAFA;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  margin: 0 180px;
+}
+
+.disclosure-button:hover, .disclosure-button:focus {
+  background-color: #D81B60;
+  color: #FFF;
+}
+
+.disclosure-button .icon::after {
+  display: inline-block;
+  font-size: 14px;
+  margin-right: 8px;
+  width: 14px;
+  height: 36px;
+}
+
+.disclosure-button[aria-expanded="false"] .icon::after {
+  content: '▶';
+}
+
+.disclosure-button[aria-expanded="true"] .icon::after {
+  content: '▼';
+}
+
+
+.disclosure-content[aria-hidden="true"] {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.disclosure-content[aria-hidden="false"] {
+  visibility: visible;
+  opacity: 1;
+}
