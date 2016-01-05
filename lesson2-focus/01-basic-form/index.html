@@ -9,11 +9,11 @@
     <!-- Mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Latest compiled and minified Bootstrap CSS -->
     <link rel="stylesheet" href="main.css">
     <link href='http://fonts.googleapis.com/css?family=Courgette|Roboto:400,300' rel='stylesheet' type='text/css'>
   </head>
   <body>
+    <div class="click-stealer"></div>
     <div class="wrapper">
       <header>
         <div class="container">
@@ -123,5 +123,14 @@
         </div>
       </footer>
     </div>
+
+    <script>
+      document.querySelector('.click-stealer').addEventListener('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        return false;
+      });
+    </script>
   </body>
 </html>
