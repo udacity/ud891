@@ -1,5 +1,7 @@
 var isFirstPage = true;
 
+page.base('/udacity-a11y');
+
 page('/', function() {
   page.redirect('/what-is-vegemite');
 });
