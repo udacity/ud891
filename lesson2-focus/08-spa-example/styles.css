@@ -18,6 +18,10 @@ html, body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
   margin: 0;
   padding: 0;
+  height: 100%;
+}
+.mdl-layout {
+  height: 100%;
 }
 .mdl-demo .mdl-layout__header-row {
   padding-left: 40px;
@@ -104,6 +108,11 @@ html, body {
   right: 40px;
   top: 36px;
   z-index: 999;
+}
+
+.mdl-demo .mdl-layout__content {
+  display: flex;
+  flex-direction: column;
 }
 
 .mdl-demo .mdl-layout__content section {
@@ -241,7 +250,9 @@ div[data-page] {
 }
 
 div[data-page].is-active {
-  display: block !important;
+  display: flex !important;
+  flex-direction: column;
+  flex: 1;
 }
 
 table {
