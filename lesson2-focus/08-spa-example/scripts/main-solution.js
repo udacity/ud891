@@ -9,15 +9,18 @@ page('/:slug', function(context) {
 
   // Remove is-active class from previous menu item and section
   var oldMenuItem = document.querySelector('#menu .is-active');
-  var oldSection = document.querySelector('main .is-active');
+  var oldPage = document.querySelector('main .is-active');
   oldMenuItem.classList.remove('is-active');
-  oldSection.classList.remove('is-active');
+  oldPage.classList.remove('is-active');
 
   // Add is-active class to new menu item and section using the URL slug
   var newMenuItem = document.querySelector('#menu [data-page='+slug+']');
-  var newSection = document.querySelector('main [data-page='+slug+']');
+  var newPage = document.querySelector('main [data-page='+slug+']');
   newMenuItem.classList.add('is-active');
-  newSection.classList.add('is-active');
+  newPage.classList.add('is-active');
+
+  // Move focus to the new page
+  newPage.focus();
 
 });
 
