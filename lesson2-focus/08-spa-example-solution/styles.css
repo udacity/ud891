@@ -122,6 +122,7 @@ html, body {
 }
 .mdl-demo section.section--center {
   max-width: 860px;
+  display: block;
 }
 .mdl-demo #features section.section--center {
   max-width: 620px;
