@@ -31,9 +31,7 @@ page('/:slug', function(context) {
   }
 
   // Move focus to the new page
-  setTimeout(function() {
-    newPage.focus();
-  }, 1000);
+  newPage.querySelector('h4').focus();
 
 });
 
