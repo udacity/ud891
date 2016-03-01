@@ -31,7 +31,9 @@ page('/:slug', function(context) {
   }
 
   // Move focus to the new page
-  newPage.focus();
+  setTimeout(function() {
+    newPage.focus();
+  }, 1000);
 
 });
 
