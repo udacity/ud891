@@ -20,6 +20,11 @@ html, body {
   padding: 0;
   height: 100%;
 }
+h2, h3 {
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
 .mdl-layout {
   height: 100%;
 }
@@ -82,10 +87,6 @@ html, body {
   color: inherit;
   width: calc(100% - 80px);
 }
-.mdl-demo.mdl-demo .mdl-card__supporting-text h4 {
-  margin-top: 0;
-  margin-bottom: 20px;
-}
 .mdl-demo .mdl-card__actions {
   margin: 0;
   padding: 4px 40px;
@@ -122,6 +123,7 @@ html, body {
 }
 .mdl-demo section.section--center {
   max-width: 860px;
+  display: block;
 }
 .mdl-demo #features section.section--center {
   max-width: 620px;
@@ -226,19 +228,12 @@ html, body {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-.mdl-demo .toc h4 {
-  font-size: 0.9rem;
-  margin-top: 0;
-}
-.mdl-demo .toc a {
-  color: #4DD0E1;
-  text-decoration: none;
-  font-size: 16px;
-  line-height: 28px;
-  display: block;
-}
 .mdl-demo .mdl-menu__container {
   z-index: 99;
+}
+
+.title {
+  font-size: 24px;
 }
 
 a.is-active {

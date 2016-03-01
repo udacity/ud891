@@ -1,6 +1,6 @@
 var isFirstPage = true;
 
-page.base('/udacity-a11y/lesson2-focus/08-spa-example-solution');
+// page.base('/udacity-a11y/lesson2-focus/08-spa-example-solution');
 
 page('/', function() {
   page.redirect('/what-is-vegemite');
@@ -30,8 +30,8 @@ page('/:slug', function(context) {
     return;
   }
 
-  // Move focus to the new page
-  newPage.querySelector('h4').focus();
+  // Move focus to a heading in the new page
+  newPage.querySelector('h2').focus();
 
 });
 

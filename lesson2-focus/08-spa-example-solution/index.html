@@ -33,11 +33,7 @@
 
     <header class="mdl-layout__header mdl-layout__header--scroll mdl-color--primary">
       <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-      </div>
-      <div class="mdl-layout--large-screen-only mdl-layout__header-row">
-        <h3>The Wonders of Vegemite</h3>
-      </div>
-      <div class="mdl-layout--large-screen-only mdl-layout__header-row">
+        <h1 class="title">The Wonders of Vegemite</h1>
       </div>
       <nav id="menu" class="mdl-layout__tab-bar mdl-color--primary-dark">
         <a href="what-is-vegemite" data-page="what-is-vegemite" class="mdl-layout__tab is-active">What is Vegemite?</a>
@@ -48,11 +44,10 @@
 
     <main class="mdl-layout__content">
 
-      <!-- Give each page a tabindex so it can be focused -->
-      <div data-page="what-is-vegemite" tabindex="-1">
+      <div data-page="what-is-vegemite">
         <section class="section--center mdl-grid mdl-grid--no-spacing is-active">
           <div class="mdl-cell mdl-cell--12-col">
-            <h4 tabindex=-1>What is Vegemite?</h4>
+            <h2 tabindex=-1>What is Vegemite?</h2>
             Minim duis incididunt est cillum est ex occaecat consectetur. Qui sint ut et qui nisi cupidatat. Reprehenderit nostrud proident officia exercitation anim et pariatur ex.
 
             <h5 id="lorem1">Lorem ipsum dolor sit amet</h5>
@@ -110,11 +105,14 @@
         </section>
       </div>
 
-      <div data-page="recipes" tabindex="-1">
-        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-          <div class="mdl-card mdl-cell mdl-cell--12-col">
+      <div data-page="recipes">
+        <section class="section--center mdl-grid mdl-grid--no-spacing">
+          <div class="mdl-cell mdl-cell--12-col">
+            <h2 tabindex="-1">Recipes</h2>
+          </div>
+          <div class="mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp">
             <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
-              <h4 class="mdl-cell mdl-cell--12-col">Vegemite Toast Crunch</h4>
+              <h3 class="mdl-cell mdl-cell--12-col">Vegemite Toast Crunch</h3>
               <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                 <div class="section__circle-container__circle mdl-color--primary"></div>
               </div>
@@ -140,10 +138,10 @@
           </div>
         </section>
 
-        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-          <div class="mdl-card mdl-cell mdl-cell--12-col">
+        <section class="section--center mdl-grid mdl-grid--no-spacing">
+          <div class="mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp">
             <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
-              <h4 class="mdl-cell mdl-cell--12-col">Sweet Potato and Vegemite Pizza</h4>
+              <h3 class="mdl-cell mdl-cell--12-col">Sweet Potato and Vegemite Pizza</h3>
               <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                 <div class="section__circle-container__circle mdl-color--primary"></div>
               </div>
@@ -169,10 +167,10 @@
           </div>
         </section>
 
-        <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-          <div class="mdl-card mdl-cell mdl-cell--12-col">
+        <section class="section--center mdl-grid mdl-grid--no-spacing">
+          <div class="mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp">
             <div class="mdl-card__supporting-text mdl-grid mdl-grid--no-spacing">
-              <h4 class="mdl-cell mdl-cell--12-col">Vegemite Strawberry Shortcake</h4>
+              <h3 class="mdl-cell mdl-cell--12-col">Vegemite Strawberry Shortcake</h3>
               <div class="section__circle-container mdl-cell mdl-cell--2-col mdl-cell--1-col-phone">
                 <div class="section__circle-container__circle mdl-color--primary"></div>
               </div>
@@ -199,10 +197,10 @@
         </section>
       </div>
 
-      <div data-page="ingredients" tabindex="-1">
+      <div data-page="ingredients">
         <section class="section--center mdl-grid mdl-grid--no-spacing">
           <div class="mdl-cell mdl-cell--12-col">
-            <h4 tabindex="-1">Ingredients</h4>
+            <h2 tabindex="-1">Ingredients</h2>
             Minim duis incididunt est cillum est ex occaecat <a href="ingredients">consectetur</a>. Qui sint ut et qui nisi cupidatat. Reprehenderit nostrud proident officia exercitation anim et pariatur ex.
 
             <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
@@ -254,16 +252,6 @@
       </div>
 
     </main>
-
-    <footer class="mdl-mini-footer">
-      <div class="mdl-mini-footer__left-section">
-        <div class="mdl-logo">The Vegemite Blog</div>
-        <ul class="mdl-mini-footer__link-list">
-          <li><a href="#">Help</a></li>
-          <li><a href="#">Privacy & Terms</a></li>
-        </ul>
-      </div>
-    </footer>
 
   </div>
 
