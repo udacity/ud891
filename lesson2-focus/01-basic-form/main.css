@@ -7,9 +7,7 @@ html, body {
   padding: 0;
   height: 100%;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  background-image: url('https://images.unsplash.com/uploads/14126758789351371c7ec/aa322c2d?q=80&fm=jpg&s=2b648d0828ab09b915215b1003a1b633');
-  /*background-image: url('https://images.unsplash.com/photo-1428908799722-0a74e26ce7f6?q=80&fm=jpg&s=e6268bcc40c0f94684e0f37bf55857ea');*/
-  /*background-image: url('https://images.unsplash.com/photo-1416431168657-a6c4184348ab?q=80&fm=jpg&s=42fc76ae7e491e123c191ef11db2dd72');*/
+  background-image: url('./uair-2000.jpg');
   background-size: cover;
 }
 
@@ -86,6 +84,15 @@ h2 {
 
 .row {
   margin-bottom: 16px;
+}
+
+/* Strip out display: inline-block whitespace */
+.row > * {
+  margin-left: -4px;
+}
+
+.row > *:first-child {
+  margin-left: 0;
 }
 
 label {

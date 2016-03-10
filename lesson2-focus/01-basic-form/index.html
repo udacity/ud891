@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <div class="click-stealer"></div>
+  <!-- <div class="click-stealer"></div> -->
   <div class="wrapper">
     <header>
       <div class="container">
@@ -58,15 +58,27 @@
             </div>
 
             <div class="row">
-              <div class="inline-control col-2">
-                <label for="dest">Choose your destination</label>
-                <input type="text" list="cities" name="dest" id="dest">
-                <datalist id="cities">
+              <div class="inline-control col-1">
+                <label for="dest">Departure</label>
+                <input type="text" list="dCities" name="dept" id="dept">
+                <datalist id="dCities">
                   <option value="Sydney">
-                    <option value="Melbourne">
-                      <option value="Brisbane">
-                        <option value="Perth">
-                          <option value="Adelaide">
+                  <option value="Melbourne">
+                  <option value="Brisbane">
+                  <option value="Perth">
+                  <option value="Adelaide">
+                </datalist>
+              </div>
+
+              <div class="inline-control col-1">
+                <label for="dest">Arrival</label>
+                <input type="text" list="aCities" name="arri" id="arri">
+                <datalist id="aCities">
+                  <option value="Sydney">
+                  <option value="Melbourne">
+                  <option value="Brisbane">
+                  <option value="Perth">
+                  <option value="Adelaide">
                 </datalist>
               </div>
 
