@@ -12,6 +12,10 @@ body {
   font-family: 'Georgia', 'Times New Roman', serif;
 }
 
+h2 {
+  margin-top: 0;
+}
+
 .container {
   max-width: 1000px;
   margin: 0 auto;
@@ -31,11 +35,6 @@ nav {
   border-bottom: 1px solid #DDD;
 }
 
-.logo,
-.headline {
-  font-family: 'Montserrat', sans-serif;
-}
-
 .menu {
   padding: 16px 48px;
 }
@@ -51,6 +50,13 @@ nav {
   margin-right: 0;
 }
 
+.menu .btn-search img {
+  vertical-align: top;
+  margin-right: 8px;
+  width: 22px;
+  height: 22px;
+}
+
 article p {
   line-height: 1.4;
 }
@@ -60,7 +66,6 @@ article p {
   overflow: hidden;
   margin-bottom: 16px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #AAA;
 }
 
 .main-story img {
@@ -70,6 +75,22 @@ article p {
 .main-story .info {
   margin-right: 50%;
   padding-right: 16px;
+}
+
+.tier-header {
+  border-top: 1px solid #AAA;
+  margin-bottom: 15px;
+}
+
+.tier-header h2 {
+  font-size: 17px;
+  font-weight: 400;
+  text-transform: uppercase;
+  padding: 5px 15px;
+  display: inline-block;
+  margin: 0;
+  color: #fff;
+  background: #006b3a;
 }
 
 .side-by-side article {
@@ -94,6 +115,31 @@ article p {
 
 .side-by-side article:last-child .headline {
   font-size: 18px;
+}
+
+.three-col {
+  margin-bottom: 100px;
+}
+
+.three-col h2 {
+  font-size: 16px;
+}
+
+.three-col .columns {
+  display: flex;
+}
+
+.three-col .columns article {
+  flex: 1;
+  margin-right: 18px;
+}
+
+.three-col img {
+  width: 100%;
+}
+
+.three-col .columns article:last-child {
+  margin-right: 0;
 }
 
 .newsletter {
