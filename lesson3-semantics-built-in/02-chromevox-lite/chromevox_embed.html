@@ -4,24 +4,17 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .cvoxembed {
-  height: 80px;
+  height: 30px;
+  padding: 10px;
   background: #ffe;
   display: flex;
   flex-direction: row;
   font-family: arial, helvetica, sans-serif;
   font-size: 11pt;
-}
-
-.header {
-  width: 64px;
-  height: 64px;
-  margin: 0;
-  padding: 0;
-  flex-grow: 0;
-  flex-shrink: 0;
 }
 
 .content {
@@ -30,30 +23,27 @@ body {
 .controls {
   float: left;
   width: 100%;
-  height: 24px;
-  line-height: 32px;
-  padding: 2px 8px;
 }
 
 .controls span {
   padding-right: 30px;
 }
 
-.caption {
-  float: left;
-  height: 24px;
-  line-height: 32px;
+#caption {
+  flex: 1;
   padding: 2px 8px;
   white-space: nowrap;
   overflow: clip;
   text-overflow: ellipsis;
   width: 600px;
+  text-align: left;
+  color: white;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-size: 120%;
 }
 
 .volume {
-  float: left;
   height: 24px;
-  line-height: 32px;
   padding: 2px 8px;
   white-space: nowrap;
   overflow: clip;
@@ -70,29 +60,43 @@ body {
   max-width: 150px;
 }
 
-.cvoxembed button {
-  outline: none;
+button {
+  outline: 0;
   border: 1px solid #666;
-  background: #fec;
   border-radius: 4px;
+}
+
+button#toggle-cvox {
+padding: 0;
+border: 0;
+background-color: F79539;
+padding: 3px;
+}
+
+.cvoxembed button {
+  background: #fec;
 }
 
 .cvoxembed button:hover {
   background: #fda;
 }
 
-.header span {
-  height: 64px;
-  line-height: 64px;
+.shade {
+  height: 30px;
+  padding: 10px;
+  background-color: rgba(64, 64, 64, 0.7);
+  display: flex;
+  align-items: center;
 }
 </style>
 </head>
 <body>
 
+<div id="shade" class="shade" aria=hidden="true">
+  <button id="toggle-cvox"><img height="24" width="24" src="chromevox-no-background.svg" alt="Enable ChromeVox" title="Enable ChromeVox"></button>
+  <span id="caption"></span>
+</div>
 <div id="cvoxembed" class="cvoxembed" aria-hidden="true">
-  <div class="header">
-    <img src="chromevox-128.png" width="64" height="64" alt="">
-  </div>
   <div class="content">
     <div class="controls">
       <span>
@@ -112,18 +116,15 @@ body {
       </span>
       <span>
         Navigate:
-        <button id="top">Top</button>
-        <button id="previous">Previous</button>
         <button id="next">Next</button>
-        <button id="heading">Heading</button>
+        <button id="previous">Previous</button>
         <button id="click">Click</button>
+        <button id="heading">Heading</button>
+        <button id="top">Top</button>
       </span>
-    </div>
-    <div id="caption" class="caption">
-      Caption
-    </div>
-    <div class="volume">
-      Volume: <input id="volume" type="range" min=0 value=100 max=100>
+      <span class="volume">
+        Volume: <input id="volume" type="range" min=0 value=100 max=100>
+      </span>
     </div>
   </div>
 </div>
@@ -152,6 +153,8 @@ function cvoxEmbedEnable() {
 
 function cvoxEmbedDisable() {
   window.parent.postMessage('disable', '*');
+  caption.innerHTML = '';
+
   enabled = false;
   for (var i = 0; i < ctrls.length; i++)
     ctrls[i].disabled = true;
@@ -159,16 +162,12 @@ function cvoxEmbedDisable() {
 
 cvoxEmbedDisable();
 
-embed.addEventListener('mousedown', function(e) {
-  if (enabled && (e.target.tagName == 'SELECT' ||
-                  e.target.tagName == 'INPUT' ||
-                  e.target.tagName == 'BUTTON')) {
-    return;
-  }
+$('toggle-cvox').addEventListener('click', function(e) {
   if (enabled)
     cvoxEmbedDisable();
   else
     cvoxEmbedEnable();
+  $('toggle-cvox').blur();
 }, true);
 
 $('next').addEventListener('click', function(e) {
@@ -277,7 +276,6 @@ function speakNextUtterance() {
   u.rate = rate;
   u.pitch = 2 * data.params.pitch;
   u.volume = volume;
-  console.log(u);
   u.onend = function() {
     window.setTimeout(function() {
       speakNextUtterance();
@@ -287,28 +285,26 @@ function speakNextUtterance() {
 }
 
 window.addEventListener('message', function(e) {
-  console.log(e.data);
   if (!('command' in e.data))
     return;
   var command = e.data.command;
   switch (command) {
   case 'speak':
+    console.log("data", e.data, speechQueue);
     var text = e.data.text;
     var queueMode = e.data.queueMode;
     var params = e.data.params;
-    console.log('Speak ' + text + ' q=' + queueMode + ' params=' +
-        JSON.stringify(params));
     if (queueMode == 0)
       caption.innerHTML = '';
+    else
+      caption.innerHTML += ',&nbsp;'
     var str = '<span>' + text + '</span>&nbsp;&nbsp;';
-    if (params.pitch < 0.5) {
-      caption.innerHTML += '<i>' + text + '</i>&nbsp;';
-    } else {
-      caption.innerHTML += '<b>' + text + '</b>&nbsp;';
-    }
+    if (params.pitch < 0.5)
+      caption.innerHTML += text;
+    else
+      caption.innerHTML += '<b>' + text + '</b>';
 
     if (queueMode == 0) {
-      speechSynthesis.cancel();
       speechQueue.length = 0;
     }
 
@@ -316,6 +312,7 @@ window.addEventListener('message', function(e) {
     speakNextUtterance();
     break;
   case 'stop':
+    speechSynthesis.cancel();
     break;
   case 'setLang':
     updateChromeVoxLang(e.data.lang);

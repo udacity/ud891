@@ -127,30 +127,22 @@
       .cvoxembed {
       z-index: 3;
       width: 100%;
-      height: 80px;
-      border-top: 1px solid #000;
-      background: #ffe;
+      height: 100px;
+      background: rgba(0, 0, 0, 0);
       position: fixed;
       left: 0px;
-      bottom: -60px;
+      bottom: -50px;
       right: 0px;
-      -webkit-box-shadow: 5px 5px 10px 10px #999;
+      border: 0;
       display: flex;
       flex-direction: row;
       font-family: arial, helvetica, sans-serif;
       font-size: 10pt;
-      opacity: 0.4;
-      transition: all 0.5s ease-in-out;
-      }
-
-      .cvoxembed:hover {
-      bottom: -50px;
-      opacity: 0.6;
+      transition: all 0.2s ease-in-out;
       }
 
       .cvoxembed.cvoxembed-enabled {
       bottom: 0px;
-      opacity: 1.0;
       }
     </style>
 
@@ -182,7 +174,6 @@
     </script>
 
     <script src="chromeandroidvox.js"></script>
-    <!-- script src="https://ssl.gstatic.com/accessibility/javascript/android/chromeandroidvox.js"></script -->
     <script>
       // Now disable ChromeVox.
       window.setTimeout(function() {
@@ -199,11 +190,13 @@
 
       // ChromeVox embed commands.
       function cvoxEmbedEnable() {
-          enabled = true;
           embed.classList.add('cvoxembed-enabled');
-          cvox.ChromeVox.host.activateOrDeactivateChromeVox(true);
-          cvox.ChromeVoxEventWatcher.focusFollowsMouse=false;
-          cvox.ChromeVox.executeUserCommand('jumpToTop');
+          window.setTimeout(function() {
+            enabled = true;
+            cvox.ChromeVox.host.activateOrDeactivateChromeVox(true);
+            cvox.ChromeVoxEventWatcher.focusFollowsMouse=false;
+            cvox.ChromeVox.executeUserCommand('jumpToTop');
+         }, 200);
       }
 
       function cvoxEmbedDisable() {
@@ -245,7 +238,7 @@
 
       // Stop talking if the user changes tab
       window.addEventListener('blur', function(e) {
-          cvoxEmbedDisable();
+          window.accessibility.stop();
       });
 
       window.addEventListener('keydown', function(e) {
