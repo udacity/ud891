@@ -143,7 +143,7 @@
       transition: all 0.2s ease-in-out;
       }
 
-      .cvoxembed.cvoxembed-enabled {
+      body[cvox-enabled] .cvoxembed {
       bottom: 0px;
       }
     </style>
@@ -178,17 +178,21 @@
       cvox.ChromeVox.host.activateOrDeactivateChromeVox(false);
       cvox.ChromeVoxEventWatcher.focusFollowsMouse=false;
       cvox.ChromeVox.host.mustRedispatchClickEvent = function() { return false; }
-      var enabled = false;
 
       var embed = document.getElementById('cvoxembed');
 
       // ChromeVox embed commands.
       function cvoxEmbedEnable() {
-          if (enabled)
+          if (document.body.hasAttribute('cvox-enabled'))
             return;
+
+          var selfDestruct = document.getElementById('self-destruct');
+          if (selfDestruct)
+            selfDestruct.parentElement.removeChild(selfDestruct);
+
           embed.classList.add('cvoxembed-enabled');
           window.setTimeout(function() {
-            enabled = true;
+            document.body.setAttribute('cvox-enabled', true);
             cvox.ChromeVox.host.activateOrDeactivateChromeVox(true);
             cvox.ChromeVoxEventWatcher.focusFollowsMouse=false;
             cvox.ChromeVox.executeUserCommand('jumpToTop');
@@ -197,9 +201,9 @@
       }
 
       function cvoxEmbedDisable() {
-          if (!enabled)
+          if (!document.body.hasAttribute('cvox-enabled'))
             return;
-          enabled = false;
+          document.body.removeAttribute('cvox-enabled');
           window.accessibility.stop();
           cvox.ChromeVox.host.activateOrDeactivateChromeVox(false);
           embed.classList.remove('cvoxembed-enabled');
@@ -268,7 +272,6 @@
 
       document.getElementById('enable-cvox').addEventListener('click', function() {
         cvoxEmbedEnable();
-        document.getElementById('enable-cvox').style.display = 'none';
       });
 
       // ChromeVox focuses the first element on the page even when disabled,

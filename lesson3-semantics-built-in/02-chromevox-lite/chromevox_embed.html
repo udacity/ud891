@@ -67,17 +67,33 @@ button {
 }
 
 button#toggle-cvox {
-border: 1px solid hsl(29, 92%, 60%);
-background-color: hsl(29, 92%, 60%);
-padding: 2px;
-border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  background-color: #9E9E9E;
+  padding: 2px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-weight: 100;
+}
+
+body[enabled] button#toggle-cvox {
+  background-color: hsl(29, 92%, 60%);
 }
 
 button#toggle-cvox:hover {
-border-color: rgba(255, 255, 255, 0.5);
-/*box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.5), inset -1px -1px 0 0 rgba(0, 0, 0, 0.5);*/
-box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.5);
-/*background-color: hsl(29, 92%, 55%);*/
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+button#toggle-cvox span {
+  font-size: 18px;
+  color: white;
+  margin: 0px 5px;
+}
+
+body[enabled] button#toggle-cvox span {
+  display: none;
 }
 
 .cvoxembed button {
@@ -99,9 +115,8 @@ box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.5);
 </style>
 </head>
 <body>
-
 <div id="shade" class="shade" aria=hidden="true">
-  <button id="toggle-cvox"><img height="24" width="24" src="chromevox-no-background.svg" alt="Enable ChromeVox" title="Enable ChromeVox"></button>
+  <button id="toggle-cvox"><img height="24" width="24" src="chromevox-no-background.svg" alt="Enable ChromeVox Lite"><span>Enable ChromeVox Lite</span></button>
   <span id="caption"></span>
 </div>
 <div id="cvoxembed" class="cvoxembed" aria-hidden="true">
@@ -148,13 +163,12 @@ var rates = $('rates');
 var volumeControl = $('volume');
 
 var ctrls = embed.querySelectorAll('button,select');
-var enabled;
 
 function cvoxEmbedEnable() {
-  if (enabled)
+  if (document.body.hasAttribute('enabled'))
     return;
   window.parent.postMessage('enable', '*');
-  enabled = true;
+  document.body.setAttribute('enabled', '');
   for (var i = 0; i < ctrls.length; i++) {
     ctrls[i].disabled = false;
     ctrls[i].tabIndex = -1;
@@ -162,13 +176,13 @@ function cvoxEmbedEnable() {
 }
 
 function cvoxEmbedDisable() {
-  if (!enabled)
+  if (!document.body.hasAttribute('enabled'))
     return;
 
   window.parent.postMessage('disable', '*');
   caption.innerHTML = '';
 
-  enabled = false;
+  document.body.removeAttribute('enabled');
   for (var i = 0; i < ctrls.length; i++)
     ctrls[i].disabled = true;
 }
@@ -176,7 +190,7 @@ function cvoxEmbedDisable() {
 cvoxEmbedDisable();
 
 $('toggle-cvox').addEventListener('click', function(e) {
-  if (enabled)
+  if (document.body.hasAttribute('enabled'))
     cvoxEmbedDisable();
   else
     cvoxEmbedEnable();
