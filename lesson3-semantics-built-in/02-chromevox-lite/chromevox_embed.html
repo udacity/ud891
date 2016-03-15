@@ -67,10 +67,17 @@ button {
 }
 
 button#toggle-cvox {
-padding: 0;
-border: 0;
-background-color: F79539;
-padding: 3px;
+border: 1px solid hsl(29, 92%, 60%);
+background-color: hsl(29, 92%, 60%);
+padding: 2px;
+border-radius: 3px;
+}
+
+button#toggle-cvox:hover {
+border-color: rgba(255, 255, 255, 0.5);
+/*box-shadow: inset 1px 1px 0 0 rgba(255, 255, 255, 0.5), inset -1px -1px 0 0 rgba(0, 0, 0, 0.5);*/
+box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.5);
+/*background-color: hsl(29, 92%, 55%);*/
 }
 
 .cvoxembed button {
