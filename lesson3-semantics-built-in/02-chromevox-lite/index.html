@@ -14,6 +14,8 @@
     <link href='http://fonts.googleapis.com/css?family=Courgette|Roboto:400,300' rel='stylesheet' type='text/css'>
   </head>
   <body>
+    <div tabindex="0" id="self-destruct">Self destruct</div>
+    <button class="hide-unless-focused" id="enable-cvox">Enable ChromeVox Lite</button>
     <div class="wrapper blur">
       <header>
         <div class="container">
@@ -176,21 +178,27 @@
       cvox.ChromeVox.host.activateOrDeactivateChromeVox(false);
       cvox.ChromeVoxEventWatcher.focusFollowsMouse=false;
       cvox.ChromeVox.host.mustRedispatchClickEvent = function() { return false; }
+      var enabled = false;
 
       var embed = document.getElementById('cvoxembed');
 
       // ChromeVox embed commands.
       function cvoxEmbedEnable() {
+          if (enabled)
+            return;
           embed.classList.add('cvoxembed-enabled');
           window.setTimeout(function() {
             enabled = true;
             cvox.ChromeVox.host.activateOrDeactivateChromeVox(true);
             cvox.ChromeVoxEventWatcher.focusFollowsMouse=false;
             cvox.ChromeVox.executeUserCommand('jumpToTop');
+            embed.contentWindow.postMessage({ command: 'enable' }, '*');
          }, 200);
       }
 
       function cvoxEmbedDisable() {
+          if (!enabled)
+            return;
           enabled = false;
           window.accessibility.stop();
           cvox.ChromeVox.host.activateOrDeactivateChromeVox(false);
@@ -215,7 +223,6 @@
 
       // Listen for messages from the iframe.
       window.addEventListener('message', function(e) {
-          console.log(e.data);
           switch (e.data) {
           case 'enable': cvoxEmbedEnable(); break;
           case 'disable': cvoxEmbedDisable(); break;
@@ -232,15 +239,11 @@
           window.accessibility.stop();
       });
 
-      window.addEventListener('keydown', function(e) {
-          console.log('keydown', e);
-          switch(e.keyCode) {
-          case 9: // tab
-              if (!enabled)
-                  cvoxEmbedEnable();
-          }
-          return false;
-      }, false);
+      // Stop talking if the user changes tab
+      window.addEventListener('blur', function(e) {
+          window.accessibility.stop();
+      });
+
 
       cvoxEmbedDisable();
       embed.contentWindow.postMessage({ command: 'setLang',
@@ -262,6 +265,18 @@
       window.accessibility.braille = function() {};
       window.Audio = window.saveAudio;
       cvox.ChromeVox.earcons.audioMap = {};
+
+      document.getElementById('enable-cvox').addEventListener('click', function() {
+        cvoxEmbedEnable();
+        document.getElementById('enable-cvox').style.display = 'none';
+      });
+
+      // ChromeVox focuses the first element on the page even when disabled,
+      // so let it do that and then kill that element
+      var selfDestruct = document.getElementById('self-destruct');
+      selfDestruct.addEventListener('focus', function() {
+        selfDestruct.parentElement.removeChild(selfDestruct);
+      });
 
     </script>
   </body>

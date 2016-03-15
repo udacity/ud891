@@ -152,16 +152,44 @@ select {
   vertical-align: bottom;
 }
 
-button[type="submit"] {
+.hide-unless-focused {
+    position: absolute;
+    left: -10000px;
+    top: -10000px;
+}
+
+.hide-unless-focused:focus {
+    left: 10px;
+    top: 10px;
+}
+
+button#enable-cvox {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    background-color: #ff5722;
+    color: white;
+    z-index: 1000;
+    padding: 4px 10px 6px;
+}
+
+button#self-destruct {
+    position: absolute;
+    left: -1000px;
+    top: -1000px;
+}
+
+button {
+  border: none;
+  border-radius: 4px;
+  font-family: inherit;
+  font-weight: 100;
+  font-size: 20px;
+}
+
+button[type=submit] {
   width: 100%;
   height: 42px;
   color: white;
   background: #3F51B5;
-  border: none;
-  border-radius: 4px;
-  font-size: 20px;
-  font-family: inherit;
-  font-weight: 100;
 }
 
 footer [class*="col-"] {

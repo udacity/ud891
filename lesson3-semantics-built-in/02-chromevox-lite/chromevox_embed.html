@@ -124,8 +124,8 @@ box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.5);
       </span>
       <span>
         Navigate:
-        <button id="next">Next</button>
         <button id="previous">Previous</button>
+        <button id="next">Next</button>
         <button id="click">Click</button>
         <button id="heading">Heading</button>
         <button id="top">Top</button>
@@ -151,6 +151,8 @@ var ctrls = embed.querySelectorAll('button,select');
 var enabled;
 
 function cvoxEmbedEnable() {
+  if (enabled)
+    return;
   window.parent.postMessage('enable', '*');
   enabled = true;
   for (var i = 0; i < ctrls.length; i++) {
@@ -160,6 +162,9 @@ function cvoxEmbedEnable() {
 }
 
 function cvoxEmbedDisable() {
+  if (!enabled)
+    return;
+
   window.parent.postMessage('disable', '*');
   caption.innerHTML = '';
 
@@ -297,14 +302,16 @@ window.addEventListener('message', function(e) {
     return;
   var command = e.data.command;
   switch (command) {
+  case 'enable':
+    cvoxEmbedEnable();
+    break;
   case 'speak':
-    console.log("data", e.data, speechQueue);
     var text = e.data.text;
     var queueMode = e.data.queueMode;
     var params = e.data.params;
     if (queueMode == 0)
       caption.innerHTML = '';
-    else
+    else if (caption.innerHTML !== '')
       caption.innerHTML += ',&nbsp;'
     var str = '<span>' + text + '</span>&nbsp;&nbsp;';
     if (params.pitch < 0.5)
@@ -320,6 +327,7 @@ window.addEventListener('message', function(e) {
     speakNextUtterance();
     break;
   case 'stop':
+    caption.innerHTML = '';
     speechSynthesis.cancel();
     break;
   case 'setLang':
