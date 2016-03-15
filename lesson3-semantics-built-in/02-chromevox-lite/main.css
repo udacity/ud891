@@ -168,7 +168,8 @@ button#enable-cvox {
     background-color: #ff5722;
     color: white;
     z-index: 1000;
-    padding: 4px 10px 6px;
+    padding: 2px 7px;
+    font-size: 18px;
 }
 
 body[cvox-enabled] button#enable-cvox {

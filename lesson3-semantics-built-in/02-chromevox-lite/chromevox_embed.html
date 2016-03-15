@@ -68,7 +68,7 @@ button {
 
 button#toggle-cvox {
   border: 1px solid rgba(0, 0, 0, 0);
-  background-color: #9E9E9E;
+  background-color: #ff5722;
   padding: 2px;
   border-radius: 3px;
   display: flex;
@@ -77,12 +77,19 @@ button#toggle-cvox {
   font-weight: 100;
 }
 
-body[enabled] button#toggle-cvox {
+span#cvox-logo {
+  border: 1px solid rgba(0, 0, 0, 0);
   background-color: hsl(29, 92%, 60%);
+  padding: 2px;
+  border-radius: 3px;
+}
+
+body[enabled] button#toggle-cvox {
+  background-color: #9E9E9E;
 }
 
 button#toggle-cvox:hover {
-  border-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.5);
 }
 
@@ -92,7 +99,11 @@ button#toggle-cvox span {
   margin: 0px 5px;
 }
 
-body[enabled] button#toggle-cvox span {
+body:not([enabled]) button#toggle-cvox span#disable-cvox {
+  display: none;
+}
+
+body[enabled] button#toggle-cvox span#enable-cvox {
   display: none;
 }
 
@@ -116,8 +127,9 @@ body[enabled] button#toggle-cvox span {
 </head>
 <body>
 <div id="shade" class="shade" aria=hidden="true">
-  <button id="toggle-cvox"><img height="24" width="24" src="chromevox-no-background.svg" alt="Enable ChromeVox Lite"><span>Enable ChromeVox Lite</span></button>
+  <span id="cvox-logo"><img height="24" width="24" src="chromevox-no-background.svg" alt="Enable ChromeVox Lite"></span>
   <span id="caption"></span>
+  <button id="toggle-cvox"><span id="enable-cvox">Enable ChromeVox Lite</span><span id="disable-cvox">Disable ChromeVox Lite</button>
 </div>
 <div id="cvoxembed" class="cvoxembed" aria-hidden="true">
   <div class="content">
@@ -130,7 +142,8 @@ body[enabled] button#toggle-cvox span {
       <span>
         Speech rate:
         <select id="rates">
-          <option value="1.0">Beginner</option>
+          <option value="1.0">Slow</option>
+          <option value="1.2" selected>Default</option>
           <option value="1.8">Intermediate</option>
           <option value="3.0">
               Advanced (normal for a blind person)
