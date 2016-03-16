@@ -1,0 +1,45 @@
+.hide-unless-focused {
+    position: absolute;
+    left: -10000px;
+    top: -10000px;
+}
+
+.hide-unless-focused:focus {
+    left: 10px;
+    top: 10px;
+}
+
+button {
+  border: none;
+  border-radius: 4px;
+  font-family: inherit;
+  font-weight: 100;
+  font-size: 20px;
+}
+
+button#enable-cvox {
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    background-color: #ff5722;
+    color: white;
+    z-index: 1000;
+    padding: 2px 7px;
+    font-size: 18px;
+}
+
+body[cvox-enabled] button#enable-cvox {
+    display: none;
+}
+
+div#self-destruct {
+    position: absolute;
+    left: -1000px;
+    top: -1000px;
+}
+
+.blur {
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
+}

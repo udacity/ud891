@@ -62,7 +62,6 @@
     </template>
 
     <template class="start">
-      <div tabindex="0" id="self-destruct">Self destruct</div>
       <button class="hide-unless-focused" id="enable-cvox">Enable ChromeVox Lite</button>
     </template>
 
@@ -137,10 +136,6 @@
           function cvoxEmbedEnable() {
               if (document.body.hasAttribute('cvox-enabled'))
                 return;
-
-              var selfDestruct = document.getElementById('self-destruct');
-              if (selfDestruct)
-                selfDestruct.parentElement.removeChild(selfDestruct);
 
               embed.classList.add('cvoxembed-enabled');
               window.setTimeout(function() {
@@ -225,16 +220,6 @@
           document.getElementById('enable-cvox').addEventListener('click', function() {
             cvoxEmbedEnable();
           });
-
-          // ChromeVox focuses the first element on the page even when disabled,
-          // so let it do that and then kill that element
-          var selfDestruct = document.getElementById('self-destruct');
-          if (selfDestruct) {
-            selfDestruct.addEventListener('focus', function() {
-              selfDestruct.parentElement.removeChild(selfDestruct);
-            });
-          }
-
       </script>
     </template>
   </body>
