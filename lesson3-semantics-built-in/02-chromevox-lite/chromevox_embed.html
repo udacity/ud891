@@ -84,8 +84,24 @@ span#cvox-logo {
   border-radius: 3px;
 }
 
-body[enabled] button#toggle-cvox {
+body:not([enabled]) span#cvox-logo {
   background-color: #9E9E9E;
+}
+
+body:not([enabled]) span#cvox-logo img.enabled {
+  display: none;
+}
+
+body[enabled] span#cvox-logo img.enabled {
+  display: initial;
+}
+
+body:not([enabled]) span#cvox-logo img.disabled {
+  display: initial;
+}
+
+body[enabled] span#cvox-logo img.disabled {
+  display: none;
 }
 
 button#toggle-cvox:hover {
@@ -127,7 +143,10 @@ body[enabled] button#toggle-cvox span#enable-cvox {
 </head>
 <body>
 <div id="shade" class="shade" aria=hidden="true">
-  <span id="cvox-logo"><img height="24" width="24" src="chromevox-no-background.svg" alt="Enable ChromeVox Lite"></span>
+  <span id="cvox-logo">
+    <img height="24" width="24" src="chromevox-no-background.svg" alt="ChromeVox Lite logo" class="enabled">
+    <img height="24" width="24" src="chromevox-no-background-off.svg" alt="ChromeVox Lite disabled logo" class="disabled">
+  </span>
   <span id="caption"></span>
   <button id="toggle-cvox"><span id="enable-cvox">Enable ChromeVox Lite</span><span id="disable-cvox">Disable ChromeVox Lite</button>
 </div>

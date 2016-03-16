@@ -15,7 +15,6 @@
 </head>
 
 <body>
-  <!-- <div class="click-stealer"></div> -->
   <div class="wrapper">
     <header>
       <div class="container">
@@ -59,9 +58,9 @@
 
             <div class="row">
               <div class="inline-control col-1">
-                <label for="dest">Departure</label>
-                <input type="text" list="dCities" name="dept" id="dept">
-                <datalist id="dCities">
+                <label for="depCity">Departure</label>
+                <input type="text" list="depCities" name="depCity" id="depCity">
+                <datalist id="depCities">
                   <option value="Sydney">
                   <option value="Melbourne">
                   <option value="Brisbane">
@@ -71,9 +70,9 @@
               </div>
 
               <div class="inline-control col-1">
-                <label for="dest">Arrival</label>
-                <input type="text" list="aCities" name="arri" id="arri">
-                <datalist id="aCities">
+                <label for="arrCity">Arrival</label>
+                <input type="text" list="arrCities" name="arrCity" id="arrCity">
+                <datalist id="arrCities">
                   <option value="Sydney">
                   <option value="Melbourne">
                   <option value="Brisbane">
@@ -135,6 +134,7 @@
       </div>
     </footer>
   </div>
+  <div class="click-stealer"></div>
 
   <script>
     document.querySelector('.click-stealer').addEventListener('click', function(e) {
