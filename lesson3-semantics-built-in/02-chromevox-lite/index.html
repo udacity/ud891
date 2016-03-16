@@ -25,31 +25,35 @@
     <iframe id="flight-booking" src="../../lesson2-focus/01-basic-form/index.html"></iframe>
     <script>
       function injectChromeVox(frame) {
-        var headTemplate = document.querySelector('template.head');
-        var clone = frame.contentDocument.importNode(headTemplate.content, true);
+        var templates = document.querySelectorAll('template');
         var frameHead = frame.contentDocument.head;
-        frameHead.appendChild(clone);
-
-        var startTemplate = document.querySelector('template.start');
-        var clone = frame.contentDocument.importNode(startTemplate.content, true);
         var frameBody = frame.contentDocument.body;
-        frameBody.insertBefore(clone, frameBody.firstElementChild);
 
-        var endTemplates = document.querySelectorAll('template.end');
         var i = 0;
         function appendNext() {
-          var template = endTemplates[i++];
+          var template = templates[i++];
           if (!template)
             return;
 
           var clone = frame.contentDocument.importNode(template.content, true);
           var firstElementChild = clone.firstElementChild;
-          if (firstElementChild.tagName === "SCRIPT" && firstElementChild.hasAttribute('src')) {
+            if (firstElementChild.tagName === "SCRIPT" && firstElementChild.hasAttribute('src') ||
+                firstElementChild.tagName === "LINK" && firstElementChild.hasAttribute('href')) {
             firstElementChild.onload = appendNext;
           } else {
             window.setTimeout(appendNext, 0);
           }
-          frameBody.appendChild(clone);
+          switch (template.className) {
+          case "head":
+            frameHead.appendChild(clone);
+            return;
+          case "start":
+            frameBody.insertBefore(clone, frameBody.firstElementChild);
+            return;
+          case "end":
+            frameBody.appendChild(clone);
+            return;
+          }
         }
         appendNext();
       }
