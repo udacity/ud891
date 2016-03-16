@@ -16338,7 +16338,7 @@ cvox.AndroidVox.performAction = function(actionJson) {
     inSearchMode || cvox.ChromeVoxEventWatcher.setUpTextHandler();
   }
   var currentTextHandler = cvox.ChromeVoxEventWatcher.currentTextHandler;
-  currentTextHandler || document.activeElement == document.body || console.log("no text handler, but there is an active element", document.activeElement);
+  currentTextHandler || document.activeElement == document.body;
   if (currentTextHandler && 1 == granularity) {
     if (256 == action) {
       return currentTextHandler.moveCursorToNextCharacter();
@@ -16611,7 +16611,6 @@ cvox.MathJaxExternalUtil.convertToMml = function(callback, math, typeString, fil
       if (err.restart) {
         return MathJax.Callback.After([cvox.MathJaxExternalUtil.convertToMml, callback, math, typeString, filterString, errorString, parseFunction], err.restart);
       }
-      console.log(err.message, err.stack);
       return "";
     }
   }
@@ -16798,14 +16797,12 @@ cvox.TestMsgs.prototype.getMsg = function(message_id, opt_subs) {
   if (!message_id) {
     var e = Error();
     e.message = "Message id required";
-    console.log(e.message, e.stack);
     return "";
   }
   var message = cvox.TestMessages["chromevox_" + message_id];
   if (void 0 == message) {
     var e = Error();
     e.message = "missing-msg: " + message_id;
-    console.log(e.message, e.stack);
     return "";
   }
   var messageString = message.message;
@@ -16815,7 +16812,6 @@ cvox.TestMsgs.prototype.getMsg = function(message_id, opt_subs) {
       if (!placeholderObject) {
         var e = Error();
         e.message = "Bad placeholder " + i + " for message id " + message_id;
-        console.log(e.message, e.stack);
         return "";
       }
       var placeholder = message.placeholders[i + 1].content, messageString = messageString.replace(placeholder, opt_subs[i]);
