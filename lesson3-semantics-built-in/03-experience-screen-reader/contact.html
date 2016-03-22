@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Contact Udacity Airlines</title>
+  <meta name="description" content="A basic form">
+
+  <!-- Mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="../../lesson2-focus/01-basic-form/main.css">
+  <link href='http://fonts.googleapis.com/css?family=Courgette|Roboto:400,300' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+  <div class="wrapper">
+    <header>
+      <div class="container">
+        <h1>Udacity
+          <span>Down Under</span>
+        </h1>
+      </div>
+    </header>
+
+    <main>
+      <div class="card">
+        <form>
+          <div class="container">
+            <h2>Contact us</h2>
+            <div class="row">
+              <div class="inline-control col-2">
+                <label for="email">Your email address</label>
+                <input type="email" name="email" id="email" required>
+              </div>
+              <div class="inline-control col-2">
+                <label for="fName">Your name</label>
+                <input type="text" name="fName" id="fName">
+              </div>
+            </div>
+
+            <div class="row">
+              <label for="comments">Comments</label>
+              <textarea id="comments" name="comments" rows="4"></textarea>
+            </div>
+
+            <div class="row">
+              <div class="inline-control col-3"></div>
+
+              <div class="inline-control submit-form col-1">
+                <button type="submit" id="submitBtn">Search</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="col-1">
+          <a href="#">About us</a>
+        </div>
+        <div class="col-1">
+          <a href="#">Join our newsletter</a>
+        </div>
+        <div class="col-1">
+          <a href="#">Need Support?</a>
+        </div>
+        <div class="col-1">
+          <a href="#">© 2015 Udacity</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+  <div class="click-stealer"></div>
+
+  <script>
+    document.querySelector('.click-stealer').addEventListener('click', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      return false;
+    });
+  </script>
+</body>
+
+</html>
