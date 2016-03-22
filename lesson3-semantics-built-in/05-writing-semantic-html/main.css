@@ -1,0 +1,75 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body.wombats {
+    background-image: url('./wombat.jpg'); /* CC-BY Kristian Thøgersen https://flic.kr/p/9258io */
+    background-size: cover;
+}
+
+header {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    visibility: hidden;
+}
+
+header.success {
+    visibility: visible;
+}
+
+header .secret {
+    display: block;
+}
+
+main {
+    display: flex;
+    flex: 1;
+    padding-left: 2em;
+    align-items: center;
+    justify-content: center;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.button, button {
+    border: none;
+    border-radius: 4px;
+    font-family: inherit;
+    font-weight: 100;
+    font-size: 30px;
+    background-color: #2196F3;
+    color: white;
+    padding: 0.25em 0.5em;
+    display: inline-block;
+    cursor: default;
+}
+
+footer {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    visibility: hidden;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.credit {
+    text-shadow: 1px 1px 2px white;
+}
+
+body.wombats footer {
+    visibility: visible;
+}
