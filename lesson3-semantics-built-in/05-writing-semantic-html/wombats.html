@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Writing semantic HTML</title>
+    <meta name="description" content="An example of non-semantic HTML to be fixed">
+
+    <!-- Mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+    <script type="text/javascript" src="wombats.js"></script>
+  </head>
+  <body onload="addMutationObserver()">
+    <header>
+      <div class="secret"></div>
+    </header>
+    <main>
+      <div onclick="wombats()" class="button">Give me wombats</div>
+    </main>
+    <footer>
+      <div class="credit">Photo credit: <a href="https://www.flickr.com/photos/flottenheimer/5262975644">Grazing Wombat</a> by Kristian Thøgersen, CC-BY</a>
+    </footer>
+  </body>
+</html>

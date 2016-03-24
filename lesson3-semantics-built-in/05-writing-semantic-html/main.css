@@ -13,6 +13,7 @@ body {
 body.wombats {
     background-image: url('./wombat.jpg'); /* CC-BY Kristian Thøgersen https://flic.kr/p/9258io */
     background-size: cover;
+    background-position: bottom right;
 }
 
 header {
@@ -62,6 +63,7 @@ footer {
     display: flex;
     justify-content: center;
     padding: 10px;
+    padding-bottom: 60px;
     visibility: hidden;
     background-color: rgba(255, 255, 255, 0.3);
 }
