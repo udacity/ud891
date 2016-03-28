@@ -9,17 +9,34 @@
     <!-- Mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="main.css">
-    <script type="text/javascript" src="wombats.js"></script>
   </head>
   <body onload="addMutationObserver()">
-    <header>
-      <div class="secret"></div>
-    </header>
-    <main>
-      <div onclick="wombats()" class="button">Give me wombats</div>
-    </main>
-    <footer>
-      <div class="credit">Photo credit: <a href="https://www.flickr.com/photos/flottenheimer/5262975644">Grazing Wombat</a> by Kristian Thøgersen, CC-BY</a>
-    </footer>
+    <div class="wrapper">
+      <header>
+        <div class="secret"></div>
+      </header>
+      <main>
+        <div class="button" id="wombats-button">Give me wombats</div>
+      </main>
+      <footer>
+        <div class="credit">Photo credit: <a href="https://www.flickr.com/photos/flottenheimer/5262975644">Grazing Wombat</a> by Kristian Thøgersen, CC-BY</div>
+      </footer>
+      <div class="easter-egg" aria-live="assertive" aria-relevant="text additions">
+        <div id="facts" style="visibility: hidden">
+          <h2>Wombat facts</h2>
+          <ul>
+            <li>Wombats are burrowing marsupials native to Australia.
+            <li>Wombats are closely related to koalas and have a similar facial appearance, but with small ears.
+            <li>Like kangaroos, baby wombats are called "joeys".
+            <li>Wombats grow to be up to 35 centimetres high and one metre long, and weigh between 20 and 35 kg.
+            <li>The name 'wombat' comes from the now nearly extinct Darug language spoken by the aboriginal Darug people, who originally inhabited the Sydney area.
+            <li>There are three extant species of wombat: the common wombat, the northern hairy-nosed wombat and the southern hairy-nosed wombat.
+            <li>The northern hairy-nosed wombat is one of the rarest land mammals in the world and is critically endangered.
+            <li>It takes around a day for a wombat to dig a burrow.
+          </ul>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="wombats.js"></script>
   </body>
 </html>

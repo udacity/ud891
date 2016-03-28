@@ -111,9 +111,6 @@
         // Prevent ChromeVox from playing an earcon on startup.
         window.saveAudio = window.Audio;
         window.Audio = function() {};
-
-        // blur out the page content
-        document.querySelector('.wrapper').classList.add('blur');
       </script>
     </template>
 

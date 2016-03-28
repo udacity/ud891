@@ -4,7 +4,7 @@ html, body {
     font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
 }
 
-body {
+.wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -74,4 +74,21 @@ footer {
 
 body.wombats footer {
     visibility: visible;
+}
+
+.easter-egg {
+    position: absolute;
+    top: -10000px;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+body[cvox-enabled] .wrapper {
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
 }

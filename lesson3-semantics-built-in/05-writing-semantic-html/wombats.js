@@ -1,6 +1,13 @@
-function wombats() {
+var wombatsButton = document.getElementById('wombats-button');
+
+function handleClick(e) {
+  if (e.target !== wombatsButton)
+    return;
   document.body.classList.add('wombats');
+  document.getElementById('facts').style.visibility = 'visible';
 }
+
+document.querySelector('main').addEventListener('click', handleClick);
 
 function addMutationObserver() {
   var main = document.querySelector('main');
