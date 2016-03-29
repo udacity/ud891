@@ -1,0 +1,27 @@
+html, body {
+  height: 100%;
+  background: #1976D2;
+}
+
+main {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main > .mdl-button {
+  margin-right: 24px;
+  background: #FAFAFA;
+}
+
+main > .mdl-button:last-of-type {
+  margin-right: 0;
+}
+
+main > .mdl-button:hover,
+main > .mdl-button:focus {
+  background: #E91E63;
+  color: #FFFFFF;
+  text-decoration: underline;
+}
