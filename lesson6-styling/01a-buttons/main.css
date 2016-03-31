@@ -19,8 +19,7 @@ main > .mdl-button:last-of-type {
   margin-right: 0;
 }
 
-main > .mdl-button:hover,
-main > .mdl-button:focus {
+main > .mdl-button:hover {
   background: #E91E63;
   color: #FFFFFF;
   text-decoration: underline;
