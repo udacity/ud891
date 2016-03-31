@@ -1,6 +1,6 @@
 var isFirstPage = true;
 
-// page.base('/udacity-a11y/lesson2-focus/08-spa-example-solution');
+page.base('/udacity-a11y/lesson2-focus/08-spa-example-solution');
 
 page('/', function() {
   page.redirect('/what-is-vegemite');
