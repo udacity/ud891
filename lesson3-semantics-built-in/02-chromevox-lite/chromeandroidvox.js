@@ -16480,7 +16480,7 @@ cvox.AndroidHost.prototype.init = function() {
   cvox.ApiImplementation.siteSpecificScriptLoader = "";
   cvox.ApiImplementation.siteSpecificScriptBase = "";
   cvox.ApiImplementation.init();
-  cvox.ChromeVox.earcons.earconsAvailable() && (cvox.ChromeVox.verbosity = cvox.VERBOSITY_BRIEF);
+//  cvox.ChromeVox.earcons.earconsAvailable() && (cvox.ChromeVox.verbosity = cvox.VERBOSITY_BRIEF);
   new cvox.AndroidMathMap;
   cvox.InitialSpeech.speak();
 };
