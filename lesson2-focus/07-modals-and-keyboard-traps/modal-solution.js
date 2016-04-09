@@ -1,3 +1,6 @@
+// Will hold previously focused element
+var focusedElementBeforeModal;
+
 // Find the modal and its overlay
 var modal = document.querySelector('.modal');
 var modalOverlay = document.querySelector('.modal-overlay');
@@ -7,7 +10,7 @@ modalToggle.addEventListener('click', openModal);
 
 function openModal() {
   // Save current focus
-  var focusedElementBeforeModal = document.activeElement;
+  focusedElementBeforeModal = document.activeElement;
 
   // Listen for and trap the keyboard
   modal.addEventListener('keydown', trapTabKey);

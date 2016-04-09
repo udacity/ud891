@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+
+    <div class="demo">
+
+      <h3>Drink Options</h3>
+
+      <ul id="group1" class="radiogroup">
+        <li tabindex="0" class="radio" checked>
+          Water
+        </li>
+        <li tabindex="-1" class="radio">
+          Tea
+        </li>
+        <li tabindex="-1" class="radio">
+          Coffee
+        </li>
+        <li tabindex="-1" class="radio">
+          Cola
+        </li>
+        <li tabindex="-1" class="radio">
+          Ginger Ale
+        </li>
+      </ul>
+
+    </div>
+
+    <script src="radiogroup.js"></script>
+
+  </body>
+</html>
