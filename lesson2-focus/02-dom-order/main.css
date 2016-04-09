@@ -16,12 +16,18 @@ h2 {
   margin-top: 0;
 }
 
+article h3 {
+  margin-top: 0;
+  font-size: 1.5em;
+  -webkit-margin-after: 0.83em;
+}
+
 .container {
   max-width: 1000px;
   margin: 0 auto;
 }
 
-nav {
+header {
   margin-bottom: 48px;
   box-shadow: 0 0 8px #BBB;
   border-bottom: 1px solid #AAA;
@@ -33,6 +39,12 @@ nav {
   margin: 0;
   padding: 16px 0;
   border-bottom: 1px solid #DDD;
+}
+
+.offscreen {
+    position: absolute;
+    left: -10000px;
+    top: -10000px;
 }
 
 .menu {
@@ -93,7 +105,7 @@ article p {
   background: #006b3a;
 }
 
-.side-by-side article {
+.side-by-side .column {
   display: inline-block;
   vertical-align: top;
 }
@@ -102,18 +114,18 @@ article p {
   max-width: 100%;
 }
 
-.side-by-side article:first-child {
+.side-by-side .column:first-child {
   width: 70%;
   padding-right: 16px;
   border-right: 1px solid #AAA;
 }
 
-.side-by-side article:last-child {
+.side-by-side .column:last-child {
   padding-left: 16px;
   width: 29%; /* Account for whitespace gap from display: inline-block */
 }
 
-.side-by-side article:last-child .headline {
+.side-by-side .column:last-child .headline {
   font-size: 18px;
 }
 
@@ -121,7 +133,8 @@ article p {
   margin-bottom: 100px;
 }
 
-.three-col h2 {
+.three-col h2, .three-col h3 {
+  margin-top: 0;
   font-size: 16px;
 }
 
