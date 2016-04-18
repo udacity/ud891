@@ -11,7 +11,7 @@ document.querySelector('main').addEventListener('click', handleClick);
 
 function addMutationObserver() {
   var main = document.querySelector('main');
-  var div = main.querySelector('div.button');
+  var div = main.querySelector('div#wombats-button');
 
   var divRemoved = false;
   var buttonAdded = false;
@@ -30,7 +30,7 @@ function addMutationObserver() {
         if (addedNode.tagName === "BUTTON" &&
             addedNode.parentElement === main &&
             addedNode.className === "button" &&
-            addedNode.getAttribute('onClick') === "wombats()") {
+            addedNode.id === "wombats-button") {
           buttonAdded = true;
         }
       }
