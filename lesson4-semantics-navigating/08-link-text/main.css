@@ -1,0 +1,16 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+}
+
+header {
+  margin-bottom: 48px;
+  border-bottom: 1px solid #AAA;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
