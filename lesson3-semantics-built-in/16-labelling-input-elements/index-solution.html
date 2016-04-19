@@ -1,149 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
 
-<head>
-  <meta charset="utf-8">
+    <title>Introducing ChromeVox Lite</title>
+    <meta name="description" content="A basic form with ChromeVox Lite">
 
-  <title>Basic Form</title>
-  <meta name="description" content="A basic form">
+    <!-- Mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      iframe#flight-booking {
+          position: fixed;
+          top: 0;
+          left: 0;
+          margin: 0;
+          border: 0;
+          padding: 0;
+          width: 100vw;
+          height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe id="flight-booking" src="./flight-booking-solution.html"></iframe>
+    <script>
+      function injectChromeVox(frame) {
+        var templates = document.querySelectorAll('template');
+        var frameHead = frame.contentDocument.head;
+        var frameBody = frame.contentDocument.body;
 
-  <!-- Mobile -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+        var i = 0;
+        function appendNext() {
+          var template = templates[i++];
+          if (!template)
+            return;
 
-  <link rel="stylesheet" href="main.css">
-  <link href='http://fonts.googleapis.com/css?family=Courgette|Roboto:400,300' rel='stylesheet' type='text/css'>
-</head>
+          var clone = frame.contentDocument.importNode(template.content, true);
+          var firstElementChild = clone.firstElementChild;
+            if (firstElementChild.tagName === "SCRIPT" && firstElementChild.hasAttribute('src') ||
+                firstElementChild.tagName === "LINK" && firstElementChild.hasAttribute('href')) {
+            firstElementChild.onload = appendNext;
+          } else {
+            window.setTimeout(appendNext, 0);
+          }
+          switch (template.className) {
+          case "head":
+            frameHead.appendChild(clone);
+            return;
+          case "start":
+            frameBody.insertBefore(clone, frameBody.firstElementChild);
+            return;
+          case "end":
+            frameBody.appendChild(clone);
+            return;
+          }
+        }
+        appendNext();
+      }
+      var frame = document.getElementById('flight-booking');
+      frame.addEventListener('load', injectChromeVox.bind(null, frame));
+    </script>
 
-<body>
-  <div class="wrapper">
-    <header>
-      <div class="container">
-        <h1>Udacity
-          <span>Down Under</span>
-        </h1>
-        <nav>
-          <a href="#">Flights</a>
-          <a href="#">Hotels</a>
-          <a href="#">Rental Cars</a>
-        </nav>
-      </div>
-    </header>
+    <template class="head">
+      <link rel="stylesheet" href="../../lesson3-semantics-built-in/02-chromevox-lite/embed.css">
+    </template>
 
-    <main>
-      <div class="card">
-        <form>
-          <div class="trip-selector">
-            <label>
-              <input type="radio" checked name="tType" value="0"> One Way
-            </label>
-            <label>
-              <input type="radio" name="tType" value="1"> Round Trip
-            </label>
-            <label>
-              <input type="radio" name="tType" value="2"> Multi City
-            </label>
-          </div>
+    <template class="start">
+      <button class="hide-unless-focused" id="enable-cvox">Enable ChromeVox Lite</button>
+    </template>
 
-          <div class="container">
-            <h2>Where ya headed, mate?</h2>
-            <div class="row">
-              <label for="fName">Full Name</label>
-              <input type="text" name="fName" id="fName">
-            </div>
+    <template class="end">
+      <style>
+        .cvoxembed {
+        z-index: 3;
+        width: 100%;
+        height: 100px;
+        background: rgba(0, 0, 0, 0);
+        position: fixed;
+        left: 0px;
+        bottom: -50px;
+        right: 0px;
+        border: 0;
+        display: flex;
+        flex-direction: row;
+        font-family: arial, helvetica, sans-serif;
+        font-size: 10pt;
+        transition: all 0.2s ease-in-out;
+        }
 
-            <div class="row">
-              <label for="address">Enter your address</label>
-              <textarea id="address" name="addressTxt"></textarea>
-            </div>
+        body[cvox-enabled] .cvoxembed {
+        bottom: 0px;
+        }
+      </style>
 
-            <div class="row">
-              <div class="inline-control col-1">
-                <label for="depCity">Departure</label>
-                <input type="text" list="depCities" name="depCity" id="depCity">
-                <datalist id="depCities">
-                  <option value="Sydney">
-                  <option value="Melbourne">
-                  <option value="Brisbane">
-                  <option value="Perth">
-                  <option value="Adelaide">
-                </datalist>
-              </div>
+      <iframe id="cvoxembed" class="cvoxembed" aria-hidden="true" src="../../lesson3-semantics-built-in/02-chromevox-lite/chromevox_embed.html"></iframe>
+    </template>
 
-              <div class="inline-control col-1">
-                <label for="arrCity">Arrival</label>
-                <input type="text" list="arrCities" name="arrCity" id="arrCity">
-                <datalist id="arrCities">
-                  <option value="Sydney">
-                  <option value="Melbourne">
-                  <option value="Brisbane">
-                  <option value="Perth">
-                  <option value="Adelaide">
-                </datalist>
-              </div>
+    <template class="end">
+      <script>
+        // First inject stubs that do nothing.
+        window.accessibility = {};
+        window.accessibility.speak = function(text, queueMode, params) {
+        }
+        window.accessibility.isSpeaking = function() {
+        }
+        window.accessibility.stop = function() {
+        }
+        window.accessibility.braille = function() {};
 
-              <div class="inline-control col-1">
-                <label for="dDate">Depart Date</label>
-                <input type="date" name="dDate" id="dDate">
-              </div>
+        // Prevent ChromeVox from playing an earcon on startup.
+        window.saveAudio = window.Audio;
+        window.Audio = function() {};
 
-              <div class="inline-control col-1">
-                <label for="rDate">Return Date</label>
-                <input type="date" name="rDate" id="rDate">
-              </div>
-            </div>
+        // blur out the page content
+        // document.querySelector('.wrapper').classList.add('blur');
+      </script>
+    </template>
 
-            <div class="row">
-              <div class="inline-control col-2">
-                <label for="seatType">Preferred seat type</label>
-                <select name="seatType" id="seatType">
-                  <option value="0">No preference</option>
-                  <option value="1">Aisle seat</option>
-                  <option value="2">Window seat</option>
-                </select>
-              </div>
+    <template class="end">
+      <script src="../../lesson3-semantics-built-in/02-chromevox-lite/chromeandroidvox.js"></script>
+    </template>
 
-              <div class="inline-control sign-up col-1">
-                <label>
-                  <input type="checkbox" checked name="jLetter"> Receive promotional offers?
-                </label>
-              </div>
+    <template class="end">
+      <script>
+          // Now disable ChromeVox.
+          window.setTimeout(function() {
+              // Hide chromevox indicator
+              var cvoxIndicator = document.querySelector('.cvox_indicator_container');
+              if (cvoxIndicator)
+                  cvoxIndicator.parentElement.removeChild(cvoxIndicator);
+          }, 101);
+          cvox.ChromeVox.host.activateOrDeactivateChromeVox(false);
+          cvox.ChromeVoxEventWatcher.focusFollowsMouse=false;
+          cvox.ChromeVox.host.mustRedispatchClickEvent = function() { return false; }
 
-              <div class="inline-control submit-form col-1">
-                <button type="submit" id="submitBtn">Search</button>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
-    </main>
+          var embed = document.getElementById('cvoxembed');
 
-    <footer>
-      <div class="container">
-        <div class="col-1">
-          <a href="#">About us</a>
-        </div>
-        <div class="col-1">
-          <a href="#">Join our newsletter</a>
-        </div>
-        <div class="col-1">
-          <a href="#">Need Support?</a>
-        </div>
-        <div class="col-1">
-          <a href="#">© 2015 Udacity</a>
-        </div>
-      </div>
-    </footer>
-  </div>
-  <div class="click-stealer"></div>
+          // ChromeVox embed commands.
+          function cvoxEmbedEnable() {
+              if (document.body.hasAttribute('cvox-enabled'))
+                return;
 
-  <script>
-    document.querySelector('.click-stealer').addEventListener('click', function(e) {
-      e.stopPropagation();
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      return false;
-    });
-  </script>
-</body>
+              embed.classList.add('cvoxembed-enabled');
+              window.setTimeout(function() {
+                document.body.setAttribute('cvox-enabled', true);
+                cvox.ChromeVox.host.activateOrDeactivateChromeVox(true);
+                cvox.ChromeVoxEventWatcher.focusFollowsMouse=false;
+                cvox.ChromeVox.executeUserCommand('jumpToTop');
+                embed.contentWindow.postMessage({ command: 'enable' }, '*');
+             }, 200);
+          }
 
+          function cvoxEmbedDisable() {
+              if (!document.body.hasAttribute('cvox-enabled'))
+                return;
+              document.body.removeAttribute('cvox-enabled');
+              window.accessibility.stop();
+              cvox.ChromeVox.host.activateOrDeactivateChromeVox(false);
+              embed.classList.remove('cvoxembed-enabled');
+          }
+
+          function cvoxEmbedNext() {
+              cvox.ChromeVox.executeUserCommand('forward');
+          }
+          function cvoxEmbedPrevious() {
+              cvox.ChromeVox.executeUserCommand('backward');
+          }
+          function cvoxEmbedTop() {
+              cvox.ChromeVox.executeUserCommand('jumpToTop');
+          }
+          function cvoxEmbedHeading() {
+              cvox.ChromeVox.executeUserCommand('nextHeading');
+          }
+          function cvoxEmbedClick() {
+              cvox.ChromeVox.executeUserCommand('forceClickOnCurrentItem');
+          }
+
+          // Listen for messages from the iframe.
+          window.addEventListener('message', function(e) {
+              switch (e.data) {
+              case 'enable': cvoxEmbedEnable(); break;
+              case 'disable': cvoxEmbedDisable(); break;
+              case 'next': cvoxEmbedNext(); break;
+              case 'previous': cvoxEmbedPrevious(); break;
+              case 'heading': cvoxEmbedHeading(); break;
+              case 'top': cvoxEmbedTop(); break;
+              case 'click': cvoxEmbedClick(); break;
+              }
+          });
+
+          // Stop talking if the user changes tab
+          window.addEventListener('blur', function(e) {
+              window.accessibility.stop();
+          });
+
+          // Stop talking if the user changes tab
+          window.addEventListener('blur', function(e) {
+              window.accessibility.stop();
+          });
+
+
+          cvoxEmbedDisable();
+          embed.contentWindow.postMessage({ command: 'setLang',
+                                            lang: document.documentElement.lang }, '*');
+
+          // Finally replace the stubs with a real implementation now
+          // that ChromeVox won't speak on startup.
+          window.accessibility.speak = function(text, queueMode, params) {
+              embed.contentWindow.postMessage({ command: 'speak',
+                                                text: text,
+                                                queueMode: queueMode,
+                                                params: params}, '*');
+          }
+          window.accessibility.isSpeaking = function() {
+          }
+          window.accessibility.stop = function() {
+             embed.contentWindow.postMessage({ command: 'stop' }, '*');
+          }
+          window.accessibility.braille = function() {};
+          window.Audio = window.saveAudio;
+          cvox.ChromeVox.earcons.audioMap = {};
+
+          document.getElementById('enable-cvox').addEventListener('click', function() {
+            cvoxEmbedEnable();
+          });
+      </script>
+    </template>
+  </body>
 </html>
