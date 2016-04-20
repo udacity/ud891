@@ -3,6 +3,7 @@ html, body {
   padding: 0;
   height: 100%;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-size: 120%;
 }
 
 header {
@@ -31,7 +32,7 @@ nav {
 .tab {
     display: inline-block;
     background-color: #D2D2D2;
-    padding: 10px 20px;
+    padding: 10px 15px;
     margin: 0px 2px;
 }
 
