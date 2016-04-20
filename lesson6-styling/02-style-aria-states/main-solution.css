@@ -39,7 +39,6 @@ main {
   content: '▼';
 }
 
-
 .disclosure-content[aria-hidden="true"] {
   visibility: hidden;
   opacity: 0;

@@ -39,13 +39,12 @@ main {
   content: '▼';
 }
 
+.disclosure-content.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
 
 .disclosure-content {
   visibility: visible;
   opacity: 1;
-}
-
-.disclosure-content.hidden {
-  visibility: hidden;
-  opacity: 0;
 }
