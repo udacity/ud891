@@ -15,10 +15,20 @@ function toggleDisclosure(e) {
   e.preventDefault();
 
   if (content.getAttribute('aria-hidden') === 'true') {
+
     content.setAttribute('aria-hidden', 'false');
+    content.classList.remove('hidden');
+
     button.setAttribute('aria-expanded', 'true');
+    button.classList.add('expanded');
+
   } else {
+
     content.setAttribute('aria-hidden', 'true');
+    content.classList.add('hidden');
+
     button.setAttribute('aria-expanded', 'false');
+    button.classList.remove('expanded');
+
   }
 }
