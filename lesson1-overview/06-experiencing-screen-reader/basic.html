@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Experiencing a screen reader</title>
+    <meta name="description" content="An example of non-semantic HTML to be fixed">
+
+    <!-- Mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <main>
+        <div>
+          <h1>Click the button!</h1>
+        </div>
+        <div>
+          <button tabindex="-1" id="accessibility-button">I love accessibility</button>
+        </div>
+      </main>
+
+      <div class="modal">
+        <h1>We love accessibility too!</h1>
+        <img src="koala.jpg" alt="Koala" tabindex="-1" id="koala">
+        <p>
+          The secret word is "Koala".
+        </p>
+        <button id="close">Close dialog</button>
+      </div>
+      <div class="modal-overlay"></div>
+      <script src="modal.js"></script>
+    </div>
+    <div class="click-stealer"></div>
+
+    <script type="text/javascript" src="modal.js"></script>
+  <script>
+    document.querySelector('.click-stealer').addEventListener('click', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      return false;
+    });
+
+    document.querySelector('#accessibility-button').addEventListener('click', openModal);
+  </script>
+  </body>
+</html>
