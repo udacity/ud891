@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Custom radio buttons</title>
-    <meta name="description" content="Custom radio buttons with a screen reader">
+    <title>Custom checkboxes</title>
+    <meta name="description" content="Custom checkboxes with a screen reader">
 
     <!-- Mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-      iframe#radios {
+      iframe#content {
           position: fixed;
           top: 0;
           left: 0;
@@ -22,7 +22,7 @@
     </style>
   </head>
   <body>
-    <iframe id="radios" src="../../lesson2-focus/05-radio-group/index-solution.html"></iframe>
+    <iframe id="content" src="checkboxes-solution.html"></iframe>
     <script>
       function injectChromeVox(frame) {
         var templates = document.querySelectorAll('template');
@@ -57,7 +57,7 @@
         }
         appendNext();
       }
-      var frame = document.getElementById('radios');
+      var frame = document.getElementById('content');
       frame.addEventListener('load', injectChromeVox.bind(null, frame));
     </script>
 
