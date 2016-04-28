@@ -21,6 +21,22 @@
     this.focusedButton = this.buttons[this.focusedIdx];
 
     this.el.addEventListener('keydown', this.handleKeyDown.bind(this));
+    this.el.addEventListener('click', this.handleClick.bind(this));
+
+    // Any more initialization to do here?
+
+    var firstButton = true;
+    for (var button of this.buttons) {
+      if (firstButton) {
+        button.tabIndex = "0";
+        firstButton = false;
+      } else {
+        button.tabIndex = "-1";
+      }
+
+      // What about here?
+    }
+
   }
 
   RadioGroup.prototype.handleKeyDown = function(e) {
@@ -31,14 +47,9 @@
 
         e.preventDefault();
 
-        if (this.focusedIdx === 0) {
-          this.focusedIdx = this.buttons.length - 1;
-        } else {
-          this.focusedIdx--;
-        }
+        this.focusedIdx = (--this.focusedIdx + this.buttons.length) % this.buttons.length;
 
         break;
-
       }
 
       case VK_DOWN:
@@ -46,30 +57,48 @@
 
         e.preventDefault();
 
-        if (this.focusedIdx === this.buttons.length - 1) {
-          this.focusedIdx = 0;
-        } else {
-          this.focusedIdx++;
-        }
+        this.focusedIdx = ++this.focusedIdx % this.buttons.length;
 
         break;
       }
 
+    case VK_SPACE:
+        var focusedButton = e.target;
+        var idx = this.buttons.indexOf(focusedButton);
+        if (idx < 0)
+          return;
+        this.focusedIdx = idx;
+        break;
+
+      default:
+        return;
     }
 
-    this.changeFocus(this.focusedIdx);
+    this.changeFocus();
   };
 
-  RadioGroup.prototype.changeFocus = function(idx) {
+  RadioGroup.prototype.handleClick = function(e) {
+    var button = e.target;
+    var idx = this.buttons.indexOf(button);
+    if (idx < 0)
+      return;
+    this.focusedIdx = idx;
+    this.changeFocus();
+  };
+
+  RadioGroup.prototype.changeFocus = function() {
     // Set the old button to tabindex -1
     this.focusedButton.tabIndex = -1;
     this.focusedButton.removeAttribute('checked');
 
     // Set the new button to tabindex 0 and focus it
-    this.focusedButton = this.buttons[idx];
+    this.focusedButton = this.buttons[this.focusedIdx];
     this.focusedButton.tabIndex = 0;
     this.focusedButton.focus();
-    this.focusedButton.setAttribute('checked', 'checked');
+    this.focusedButton.setAttribute('checked', '');
+
+    // ... we probably want to do some stuff here, too ...
+
   };
 
   var group1 = new RadioGroup('#group1');
