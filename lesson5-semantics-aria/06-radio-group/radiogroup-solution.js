@@ -47,7 +47,9 @@
 
         e.preventDefault();
 
-        this.focusedIdx = (--this.focusedIdx + this.buttons.length) % this.buttons.length;
+        this.focusedIdx--;
+        if (this.focusedIdx < 0)
+          this.focusedIdx = this.focusedIdx + this.buttons.length;
 
         break;
       }
@@ -57,7 +59,7 @@
 
         e.preventDefault();
 
-        this.focusedIdx = ++this.focusedIdx % this.buttons.length;
+        this.focusedIdx = (this.focusedIdx + 1) % this.buttons.length;
 
         break;
       }

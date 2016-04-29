@@ -1,5 +1,5 @@
 .demo {
-  width: 200px;
+    margin: 50px;
 }
 
 .checkboxes {
@@ -7,8 +7,12 @@
 }
 
 .checkbox {
-    position: relative;
-    padding-left: 40px;
+  position: relative;
+  padding-left: 22px;
+}
+
+.checkbox:focus {
+  outline: none;
 }
 
 .checkbox::before {
@@ -19,8 +23,12 @@
   border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 2px;
   position: absolute;
-  left: 20px;
+  left: 3px;
   top: 3px;
+}
+
+.checkbox:focus::before {
+  outline: #2196F3 auto 5px;
 }
 
 .checkbox[checked]::after {
@@ -31,6 +39,6 @@
   width: 8px;
   height: 8px;
   position: absolute;
-  left: 22px;
+  left: 5px;
   top: 5px;
 }
