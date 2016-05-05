@@ -79,12 +79,19 @@
     this.button = button;
     this.items = Array.prototype.slice.call(el.querySelectorAll('[role=menuitem]'));
     var owns = [];
-    for (var item of this.items) {
+    for (var i = 0; i < this.items.length; i++) {
+      var item = this.items[i];
       item.id = nextId();
       owns.push(item.id);
+
+      // Ensure accurate reflection of set size/position in set even with extraneous list items
+      item.setAttribute('aria-setsize', this.items.length);
+      item.setAttribute('aria-posinset', i+1);
+
       item.addEventListener('mouseover', this.handleHoverOnItem.bind(this));
       item.addEventListener('click', this.handleClickOnItem.bind(this));
     }
+    // Ensure we "own" all of the menu items, even if they're not direct descendants.
     this.el.setAttribute('aria-owns', owns.join(' '));
 
     el.addEventListener('keydown', this.handleKeyDown.bind(this));
@@ -139,10 +146,9 @@
 
     handleKeyDown: function (e) {
       var active = this.activeItem;
-      if (!active)
-        activeIdx = -1;
-      else
-        var activeIdx = this.items.indexOf(active);
+      var activeIdx = -1;
+      if (active)
+        activeIdx = this.items.indexOf(active);
 
       var newIdx = activeIdx;
       switch(e.keyCode) {
