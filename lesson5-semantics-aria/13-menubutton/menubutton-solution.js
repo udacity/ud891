@@ -211,8 +211,7 @@
       if (active)
         active.removeAttribute('active');
       newActive.setAttribute('active', '');
-
-      // I think something more needs to happen here?
+      this.el.setAttribute('aria-activedescendant', newActive.id);
     }
   };
 
