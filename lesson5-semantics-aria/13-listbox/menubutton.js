@@ -85,8 +85,10 @@
       owns.push(item.id);
 
       // Ensure accurate reflection of set size/position in set even with extraneous list items
+/*
       item.setAttribute('aria-setsize', this.items.length);
       item.setAttribute('aria-posinset', i+1);
+*/
 
       item.addEventListener('mouseover', this.handleHoverOnItem.bind(this));
       item.addEventListener('click', this.handleClickOnItem.bind(this));

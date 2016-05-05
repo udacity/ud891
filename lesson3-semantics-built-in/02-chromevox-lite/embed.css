@@ -9,15 +9,10 @@
     top: 10px;
 }
 
-button {
-  border: none;
-  border-radius: 4px;
-  font-family: inherit;
-  font-weight: 100;
-  font-size: 20px;
-}
-
 button#enable-cvox {
+    border: none;
+    border-radius: 4px;
+    font-weight: 100;
     font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
     background-color: #2196F3;
     color: white;

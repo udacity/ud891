@@ -13,15 +13,19 @@
       <button aria-haspopup="true">Choose a drink</button>
       <div role="menu" hidden tabindex="-1">
         <ul role="presentation">
-          <li class="header">Hot</li>
-          <li role="menuitem">Coffee</li>
-          <li role="menuitem">Tea</li>
-          <li role="menuitem">Hot chocolate</li>
-          <li class="header">Cold</li>
-          <li role="menuitem">Water</li>
-          <li role="menuitem">Cola</li>
-          <li role="menuitem">Ginger Ale</li>
-          <li role="menuitem">Orange juice</li>
+          <li role="presentation" class="header">Hot</li>
+          <ul role="presentation">
+            <li role="menuitem">Coffee</li>
+            <li role="menuitem">Tea</li>
+            <li role="menuitem">Hot chocolate</li>
+          </ul>
+          <li role="presentation" class="header">Cold</li>
+          <ul role="presentation">
+            <li role="menuitem">Water</li>
+            <li role="menuitem">Cola</li>
+            <li role="menuitem">Ginger Ale</li>
+            <li role="menuitem">Orange juice</li>
+          </ul>
         </ul>
       </div> <!-- // menu -->
     </div>
