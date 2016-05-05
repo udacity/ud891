@@ -10,10 +10,30 @@
   var VK_RIGHT      = 39;
   var VK_DOWN       = 40;
 
+  var LAST_ID = 0;
+
+  /**
+   * Generate a unique DOM ID.
+   * @return {string}
+   */
+  function nextId() {
+    var id = ':' + LAST_ID;
+    LAST_ID++;
+    return id;
+  }
+
+  /**
+   * @constructor
+   * Implements the 'menu button' pattern: https://www.w3.org/TR/wai-aria-practices/#menubutton
+   * @param {Element} buttonEl The button element to decorate
+   * @param {Element} menuEl The menu element to associate with this menu button; also decorates
+   *     it with the `Menu` class. 
+   */
   function PopUpButton(buttonEl, menuEl) {
     this.buttonEl = buttonEl;
     this.menu = new Menu(menuEl, this);
 
+    // Handle both mouse and keyboard interactions
     this.buttonEl.addEventListener('click', this.toggleMenu.bind(this));
     this.buttonEl.addEventListener('keydown', this.handleKeyDown.bind(this));
   }
@@ -48,14 +68,24 @@
     }
   };
 
+  /**
+   * @constructor
+   * Implements the 'menu' pattern: https://www.w3.org/TR/wai-aria-practices/#menu
+   * @param {Element} el The element to decorate with the menu pattern.
+   * @param {PopUpButton} button The button which controls this menu.
+   */
   function Menu(el, button) {
     this.el = el;
     this.button = button;
     this.items = Array.prototype.slice.call(el.querySelectorAll('[role=menuitem]'));
+    var owns = [];
     for (var item of this.items) {
+      item.id = nextId();
+      owns.push(item.id);
       item.addEventListener('mouseover', this.handleHoverOnItem.bind(this));
       item.addEventListener('click', this.handleClickOnItem.bind(this));
     }
+    this.el.setAttribute('aria-owns', owns.join(' '));
 
     el.addEventListener('keydown', this.handleKeyDown.bind(this));
     el.addEventListener('blur', this.hide.bind(this));
@@ -92,6 +122,7 @@
         return;
 
       this.activeItem.removeAttribute('active');
+      this.el.removeAttribute('aria-activedescendant');
       this.el.setAttribute('hidden', '');
       this.button.focus();
     },
