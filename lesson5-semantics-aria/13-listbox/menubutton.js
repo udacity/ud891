@@ -43,7 +43,7 @@
       this.buttonEl.focus();
     },
 
-    toggleMenu: function() {
+    toggleMenu: function(e) {
       this.menu.toggle();
     },
 
@@ -84,12 +84,6 @@
       item.id = nextId();
       owns.push(item.id);
 
-      // Ensure accurate reflection of set size/position in set even with extraneous list items
-/*
-      item.setAttribute('aria-setsize', this.items.length);
-      item.setAttribute('aria-posinset', i+1);
-*/
-
       item.addEventListener('mouseover', this.handleHoverOnItem.bind(this));
       item.addEventListener('click', this.handleClickOnItem.bind(this));
     }
@@ -97,7 +91,7 @@
     this.el.setAttribute('aria-owns', owns.join(' '));
 
     el.addEventListener('keydown', this.handleKeyDown.bind(this));
-    el.addEventListener('blur', this.hide.bind(this));
+    el.addEventListener('blur', this.handleBlur.bind(this));
   }
 
 
@@ -127,12 +121,14 @@
     },
 
     hide: function() {
-      if (this.hidden)
+      if (this.hidden || this.throttlingBlur)
         return;
 
-      this.activeItem.removeAttribute('active');
+      if (this.activeItem)
+        this.activeItem.removeAttribute('active');
       this.el.removeAttribute('aria-activedescendant');
       this.el.setAttribute('hidden', '');
+
       this.button.focus();
     },
 
@@ -143,6 +139,10 @@
       item.setAttribute('aria-selected', true);
 
       this.button.value = item.textContent;
+      this.hide();
+    },
+
+    handleBlur(e) {
       this.hide();
     },
 
