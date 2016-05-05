@@ -272,6 +272,11 @@ function matchesSelector(element, selector) {
  * @return {boolean} Whether the two language match.
  */
 function langsMatch(lang1, lang2) {
+  if (lang1 === lang2)
+    return true;
+
+  if (lang1.trim() === '' || lang2.trim() === '')
+    return false;
   var lang1Test = document.createElement('test');
   lang1Test.lang = lang1;
   var lang2Test = document.createElement('test');
@@ -357,7 +362,7 @@ window.addEventListener('message', function(e) {
     var params = e.data.params;
     if (queueMode == 0)
       caption.innerHTML = '';
-    else if (caption.innerHTML !== '')
+    else if (caption.textContent !== '')
       caption.innerHTML += ',&nbsp;'
     var str = '<span>' + text + '</span>&nbsp;&nbsp;';
     if (params.pitch < 0.5)
@@ -366,10 +371,12 @@ window.addEventListener('message', function(e) {
       caption.innerHTML += '<b>' + text + '</b>';
 
     if (queueMode == 0) {
+      speechSynthesis.cancel();
       speechQueue.length = 0;
     }
 
-    speechQueue.push({text: text, queueMode: queueMode, params: params});
+    if (text.trim() !== '')
+      speechQueue.push({text: text, queueMode: queueMode, params: params});
     speakNextUtterance();
     break;
   case 'stop':
