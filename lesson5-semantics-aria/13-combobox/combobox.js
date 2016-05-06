@@ -174,7 +174,7 @@
         },
 
         handleHoverOnItem: function(e) {
-            var newIdx = this.items.indexOf(e.target);
+            var newIdx = this.visibleItems.indexOf(e.target);
             if (newIdx < 0)
                 return;
             this.changeActiveListitem(newIdx);
