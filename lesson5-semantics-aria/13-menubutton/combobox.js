@@ -52,6 +52,7 @@
 
         handleBlur: function(e) {
             this.listbox.hide();
+            this.el.removeAttribute('aria-activedescendant');
         },
 
         handleInput: function(e) {
@@ -77,10 +78,15 @@
                     break;
                 this.value = active.textContent;
                 this.listbox.hide();
+                break;
+            case VK_ESC:
+                this.listbox.hide();
+                break;
             }
 
             return;
         },
+
 
         setActiveDescendant: function(el) {
             this.el.setAttribute('aria-activedescendant', el.id);
@@ -131,19 +137,25 @@
 
         filter: function(str) {
             this.visibleItems = [];
-            var foundMatch = false;
+            var foundItems = 0;
             for (var item of this.items) {
                 if (item.textContent.toLowerCase().startsWith(str.toLowerCase())) {
+                    foundItems++;
                     item.hidden = false;
+                    item.setAttribute('aria-posinset', foundItems);
                     this.visibleItems.push(item);
-                    foundMatch = true;
                 } else {
                     item.hidden = true;
+                    item.removeAttribute('aria-posinset');
                     item.classList.remove('active');
                 }
             }
-            if (!foundMatch) {
+            if (foundItems === 0) {
                 this.hide();
+            } else {
+                for (var item of this.visibleItems) {
+                    item.setAttribute('aria-setsize', foundItems);
+                }
             }
         },
 

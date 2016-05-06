@@ -2,6 +2,10 @@
     margin: 50px;
 }
 
+.widget {
+    display: inline-block;
+}
+
 button[aria-haspopup] {
     cursor: pointer;
     display: inline-block;

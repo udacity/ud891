@@ -10,18 +10,23 @@
   <body>
 
     <div class="demo">
-        <input type="text" role="combobox">
-        <div role="listbox" id" hidden tabindex="-1">
-          <ul role="presentation">
-            <li role="option">Coffee</li>
-            <li role="option">Tea</li>
-            <li role="option">Hot chocolate</li>
-            <li role="option">Water</li>
-            <li role="option">Cola</li>
-            <li role="option">Ginger Ale</li>
-            <li role="option">Orange juice</li>
-          </ul>
-      </div> <!-- // menu -->
+      <label>
+        Choose a drink:
+        <div class="widget">
+          <input type="text" role="combobox">
+          <div role="listbox" hidden tabindex="-1">
+            <ul role="presentation">
+              <li role="option">Coffee</li>
+              <li role="option">Tea</li>
+              <li role="option">Hot chocolate</li>
+              <li role="option">Water</li>
+              <li role="option">Cola</li>
+              <li role="option">Ginger Ale</li>
+              <li role="option">Orange juice</li>
+            </ul>
+          </div>
+        </div>
+      </label>
     </div>
 
     <script src="combobox.js"></script>
