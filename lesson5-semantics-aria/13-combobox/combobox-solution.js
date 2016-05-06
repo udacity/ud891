@@ -24,10 +24,12 @@
 
     /**
      * @constructor
-     * Implements the 'menu button' pattern: https://www.w3.org/TR/wai-aria-practices/#menubutton
-     * @param {Element} buttonEl The button element to decorate
-     * @param {Element} menuEl The menu element to associate with this menu button; also decorates
-     *     it with the `Menu` class.
+     * Implements a minimal combo box: a text field with a list of options which pops up when the text
+     * field is focused.
+     * Use arrow keys or mouse to choose from available options.
+     * @param {Element} el The text field element to decorate.
+     * @param {Element} listEl The listbox element to associate with this text field; also decorates
+     *     it with the `ListBox` class.
      */
     function ComboBox(el, listEl) {
         this.el = el;
@@ -76,7 +78,7 @@
                 var active = this.listbox.activeItem;
                 if (!active)
                     break;
-                this.value = active.textContent;
+                this.setSelected(active);
                 this.listbox.hide();
                 break;
             case VK_ESC:
@@ -87,6 +89,10 @@
             return;
         },
 
+        setSelected: function(el) {
+            console.log('setSelected', el);
+            this.value = el.textContent;
+        },
 
         setActiveDescendant: function(el) {
             this.el.setAttribute('aria-activedescendant', el.id);
@@ -95,9 +101,8 @@
 
     /**
      * @constructor
-     * Implements the 'menu' pattern: https://www.w3.org/TR/wai-aria-practices/#menu
-     * @param {Element} el The element to decorate with the menu pattern.
-     * @param {PopUpButton} button The button which controls this menu.
+     * @param {Element} el The element to decorate as a listbox.
+     * @param {Textbox} textbox The textbox which controls this listbox in a combobox pattern.
      */
     function ListBox(el, textbox) {
         this.el = el;
@@ -107,15 +112,13 @@
             var item = this.items[i];
             item.id = nextId();
 
+            console.log('adding event listeners');
             item.addEventListener('mouseover', this.handleHoverOnItem.bind(this));
-            item.addEventListener('click', this.handleClickOnItem.bind(this));
+            item.addEventListener('mousedown', this.handleClickOnItem.bind(this), true);
         }
 
         this.visibleItems = this.items.slice();
-
-        el.addEventListener('keydown', this.handleKeyDown.bind(this));
-        el.addEventListener('blur', this.handleBlur.bind(this));
-    }
+    };
 
 
     ListBox.prototype = {
@@ -142,19 +145,19 @@
                 if (item.textContent.toLowerCase().startsWith(str.toLowerCase())) {
                     foundItems++;
                     item.hidden = false;
-                    item.setAttribute('aria-posinset', foundItems);
                     this.visibleItems.push(item);
                 } else {
                     item.hidden = true;
-                    item.removeAttribute('aria-posinset');
                     item.classList.remove('active');
                 }
             }
             if (foundItems === 0) {
                 this.hide();
             } else {
-                for (var item of this.visibleItems) {
-                    item.setAttribute('aria-setsize', foundItems);
+                for (var i = 0; i < this.visibleItems.length; i++) {
+                    var item = this.visibleItems[i];
+                    item.setAttribute('aria-posinset', i + 1);
+                    item.setAttribute('aria-setsize', this.visibleItems.length);
                 }
             }
         },
@@ -176,65 +179,6 @@
             this.el.setAttribute('hidden', '');
         },
 
-        selectItem: function(item) {
-            var selected = this.el.querySelector('[aria-selected]');
-            if (selected && selected != item)
-                selected.removeAttribute('aria-selected');
-            item.setAttribute('aria-selected', true);
-
-            this.button.value = item.textContent;
-            this.hide();
-        },
-
-        handleBlur(e) {
-            this.hide();
-        },
-
-        handleKeyDown: function (e) {
-            var active = this.activeItem;
-            var activeIdx = -1;
-            if (active)
-                activeIdx = this.items.indexOf(active);
-
-            var newIdx = activeIdx;
-            switch(e.keyCode) {
-            case VK_UP:
-            case VK_LEFT:
-                if (!active)
-                    newIdx = this.items.length;
-
-                newIdx--;
-                if (newIdx < 0)
-                    newIdx += this.items.length;
-                e.stopPropagation();
-                e.preventDefault();
-                break;
-
-            case VK_DOWN:
-            case VK_RIGHT:
-                newIdx = (newIdx + 1) % this.items.length;
-                e.stopPropagation();
-                e.preventDefault();
-                break;
-
-            case VK_SPACE:
-            case VK_ENTER:
-                this.selectItem(active);
-                e.stopPropagation();
-                e.preventDefault();
-                break;
-
-            case VK_ESC:
-                e.stopPropagation();
-                e.preventDefault();
-                this.hide();
-            }
-
-            if (newIdx == activeIdx)
-                return;
-            this.changeActiveListitem(newIdx);
-        },
-
         handleHoverOnItem: function(e) {
             var newIdx = this.items.indexOf(e.target);
             if (newIdx < 0)
@@ -243,10 +187,12 @@
         },
 
         handleClickOnItem: function(e) {
+            console.log('handleClickOnItem');
             var item = e.target;
             if (this.items.indexOf(item) < 0)
                 return;
-            this.selectItem(item);
+            this.textbox.setSelected(item);
+            this.hide();
         },
 
         nextActiveListItem: function() {
@@ -281,7 +227,7 @@
                 active.classList.remove('active');
             newActive.classList.add('active');
 
-            this.textbox.setActiveDescendant(newActive);
+            this.listbox.setActiveDescendant(newActive);
         }
     };
 
