@@ -224,7 +224,7 @@
                 active.classList.remove('active');
             newActive.classList.add('active');
 
-            this.listbox.setActiveDescendant(newActive);
+            this.textbox.setActiveDescendant(newActive);
         }
     };
 
