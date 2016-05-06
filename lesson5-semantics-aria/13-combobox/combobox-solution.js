@@ -90,7 +90,6 @@
         },
 
         setSelected: function(el) {
-            console.log('setSelected', el);
             this.value = el.textContent;
         },
 
@@ -112,7 +111,6 @@
             var item = this.items[i];
             item.id = nextId();
 
-            console.log('adding event listeners');
             item.addEventListener('mouseover', this.handleHoverOnItem.bind(this));
             item.addEventListener('mousedown', this.handleClickOnItem.bind(this), true);
         }
@@ -187,7 +185,6 @@
         },
 
         handleClickOnItem: function(e) {
-            console.log('handleClickOnItem');
             var item = e.target;
             if (this.items.indexOf(item) < 0)
                 return;
