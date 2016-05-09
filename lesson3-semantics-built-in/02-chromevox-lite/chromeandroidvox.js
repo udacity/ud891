@@ -12000,8 +12000,9 @@ cvox.DescriptionUtil.getDescriptionFromAncestors = function(ancestorsArray, recu
   "undefined" === typeof recursive && (recursive = !0);
   var len = ancestorsArray.length, context = "", text = "", userValue = "", annotation = "", earcons = [], personality = null, hint = "";
   0 < len && (text = cvox.DomUtil.getName(ancestorsArray[len - 1], recursive), userValue = cvox.DomUtil.getValue(ancestorsArray[len - 1]));
+  var hintText = "";
   for (var i = len - 1;0 <= i;i--) {
-    var node = ancestorsArray[i], hint = cvox.DomUtil.getHint(node), role = node.getAttribute ? node.getAttribute("role") : null;
+    var node = ancestorsArray[i], hint = cvox.DomUtil.getHint(node), role = node.getAttribute ? node.getAttribute("role") : null; hintText.length === 0 ? hintText = hint : hintText += " " + hint;
     if ("alertdialog" != role) {
       var roleText = cvox.DomUtil.getRole(node, verbosity);
       personality || (personality = cvox.AuralStyleUtil.getStyleForNode(node));
@@ -12014,7 +12015,7 @@ cvox.DescriptionUtil.getDescriptionFromAncestors = function(ancestorsArray, recu
       null != earcon && -1 == earcons.indexOf(earcon) && earcons.push(earcon);
     }
   }
-  return new cvox.NavDescription({context:cvox.DomUtil.collapseWhitespace(context), text:cvox.DomUtil.collapseWhitespace(text), userValue:cvox.DomUtil.collapseWhitespace(userValue), annotation:cvox.DomUtil.collapseWhitespace(annotation), earcons:earcons, personality:personality, hint:cvox.DomUtil.collapseWhitespace(hint)});
+  return new cvox.NavDescription({context:cvox.DomUtil.collapseWhitespace(context), text:cvox.DomUtil.collapseWhitespace(text), userValue:cvox.DomUtil.collapseWhitespace(userValue), annotation:cvox.DomUtil.collapseWhitespace(annotation), earcons:earcons, personality:personality, hint:cvox.DomUtil.collapseWhitespace(hintText)});
 };
 cvox.DescriptionUtil.getDescriptionFromNavigation = function(prevNode, node, recursive, verbosity) {
   if (!prevNode || !node) {
@@ -14621,7 +14622,7 @@ cvox.ChromeVoxUserCommands.doCommand_ = function(cmdStruct) {
   cmdStruct.disallowContinuation && cvox.ChromeVox.navigationManager.stopReading(!0);
   cmdStruct.forward ? cvox.ChromeVox.navigationManager.setReversed(!1) : cmdStruct.backward && cvox.ChromeVox.navigationManager.setReversed(!0);
   cmdStruct.findNext && (cmd = "find", cmdStruct.announce = !0);
-  var errorMsg = "", prefixMsg = "", ret = !1;
+  var errorMsg = "", prefixMsg = "", ret = !1,  moveFocus = true;
   switch(cmd) {
     case "handleTab":
     ;
@@ -14772,11 +14773,11 @@ cvox.ChromeVoxUserCommands.doCommand_ = function(cmdStruct) {
       cvox.ChromeVox.tts.speak(document.URL);
       break;
     case "performDefaultAction":
-      cvox.DomPredicates.linkPredicate([document.activeElement]) && cvox.DomUtil.isInternalLink(document.activeElement) && (cvox.DomUtil.syncInternalLink(document.activeElement), cvox.ChromeVox.navigationManager.sync(), cmdStruct.announce = !0);
+      cvox.DomPredicates.linkPredicate([document.activeElement]) && cvox.DomUtil.isInternalLink(document.activeElement) && (cvox.DomUtil.syncInternalLink(document.activeElement), cvox.ChromeVox.navigationManager.sync(), cmdStruct.announce = !0); moveFocus = false;
       break;
     case "forceClickOnCurrentItem":
       var prefixMsg = cvox.ChromeVox.msgs.getMsg("element_clicked"), targetNode = cvox.ChromeVox.navigationManager.getCurrentNode();
-      cvox.DomUtil.clickElem(targetNode, !1, !1);
+      cvox.DomUtil.clickElem(targetNode, !1, !1); moveFocus = false;
       break;
     case "forceDoubleClickOnCurrentItem":
       prefixMsg = cvox.ChromeVox.msgs.getMsg("element_double_clicked");
@@ -14914,7 +14915,7 @@ cvox.ChromeVoxUserCommands.doCommand_ = function(cmdStruct) {
     default:
       throw "Command behavior not defined: " + cmd;;
   }
-  "" != errorMsg ? cvox.ChromeVox.tts.speak(cvox.ChromeVox.msgs.getMsg(errorMsg), cvox.AbstractTts.QUEUE_MODE_FLUSH, cvox.AbstractTts.PERSONALITY_ANNOTATION) : cvox.ChromeVox.navigationManager.isReading() ? cmdStruct.disallowContinuation ? cvox.ChromeVox.navigationManager.stopReading(!0) : "readFromHere" != cmd && cvox.ChromeVox.navigationManager.skip() : cmdStruct.announce && cvox.ChromeVox.navigationManager.finishNavCommand(prefixMsg);
+  "" != errorMsg ? cvox.ChromeVox.tts.speak(cvox.ChromeVox.msgs.getMsg(errorMsg), cvox.AbstractTts.QUEUE_MODE_FLUSH, cvox.AbstractTts.PERSONALITY_ANNOTATION) : cvox.ChromeVox.navigationManager.isReading() ? cmdStruct.disallowContinuation ? cvox.ChromeVox.navigationManager.stopReading(!0) : "readFromHere" != cmd && cvox.ChromeVox.navigationManager.skip() : cmdStruct.announce && cvox.ChromeVox.navigationManager.finishNavCommand(prefixMsg, moveFocus);
   cmdStruct.allowEvents || cvox.ChromeVoxEventSuspender.exitSuspendEvents();
   return !!cmdStruct.doDefault || ret;
 };
