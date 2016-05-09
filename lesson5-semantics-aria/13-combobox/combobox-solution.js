@@ -29,16 +29,15 @@
      * Use arrow keys or mouse to choose from available options.
      * @param {Element} el The text field element to decorate.
      * @param {Element} listEl The listbox element to associate with this text field; also decorates
-     *     it with the `ListBox` class.
+     *     it with the `ListBox` pattern.
      */
     function ComboBox(el, listEl) {
         this.el = el;
         this.listbox = new ListBox(listEl, this);
         listEl.id = nextId();
-        el.setAttribute('aria-owns', listEl.id);
 
-        this.el.addEventListener('focus', this.handleFocus.bind(this));
-        this.el.addEventListener('blur', this.handleBlur.bind(this));
+        this.el.addEventListener('focus', this.handleFocus.bind(this), true);
+        this.el.addEventListener('blur', this.handleBlur.bind(this), true);
         this.el.addEventListener('input', this.handleInput.bind(this));
         this.el.addEventListener('keydown', this.handleKeyDown.bind(this));
     }
@@ -48,17 +47,27 @@
             this.el.value = val;
         },
 
-        handleFocus: function(e) {
+        showListbox: function() {
             this.listbox.show();
+            this.el.setAttribute('aria-expanded', true);
         },
 
-        handleBlur: function(e) {
+        hideListbox: function() {
             this.listbox.hide();
+            this.el.setAttribute('aria-expanded', false);
             this.el.removeAttribute('aria-activedescendant');
         },
 
+        handleFocus: function(e) {
+            this.showListbox();
+        },
+
+        handleBlur: function(e) {
+            this.hideListbox();
+        },
+
         handleInput: function(e) {
-            this.listbox.show();
+            this.showListbox();
             this.listbox.filter(this.el.value);
         },
 
@@ -79,10 +88,10 @@
                 if (!active)
                     break;
                 this.setSelected(active);
-                this.listbox.hide();
+                this.hideListbox();
                 break;
             case VK_ESC:
-                this.listbox.hide();
+                this.hideListbox();
                 break;
             }
 
@@ -93,7 +102,13 @@
             this.value = el.textContent;
         },
 
+        /**
+         * Sets the aria-activedescendant value of the textbox to the ID of the given element.
+         * @param {Element} el
+         */
         setActiveDescendant: function(el) {
+            if (!el.id)
+                return;
             this.el.setAttribute('aria-activedescendant', el.id);
         }
     };
@@ -173,7 +188,6 @@
 
             if (this.activeItem)
                 this.activeItem.classList.remove('active');
-            this.el.removeAttribute('aria-activedescendant');
             this.el.setAttribute('hidden', '');
         },
 

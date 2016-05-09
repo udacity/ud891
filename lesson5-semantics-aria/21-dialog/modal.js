@@ -63,7 +63,7 @@ function openModal(e) {
     }
   }
 
-  // FIXME: prevent screen readers from accessing non-modal content too!
+  // FIXME: hide non-modal content from screen readers
 }
 
 function closeModal() {
