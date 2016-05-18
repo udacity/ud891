@@ -14987,7 +14987,9 @@ cvox.LiveRegions.init = function(pageLoadTime, queueMode, disableSpeak) {
   }
   for (var anyRegionsAnnounced = !1, regions = cvox.AriaUtil.getLiveRegions(document.body), i$$0 = 0;i$$0 < regions.length;i$$0++) {
     cvox.LiveRegions.handleOneChangedNode(regions[i$$0], regions[i$$0], !1, !1, function(assertive, navDescriptions) {
-      assertive || queueMode != cvox.AbstractTts.QUEUE_MODE_FLUSH || (queueMode = cvox.AbstractTts.QUEUE_MODE_QUEUE);
+      if (assertive)
+        queueMode = cvox.AbstractTts.QUEUE_MODE_FLUSH;
+
       var descSpeaker = new cvox.NavigationSpeaker;
       descSpeaker.speakDescriptionArray(navDescriptions, queueMode, null);
       anyRegionsAnnounced = !0;
@@ -15477,7 +15479,8 @@ cvox.ChromeVoxEventWatcher.getInitialVisibility = function() {
 };
 cvox.ChromeVoxEventWatcher.speakLiveRegion_ = function(assertive, messages) {
   var queueMode = cvox.ChromeVoxEventWatcher.queueMode_();
-  assertive || queueMode != cvox.AbstractTts.QUEUE_MODE_FLUSH || (queueMode = cvox.AbstractTts.QUEUE_MODE_QUEUE);
+  if (assertive)
+    queueMode = cvox.AbstractTts.QUEUE_MODE_FLUSH;
   var descSpeaker = new cvox.NavigationSpeaker;
   descSpeaker.speakDescriptionArray(messages, queueMode, null);
 };

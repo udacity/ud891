@@ -357,6 +357,7 @@ window.addEventListener('message', function(e) {
     cvoxEmbedEnable();
     break;
   case 'speak':
+    console.log('speak', e.data);
     var text = e.data.text;
     var queueMode = e.data.queueMode;
     var params = e.data.params;

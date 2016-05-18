@@ -1,0 +1,46 @@
+.demo {
+  margin: 50px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  background-image: url('./uair-2000.jpg');
+  background-size: cover;
+}
+
+
+.label {
+  display: block;
+  font-size: 14px;
+  color: #3F51B5;
+  margin-bottom: 8px;
+}
+
+[role=spinbutton] {
+  border-radius: 4px;
+  border: 1px solid #9E9E9E;
+  font-size: 18px;
+  padding: 4px;
+  font-family: inherit;
+  font-weight: 100;
+  color: #616161;
+  display: inline-block;
+}
+
+[role=spinbutton] #number {
+  padding-top: 1px;
+  width: 3em;
+}
+
+button {
+  color: white;
+  background: #3F51B5;
+  border: none;
+  border-radius: 4px;
+  font-size: 20px;
+  font-family: inherit;
+  font-weight: 100;
+}
