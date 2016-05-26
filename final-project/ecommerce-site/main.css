@@ -1,0 +1,168 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #F0F0F0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+h2,
+h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  font-weight: lighter;
+}
+
+body,
+span,
+p {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 16px;
+}
+
+p {
+  margin: 0;
+  line-height: 1.8;
+  color: #757575;
+}
+
+a {
+  text-transform: uppercase;
+  color: #23B9C9;
+  margin: 16px 0;
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-size: 14px;
+}
+
+/* Helpers */
+
+.offscreen {
+  position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+
+/* Content Wrapper */
+
+.content-wrapper {
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Row */
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.row .card:not(:last-of-type) {
+  margin-right: 20px;
+}
+
+
+/* Card */
+
+.card {
+  position: relative;
+  width: 380px;
+  height: 480px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  background-color: #FFF;
+}
+
+.card__tag-wrapper {
+  position: absolute;
+  top: -22px;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.card__tag {
+  display: inline-block;
+  padding: 10px 32px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 14px;
+  background-color: #FFF;
+  color: #757575;
+}
+
+.card__img {
+  display: block;
+}
+
+.card__content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 50px;
+}
+
+.card__title {
+  margin: 16px 0;
+}
+
+.card__description {
+  text-align: center;
+  margin: 12px 0;
+}
+
+.card__link {
+  text-transform: uppercase;
+  color: #23B9C9;
+  margin: 16px 0;
+}
+
+/* Sidebar */
+
+.sidebar {
+  min-width: 357px;
+  max-width: 357px;
+  padding: 25px 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  background-color: #FFF;
+}
+
+.sidebar__header {
+  margin-bottom: 15px;
+}
+
+/* List Post */
+
+.list-post {
+  padding: 33px 0;
+  border-bottom: 1px solid #D9D9D9;
+}
+
+/* Breakpoints */
+
+@media (min-width: 1190px) {
+
+  /* Content Wrapper */
+
+  .content-wrapper {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  /* Main */
+
+  main {
+    margin-right: 35px;
+  }
+
+}
