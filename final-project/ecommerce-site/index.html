@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Udacity Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display|PT+Sans" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="main.css">
 </head>
@@ -13,13 +14,10 @@
   <div class="content-wrapper">
 
     <main>
-
       <!-- This heading is important for screen reader navigation, but not
            part of our design, so we move it offscreen -->
       <h2 class="offscreen">Today's Posts</h2>
-
       <div class="row">
-
         <div class="card">
           <div class="card__tag-wrapper">
             <span class="card__tag">Food</span>
@@ -28,13 +26,11 @@
           <div class="card__content-wrapper">
             <h3 class="card__title">Eat Fresh Every Day</h3>
             <p class="card__description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.
             </p>
-            <a class="card__link" href="#">Read More</a>
+            <a class="link" href="#">Read More</a>
           </div>
         </div>
-
         <div class="card">
           <div class="card__tag-wrapper">
             <span class="card__tag">Nature</span>
@@ -43,31 +39,79 @@
           <div class="card__content-wrapper">
             <h3 class="card__title">Dive Into The Water</h3>
             <p class="card__description">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore.
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.
             </p>
-            <a class="card__link" href="#">Read More</a>
+            <a class="link" href="#">Read More</a>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <aside>
+      <div class="hot-list">
+        <h2 class="hot-list__header">Hot List</h2>
+
+        <div class="list-post-wrapper">
+          <div class="list-post">
+            <div class="list-post__tag">Nature</div>
+            <h3 class="list-post__title">
+              Lovely Landscapes Captured By Great Photographs
+            </h3>
+            <img class="list-post__img" src="/images/landscape.jpg" />
+            <p class="list-post__description">
+              Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore. Ut enim ad ipsum minim.
+            </p>
+          </div>
+
+          <div class="list-post">
+            <div class="list-post__tag">Nature</div>
+            <h3 class="list-post__title">
+              Lovely Landscapes Captured By Great Photographs
+            </h3>
+            <img class="list-post__img" src="/images/landscape.jpg" />
+            <p class="list-post__description">
+              Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore. Ut enim ad ipsum minim.
+            </p>
+          </div>
+
+          <div class="list-post">
+            <div class="list-post__tag">Nature</div>
+            <h3 class="list-post__title">
+              Lovely Landscapes Captured By Great Photographs
+            </h3>
+            <img class="list-post__img" src="/images/landscape.jpg" />
+            <p class="list-post__description">
+              Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore. Ut enim ad ipsum minim.
+            </p>
+          </div>
+
+          <div class="list-post">
+            <div class="list-post__tag">Nature</div>
+            <h3 class="list-post__title">
+              Lovely Landscapes Captured By Great Photographs
+            </h3>
+            <img class="list-post__img" src="/images/landscape.jpg" />
+            <p class="list-post__description">
+              Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore. Ut enim ad ipsum minim.
+            </p>
           </div>
         </div>
 
       </div>
 
-    </main>
+      <div class="social-cards">
+        <div class="social-card"></div>
+        <div class="social-card"></div>
+        <div class="social-card"></div>
+        <div class="social-card"></div>
+      </div>
 
-    <aside class="sidebar">
-      <h2 class="sidebar__header">Hot List</h2>
-
-      <div class="list-post">
-        <div class="list-post__tag">Nature</div>
-        <h3 class="list-post__title">
-          Lovely Landscapes Captured By Great Photographs
-        </h3>
-        <img class="list-post__img" src="/images/landscape.jpg" />
-        <p class="list-post__description">
-          Lorem ipsum dolor sit amet, consectetur elit, sed do
-          eiusmod tempor incididunt ut labore et dolore. Ut enim ad
-          ipsum minim.
-        </p>
+      <div class="subscribe-card">
+        <h3 class="subscribe-card__heading">Subscribe To Stories</h3>
+        <input type="text" class="subscribe-card__field">
+        <input type="text" class="subscribe-card__field">
+        <button class="btn btn_framed">Yes, Please</button>
       </div>
 
     </aside>
