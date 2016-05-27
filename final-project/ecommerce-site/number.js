@@ -1,9 +1,17 @@
 var VK_UP         = 38;
 var VK_DOWN       = 40;
 
+var announcer = document.querySelector('#announcer');
+function announce(text) {
+    announcer.textContent = text;
+}
+
 function SpinButton(spinbutton) {
     this._el = spinbutton;
+    this._minValue = parseInt(spinbutton.getAttribute('aria-valuemin'), 10);
+    this._maxValue = parseInt(spinbutton.getAttribute('aria-valuemax'), 10);
     this._number = spinbutton.querySelector('.number');
+    this._number.value = 0;
     this._add = spinbutton.querySelector('.add');
     this._subtract = spinbutton.querySelector('.subtract');
 
@@ -13,14 +21,22 @@ function SpinButton(spinbutton) {
 }
 
 SpinButton.prototype = {
-    increment: function() {
+    updateValue: function(increment) {
         var oldValue = this._number.textContent;
-        this._number.textContent = parseInt(oldValue, 10) + 1;
+        var newValue = parseInt(oldValue, 10) + increment;
+        if (newValue < this._minValue || newValue > this._maxValue)
+            return;
+        this._number.textContent = newValue;
+        this._el.setAttribute('aria-valuenow', newValue);
+        announce(newValue);
+    },
+
+    increment: function() {
+        this.updateValue(1);
     },
 
     decrement: function() {
-        var oldValue = this._number.textContent;
-        this._number.textContent = parseInt(oldValue, 10) - 1;
+        this.updateValue(-1);
     },
 
     onKeydown: function(e) {
@@ -40,7 +56,7 @@ SpinButton.prototype = {
 }
 
 
-var spinbuttons = document.querySelectorAll('[role=spinbutton]');
+var spinbuttons = document.querySelectorAll('.spinbutton');
 for (var i = 0; i < spinbuttons.length; i++) {
     new SpinButton(spinbuttons[i]);
 }

@@ -12,14 +12,12 @@
 
     <div class="demo">
       <p>Number input demo</p>
-      <div aria-describedby="help"
-            role="spinbutton" aria-labelledby="currValue">
-        <div aria-live="assertive" class="number" role="alert">
-          0
-        </div>
+      <div id="announcer" aria-live="assertive"></div>
+      <div class="spinbutton" role="spinbutton" tabindex="0" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0">
+        <div class="number">0</div>
         <div class="buttons">
-          <button type="button" class="add" title="add 10" aria-controls="number">&nbsp;</button>
-          <button type="button" class="subtract" title="subtract 10" aria-controls="number">&nbsp;</button>
+          <button type="button" class="add">&nbsp;</button>
+          <button type="button" class="subtract">&nbsp;</button>
         </div>
       </div>
       <div id="help">
