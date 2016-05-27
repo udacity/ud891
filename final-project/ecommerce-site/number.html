@@ -12,25 +12,26 @@
 
     <div class="demo">
       <p>Number input demo</p>
-      <div aria-describedby="help" tabindex="0"
+      <div aria-describedby="help"
             role="spinbutton" aria-labelledby="currValue">
-        <div aria-live="assertive" class="number">
+        <div aria-live="assertive" class="number" role="alert">
           0
         </div>
         <div class="buttons">
-          <button tabindex="-1" type="button" class="add" title="add 10" aria-controls="number">&nbsp;</button>
-          <button tabindex="-1" type="button" class="subtract" title="subtract 10" aria-controls="number">&nbsp;</button>
+          <button type="button" class="add" title="add 10" aria-controls="number">&nbsp;</button>
+          <button type="button" class="subtract" title="subtract 10" aria-controls="number">&nbsp;</button>
         </div>
       </div>
       <div id="help">
         Use "add" and "subtract" buttons, or up and down arrows, to add or subtract 10, respectively.
       </div>
+      <input type="number">
       </form>
 
       <p>Demo inspired by <a href="http://heydonworks.com/practical_aria_examples/#button-controlled-input">Heydon Pickering's Practical ARIA examples</a></p>
     </div>
 
-    <script src="number.js"></script>
+    <script type="text/javascript" src="number.js"></script>
 
   </body>
 </html>

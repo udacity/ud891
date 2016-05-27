@@ -10,16 +10,16 @@
 [role=spinbutton] .number {
     padding: 8px 0 8px 8px;
     flex: 1;
+    color: #727272;
 }
 
 [role=spinbutton] .buttons {
-    height: 100%;
+    display: flex;
+    flex-direction: column;
     width: 20px;
 }
 
-[role=spinbutton] .add,
-[role=spinbutton] .subtract {
-    height: 50%;
+[role=spinbutton] button {
     background-color: white;
     border: none;
     border-left: 1px solid #E2E2E2;
@@ -28,6 +28,7 @@
     background-position: center;
     margin: 0;
     padding: 0;
+    flex: 1;
 }
 
 [role=spinbutton] .add {
