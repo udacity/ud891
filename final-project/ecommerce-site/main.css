@@ -91,6 +91,15 @@ a {
   align-items: center;
 }
 
+/* Tag */
+
+.tag {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 14px;
+  color: #757575;
+}
+
 /* Card */
 
 .card {
@@ -113,11 +122,7 @@ a {
 .card__tag {
   display: inline-block;
   padding: 10px 32px;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  font-size: 14px;
   background-color: #FFF;
-  color: #757575;
 }
 
 .card__img {
@@ -146,6 +151,8 @@ aside {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 380px;
+  margin: 0 auto;
 }
 
 aside > *:not(:last-child) {
@@ -154,8 +161,13 @@ aside > *:not(:last-child) {
 
 /* Hot List */
 
+.hot-list,
+.social-cards,
+.subscribe-card {
+  width: 100%;
+}
+
 .hot-list {
-  width: 780px;
   margin: 0 auto;
   padding: 25px 20px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
@@ -180,6 +192,20 @@ aside > *:not(:last-child) {
   width: 350px;
   padding: 33px 0;
   border-bottom: 1px solid #D9D9D9;
+}
+
+.list-post__tag,
+.list-post__title,
+.list-post__img {
+  margin-bottom: 13px;
+}
+
+.list-post__title {
+  font-size: 23px;
+}
+
+.list-post__img {
+  width: 100%;
 }
 
 /* Social Cards */
@@ -247,12 +273,17 @@ aside > *:not(:last-child) {
     margin-right: 20px;
   }
 
+  /* Aside */
+
+  aside {
+    width: 780px;
+  }
+
   /* Hot List, Social Cards, Subscribe Card */
 
   .hot-list,
   .social-cards,
   .subscribe-card {
-    width: 780px;
     margin: 0 auto;
   }
 
@@ -291,16 +322,8 @@ aside > *:not(:last-child) {
   /* Aside */
 
   aside {
-    min-width: 357px;
-    max-width: 357px;
+    width: 357px;
     margin: 0;
-  }
-
-  /* Hot List */
-  .hot-list,
-  .social-cards,
-  .subscribe-card {
-    width: 100%;
   }
 
   /* List Post Wrapper */
