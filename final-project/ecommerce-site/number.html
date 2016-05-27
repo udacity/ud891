@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Custom number input</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="number.css">
+  </head>
+  <body>
+
+    <div class="demo">
+      <p>Number input demo</p>
+      <div aria-describedby="help" tabindex="0"
+            role="spinbutton" aria-labelledby="currValue">
+        <div aria-live="assertive" class="number">
+          0
+        </div>
+        <div class="buttons">
+          <button tabindex="-1" type="button" class="add" title="add 10" aria-controls="number">&nbsp;</button>
+          <button tabindex="-1" type="button" class="subtract" title="subtract 10" aria-controls="number">&nbsp;</button>
+        </div>
+      </div>
+      <div id="help">
+        Use "add" and "subtract" buttons, or up and down arrows, to add or subtract 10, respectively.
+      </div>
+      </form>
+
+      <p>Demo inspired by <a href="http://heydonworks.com/practical_aria_examples/#button-controlled-input">Heydon Pickering's Practical ARIA examples</a></p>
+    </div>
+
+    <script src="number.js"></script>
+
+  </body>
+</html>
