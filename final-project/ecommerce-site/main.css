@@ -3,7 +3,7 @@
 }
 
 body {
-  margin: 50px 0 0;
+  margin: 0;
   background-color: #F0F0F0;
 }
 
@@ -13,6 +13,7 @@ h3 {
   margin: 0;
 }
 
+h1,
 h2,
 h3 {
   font-family: 'Playfair Display', serif;
@@ -87,6 +88,60 @@ a {
   justify-content: space-around;
 }
 
+/* Container */
+
+.container {
+  width: 380px;
+  margin: 0 auto;
+}
+
+/* Nav */
+
+nav {
+  height: 84px;
+  background: #FFF;
+  margin-bottom: 40px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+}
+
+nav .container {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo */
+
+.logo {
+  color: #000;
+}
+
+/* Shopping Bag */
+
+.shopping-bag {
+  width: 27px;
+  height: 33px;
+  background-image: url('/images/bag.png');
+  background-color: transparent;
+  border: none;
+  position: relative;
+}
+
+.shopping-bag::after {
+  content: attr(data-count);
+  display: block;
+  line-height: 25px;
+  color: #FFF;
+  background: #23B9C9;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  font-size: 16px;
+  position: absolute;
+  left: -10px;
+}
+
 /* Content Wrapper */
 
 .content-wrapper {
@@ -118,7 +173,7 @@ a {
   width: 380px;
   height: 480px;
   margin: 0 0 43px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
   background-color: #FFF;
 }
 
@@ -305,7 +360,7 @@ aside > *:not(:last-child) {
 .hot-list {
   margin: 0 auto;
   padding: 25px 20px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
   background-color: #FFF;
 }
 
@@ -357,7 +412,7 @@ aside > *:not(:last-child) {
 .social-card {
   width: 170px;
   height: 130px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
   background: #FFF;
   display: inline-block;
   margin-bottom: 17px;
@@ -375,7 +430,7 @@ aside > *:not(:last-child) {
   align-items: center;
   padding: 25px 20px;
   background: #FFF;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
 }
 
 .subscribe-card__heading {
@@ -396,6 +451,11 @@ aside > *:not(:last-child) {
 /* Tablet */
 
 @media (min-width: 800px) {
+
+  /* Container */
+  .container {
+    width: 780px;
+  }
 
   /* Row */
 
@@ -453,6 +513,11 @@ aside > *:not(:last-child) {
 /* Desktop */
 
 @media (min-width: 1190px) {
+
+  /* Container */
+  .container {
+    width: 1170px;
+  }
 
   /* Content Wrapper */
 
