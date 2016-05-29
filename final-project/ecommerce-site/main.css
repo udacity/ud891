@@ -122,7 +122,7 @@ nav .container {
 .shopping-bag {
   width: 27px;
   height: 33px;
-  background-image: url('/images/bag.png');
+  background-image: url('images/bag.png');
   background-color: transparent;
   border: none;
   position: relative;
