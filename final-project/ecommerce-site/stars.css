@@ -12,6 +12,6 @@
     background-position: center;
 }
 
-.star.on {
+.star_on {
     background-image: url(images/star-on.png);
 }

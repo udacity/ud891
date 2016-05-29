@@ -17,6 +17,7 @@
       <!-- This heading is important for screen reader navigation, but not
            part of our design, so we move it offscreen -->
       <h2 class="offscreen">Today's Posts</h2>
+
       <div class="row">
         <div class="card">
           <div class="card__tag-wrapper">
@@ -42,6 +43,77 @@
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.
             </p>
             <a class="link" href="#">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="card">
+          <div class="card__tag-wrapper">
+            <span class="tag card__tag">Food</span>
+          </div>
+          <img class="card__img" src="/images/food.jpg" />
+          <div class="card__content-wrapper">
+            <h3 class="card__title">Eat Fresh Every Day</h3>
+            <p class="card__description">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+            </p>
+            <a class="link" href="#">Read More</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card__tag-wrapper">
+            <span class="tag card__tag">Nature</span>
+          </div>
+          <img class="card__img" src="/images/nature.jpg" />
+          <div class="card__content-wrapper">
+            <h3 class="card__title">Dive Into The Water</h3>
+            <p class="card__description">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+            </p>
+            <a class="link" href="#">Read More</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="card product-card">
+          <img class="product-card__img" src="/images/coffee-cups.jpg" />
+          <div class="product-card__content">
+            <div class="tag product-card__tag">Product Of The Month</div>
+            <h3 class="product-card__title">Vintage Coffee Cups</h3>
+            <div class="product-card__rating">
+              <div class="stars">
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+                <div class="star"></div>
+              </div>
+            </div>
+            <div class="product-card__purchase-info">
+              <div class="product-card__prices">
+                <span class="product-card__price">$123.15</span>
+                <span class="product-card__discount">$140.00</span>
+                <span class="product-card__savings">You saved 15%</span>
+              </div>
+              <div class="product-card__amount">
+                <div id="announcer" class="offscreen" aria-live="assertive"></div>
+                <div class="spinbutton" role="spinbutton" tabindex="0" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0">
+                  <div class="number">0</div>
+                  <div class="buttons">
+                    <button type="button" class="add">&nbsp;</button>
+                    <button type="button" class="subtract">&nbsp;</button>
+                  </div>
+                </div>
+                <span class="product-card__shipping">
+                  Free Shipping
+                </span>
+              </div>
+            </div>
+            <div class="product-card__buy">
+              <button class="btn btn_full product-card__buy-btn">Add to cart</button>
+            </div>
           </div>
         </div>
       </div>
@@ -117,6 +189,9 @@
     </aside>
 
   </div>
+
+  <script src="/scripts/stars.js"></script>
+  <script src="/scripts/number.js"></script>
 
 </body>
 

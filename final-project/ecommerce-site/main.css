@@ -145,6 +145,133 @@ a {
   margin: 12px 0;
 }
 
+/* Product Card */
+
+.product-card {
+  width: 780px;
+  display: flex;
+  background-color: #FBFBFB;
+}
+
+.product-card__img {
+  flex: 0.43;
+}
+
+.product-card__content {
+  padding: 48px 30px 32px 0;
+  flex: 0.57;
+}
+
+.product-card__tag {
+  margin-bottom: 25px;
+}
+
+.product-card__title {
+  margin-bottom: 30px;
+}
+
+.product-card__rating {
+  margin-bottom: 55px;
+}
+
+.product-card__purchase-info {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 60px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #E3E3E3;
+}
+
+.product-card__price {
+  font-size: 30px;
+  color: #23B9C9;
+  vertical-align: middle;
+}
+
+.product-card__discount {
+  text-decoration: line-through;
+  vertical-align: middle;
+}
+
+.product-card__savings,
+.product-card__shipping {
+  display: block;
+  font-size: 17px;
+  color: #757575;
+  margin-top: 10px;
+}
+
+.product-card__buy-btn {
+  width: 240px;
+  height: 53px;
+}
+
+/* Spinbutton */
+
+.spinbutton {
+    border-radius: 2px;
+    border: 1px solid #E2E2E2;
+    margin: 2px;
+    display: flex;
+    background: white;
+    width: 100px;
+}
+
+.spinbutton .number {
+    padding: 6px 0 6px 6px;
+    flex: 1;
+    color: #727272;
+    border: none;
+    width: 100%;
+}
+
+.spinbutton .buttons {
+    display: flex;
+    flex-direction: column;
+    width: 20px;
+}
+
+.spinbutton button {
+    background-color: white;
+    border: none;
+    border-left: 1px solid #E2E2E2;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+}
+
+.spinbutton .add {
+    border-bottom: 1px solid #E2E2E2;
+    background-image: url(images/arrow-up.png);
+}
+
+.spinbutton .subtract {
+    background-image: url(images/down-arrow.png);
+}
+
+/* Stars */
+
+.stars {
+    display: flex;
+    width: 100px;
+}
+
+.star {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-image: url(images/star-off.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.star_on {
+    background-image: url(images/star-on.png);
+}
+
 /* Aside */
 
 aside {
@@ -267,10 +394,17 @@ aside > *:not(:last-child) {
     flex-direction: row;
     justify-content: center;
     align-items: stretch;
+    margin-bottom: 48px;
   }
 
   .row .card:not(:last-of-type) {
     margin-right: 20px;
+  }
+
+  /* Card */
+
+  .card {
+    margin-bottom: 0;
   }
 
   /* Aside */
@@ -311,12 +445,6 @@ aside > *:not(:last-child) {
 
   main {
     margin-right: 35px;
-  }
-
-  /* Card */
-
-  .card {
-    margin-bottom: 0;
   }
 
   /* Aside */

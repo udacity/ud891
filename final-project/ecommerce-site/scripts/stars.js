@@ -33,9 +33,9 @@ Stars.prototype = {
     showStars: function(numStarsOn) {
         this._stars.forEach(function(star, i) {
             if (i < numStarsOn)
-                star.classList.add('on');
+                star.classList.add('star_on');
             else
-                star.classList.remove('on');
+                star.classList.remove('star_on');
         });
     },
 
