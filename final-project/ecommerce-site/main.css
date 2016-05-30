@@ -203,7 +203,9 @@ nav .container {
 }
 
 .card__title {
+  font-size: 25px;
   margin: 16px 0;
+  text-align: center;
 }
 
 .card__description {
