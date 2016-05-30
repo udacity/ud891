@@ -55,7 +55,7 @@ a {
 .btn {
   display: inline-block;
   text-transform: uppercase;
-  color: #23B9C9;
+  color: #00838f;
   letter-spacing: 3px;
   font-size: 14px;
   border: none;
@@ -67,13 +67,13 @@ a {
 
 .link_framed,
 .btn_framed {
-  box-shadow: inset 0px 0px 0px 3px #23B9C9;
+  box-shadow: inset 0px 0px 0px 3px #00838f;
 }
 
 .link_full,
 .btn_full {
   color: #FFF;
-  background: #23B9C9;
+  background: #00838f;
 }
 
 .btn-row {
@@ -133,7 +133,7 @@ nav .container {
   display: block;
   line-height: 25px;
   color: #FFF;
-  background: #23B9C9;
+  background: #00838f;
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -253,7 +253,7 @@ nav .container {
 
 .product-card__price {
   font-size: 30px;
-  color: #23B9C9;
+  color: #00838f;
   vertical-align: middle;
 }
 
