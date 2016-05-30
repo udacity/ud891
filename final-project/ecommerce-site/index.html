@@ -282,10 +282,24 @@
       </div>
 
       <div class="subscribe-card">
-        <h3 class="subscribe-card__heading">Subscribe To Stories</h3>
-        <input type="text" class="subscribe-card__field">
-        <input type="text" class="subscribe-card__field">
-        <button class="btn btn_framed">Yes, Please</button>
+        <h3 id="sub-heading" class="subscribe-card__heading">Subscribe To Stories</h3>
+
+        <input type="text" id="sub-name" class="subscribe-card__field"
+               aria-labelledby="sub-name-label sub-heading">
+        <label id="sub-name-label" for="sub-name" class="subscribe-card__label">
+          Name
+        </label>
+
+        <input type="text" id="sub-email" class="subscribe-card__field"
+               aria-labelledby="sub-email-label sub-heading">
+        <label id="sub-email-label" for="sub-email" class="subscribe-card__label">
+          E-Mail
+        </label>
+
+        <button id="sub-btn" class="btn btn_framed"
+                aria-labelledby="sub-btn sub-heading">
+          Yes, Please
+        </button>
       </div>
 
     </aside>
