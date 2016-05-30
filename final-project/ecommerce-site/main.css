@@ -128,7 +128,7 @@ nav .container {
   position: relative;
 }
 
-.shopping-bag::after {
+.shopping-bag::before {
   content: attr(data-count);
   display: block;
   line-height: 25px;
