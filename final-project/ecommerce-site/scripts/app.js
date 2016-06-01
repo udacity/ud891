@@ -52,7 +52,7 @@ const appData = {
       "title": "Warm Moments",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
     }, {
-      "tag": "Travelling",
+      "tag": "Traveling",
       "img": "images/decoration.jpg",
       "img_alt": "A wall with wood planks containing old framed images, a sports coat, and boat oar",
       "title": "Warm Moments",
@@ -109,7 +109,7 @@ const appData = {
       "img_alt": "A pan sitting in a campfire cooking bright green vegetables and orange sausage",
       "description": "Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore. Ut enim ad ipsum minim."
     }, {
-      "tag": "Travelling",
+      "tag": "Traveling",
       "title": "A Litte House In The Country",
       "img": "images/vacation.jpg",
       "img_alt": "A cottage with a large reflecting pool in front of it. In the background is a canyon and mountainside.",
