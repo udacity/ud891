@@ -44,8 +44,13 @@ a {
   color: initial;
 }
 
-a:hover,
-a:focus {
+/* Demonstrate how to change the focus state for various controls */
+a:hover:not(.shopping-bag),
+a:focus:not(.shopping-bag),
+.link:hover,
+.link:focus
+.btn:hover,
+.btn:focus {
   text-decoration: underline;
   outline: none;
 }
