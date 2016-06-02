@@ -7,6 +7,11 @@ body {
   background-color: #F0F0F0;
 }
 
+/* Cheap trick to control flash of unstyled content as templates load in */
+body.unresolved {
+  display: none;
+}
+
 h1,
 h2,
 h3 {
@@ -127,6 +132,7 @@ nav .container {
 /* Shopping Bag */
 
 .shopping-bag {
+  display: block;
   width: 27px;
   height: 33px;
   background-image: url('images/bag.png');
@@ -138,7 +144,8 @@ nav .container {
 .shopping-bag::before {
   content: attr(data-count);
   display: block;
-  line-height: 25px;
+  line-height: 1;
+  padding: 5px;
   color: #FFF;
   background: #00838f;
   width: 25px;
@@ -147,6 +154,8 @@ nav .container {
   font-size: 16px;
   position: absolute;
   left: -10px;
+  top: 18px;
+  text-align: center;
 }
 
 /* Content Wrapper */

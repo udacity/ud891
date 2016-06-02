@@ -6,6 +6,9 @@ class App {
     this.templatize('#tmpl-product', '#product-of-the-month', this.data['product']);
     this.templatize('#tmpl-main-posts', '#todays-posts', this.data['todays_posts']);
     this.templatize('#tmpl-list-posts', '#list-posts', this.data['hot_list']);
+    // Control flash of unstyled content in the page as templates load
+    // When body has .unresolved it will be display: none;
+    document.body.classList.remove('unresolved');
   }
 
   templatize(tmplID, hostID, context) {
