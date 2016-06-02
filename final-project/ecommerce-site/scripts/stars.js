@@ -17,16 +17,19 @@ function Stars(stars) {
   }
 
   this._minValue = 0;
-  this._el.setAttribute('aria-valuemin', this._minValue);
   this._maxValue = this._stars.length;
-  this._el.setAttribute('aria-valuemax', this._maxValue);
 
   this.setValue(0);
 
-  this._el.setAttribute('role', 'slider');
-  this._el.tabIndex = 0;
+  // FIXME: Set role
+  // hint: https://www.w3.org/TR/wai-aria/roles
+  // hint: "A user input where the user selects a value from within a given range"
 
-  this._el.addEventListener('keydown', this.onKeydown.bind(this));
+  // FIXME: Reflect minimum and maximum value for assistive technology
+  // hint: https://www.w3.org/TR/wai-aria-practices-1.1/
+
+  // FIXME: Keyboard event handling
+  // hint: https://www.w3.org/TR/wai-aria-practices-1.1/
 }
 
 Stars.prototype = {
@@ -40,13 +43,13 @@ Stars.prototype = {
   },
 
   set currentValue(value) {
-    this._el.setAttribute('aria-valuenow', value);
-    var englishValue = (value === 0 ? 'No' : value) + ' star' + (value !== 1 ? 's' : '');
-    this._el.setAttribute('aria-valuetext', englishValue);
+    this._value = value;
+    // FIXME: reflect current value for assistive technology
+    // FIXME: provide value text for assistive technology: "No stars", "1 star" etc.
   },
 
   get currentValue() {
-    return parseInt(this._el.getAttribute('aria-valuenow'));
+    return this._value;
   },
 
   setValue: function(value) {
@@ -82,39 +85,6 @@ Stars.prototype = {
 
   hoverEnd: function(e) {
     this.showStars(this.currentValue);
-  },
-
-  onKeydown: function(e) {
-    switch (e.keyCode) {
-      case VK_UP:
-      case VK_RIGHT:
-        this.increment();
-        this.showStars(this.currentValue);
-        e.stopPropagation();
-        e.preventDefault();
-        break;
-      case VK_DOWN:
-      case VK_LEFT:
-        this.decrement();
-        this.showStars(this.currentValue);
-        e.stopPropagation();
-        e.preventDefault();
-        break;
-      case VK_HOME:
-      case VK_PGUP:
-        this.setValue(this._minValue);
-        this.showStars(this.currentValue);
-        e.stopPropagation();
-        e.preventDefault();
-        break;
-      case VK_END:
-      case VK_PGDN:
-        this.setValue(this._maxValue);
-        this.showStars(this.currentValue);
-        e.stopPropagation();
-        e.preventDefault();
-        break;
-    }
   }
 }
 
