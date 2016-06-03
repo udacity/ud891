@@ -5,12 +5,14 @@
 body {
   margin: 0;
   background-color: #F0F0F0;
+  color: #888;
 }
 
 h1,
 h2,
 h3 {
   margin: 0;
+  color: #000;
 }
 
 h1,
@@ -31,7 +33,6 @@ p {
 p {
   margin: 0;
   line-height: 1.8;
-  color: #757575;
 }
 
 a {
@@ -174,7 +175,7 @@ nav .container {
   text-transform: uppercase;
   letter-spacing: 3px;
   font-size: 14px;
-  color: #757575;
+  color: #888;
 }
 
 /* Card */
@@ -273,7 +274,6 @@ nav .container {
 .product-card__shipping {
   display: block;
   font-size: 17px;
-  color: #757575;
   margin-top: 10px;
 }
 
