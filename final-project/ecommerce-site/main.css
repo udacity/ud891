@@ -357,7 +357,7 @@ form {
 
 /* Aside */
 
-aside {
+.aside {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -365,7 +365,7 @@ aside {
   margin: 0 auto;
 }
 
-aside > *:not(:last-child) {
+.aside > *:not(:last-child) {
   margin-bottom: 30px;
 }
 
@@ -522,7 +522,7 @@ aside > *:not(:last-child) {
 
   /* Aside */
 
-  aside {
+  .aside {
     width: 780px;
   }
 
@@ -561,7 +561,7 @@ aside > *:not(:last-child) {
 
   /* Main */
 
-  main {
+  .main {
     margin-right: 35px;
   }
 
@@ -573,7 +573,7 @@ aside > *:not(:last-child) {
 
   /* Aside */
 
-  aside {
+  .aside {
     width: 357px;
     margin: 0;
   }
