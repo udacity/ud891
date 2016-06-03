@@ -46,6 +46,13 @@ a:focus {
   outline: none;
 }
 
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* Helpers */
 
 .offscreen {
