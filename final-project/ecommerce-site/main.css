@@ -139,7 +139,8 @@ nav .container {
 .shopping-bag::before {
   content: attr(data-count);
   display: block;
-  line-height: 25px;
+  line-height: 1;
+  padding: 5px;
   color: #FFF;
   background: #00838f;
   width: 25px;
@@ -148,6 +149,8 @@ nav .container {
   font-size: 16px;
   position: absolute;
   left: -10px;
+  top: 18px;
+  text-align: center;
 }
 
 /* Content Wrapper */
