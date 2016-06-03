@@ -80,6 +80,7 @@ a:focus:not(.shopping-bag),
   padding: 16px 16px;
   height: 45px;
   line-height: 1;
+  text-align: center;
 }
 
 .link_framed,
