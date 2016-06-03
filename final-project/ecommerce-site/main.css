@@ -355,16 +355,8 @@ nav .container {
 
 .star {
     width: 20px;
-    height: 20px;
-    display: inline-block;
-    background-image: url(images/star-off.png);
-    background-repeat: no-repeat;
-    background-position: center;
 }
 
-.star_on {
-    background-image: url(images/star-on.png);
-}
 
 /* Aside */
 
