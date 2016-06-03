@@ -2,10 +2,10 @@ class App {
 
   constructor() {
     this.data = appData;
-    this.templatize('#tmpl-main-posts', '#top-posts', this.data['top_posts']);
-    this.templatize('#tmpl-product', '#product-of-the-month', this.data['product']);
-    this.templatize('#tmpl-main-posts', '#todays-posts', this.data['todays_posts']);
-    this.templatize('#tmpl-list-posts', '#list-posts', this.data['hot_list']);
+    this.templatize('#tmpl-main-posts', '#top-posts', this.data, 'top_posts');
+    this.templatize('#tmpl-product', '#product-of-the-month', this.data, 'product');
+    this.templatize('#tmpl-main-posts', '#todays-posts', this.data, 'todays_posts');
+    this.templatize('#tmpl-list-posts', '#list-posts', this.data, 'hot_list');
     // Control flash of unstyled content in the page as templates load
     // When body has .unresolved it will be display: none;
     document.body.classList.remove('unresolved');
@@ -13,8 +13,10 @@ class App {
     this.addEventListeners();
   }
 
-  templatize(tmplID, hostID, context) {
+  templatize(tmplID, hostID, data, section) {
     let tmpl = Handlebars.compile(document.querySelector(tmplID).innerHTML);
+    var context = data[section];
+    context.section = section;
     let html = tmpl(context);
     document.querySelector(hostID).innerHTML = html;
   }

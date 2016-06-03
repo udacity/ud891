@@ -36,9 +36,9 @@ Stars.prototype = {
   showStars: function(numStarsOn) {
     this._stars.forEach(function(star, i) {
       if (i < numStarsOn)
-        star.classList.add('star_on');
+        star.querySelector('img').src = 'images/star-on.png';
       else
-        star.classList.remove('star_on');
+        star.querySelector('img').src = 'images/star-off.png';
     });
   },
 
@@ -72,13 +72,13 @@ Stars.prototype = {
   },
 
   select: function(e) {
-    var star = e.target;
+    var star = e.currentTarget;
     var index = this._stars.indexOf(star);
     this.setValue(index + 1);
   },
 
   hoverStart: function(e) {
-    var star = e.target;
+    var star = e.currentTarget;
     var index = this._stars.indexOf(star);
     this.showStars(index + 1);
   },

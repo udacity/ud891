@@ -19,9 +19,9 @@
           <span class="tag card__tag">{{tag}}</span>
         </div>
         <div class="card__content-wrapper">
-          <a href="/placeholder.html" aria-labelledby="main-post-{{@index}}">
+          <a href="/placeholder.html" aria-labelledby="{{../../section}}-{{@index}}">
             <img class="card__img" src="{{img}}" alt="{{img_alt}}" />
-            <h3 id="main-post-{{@index}}" class="card__title">{{title}}</h3>
+            <h3 id="{{../../section}}-{{outer_index}}" class="card__title">{{title}}</h3>
           </a>
           <p class="card__description">
             {{description}}
@@ -42,11 +42,21 @@
           <h3 class="product-card__title">{{title}}</h3>
           <div class="product-card__rating">
             <div class="stars">
-              <div class="star"></div>
-              <div class="star"></div>
-              <div class="star"></div>
-              <div class="star"></div>
-              <div class="star"></div>
+              <div class="star">
+                <img src="images/star-off.png">
+              </div>
+              <div class="star">
+                <img src="images/star-off.png">
+              </div>
+              <div class="star">
+                <img src="images/star-off.png">
+              </div>
+              <div class="star">
+                <img src="images/star-off.png">
+              </div>
+              <div class="star">
+                <img src="images/star-off.png">
+              </div>
             </div>
           </div>
           <div class="product-card__purchase-info">
