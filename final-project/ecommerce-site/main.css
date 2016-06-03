@@ -113,14 +113,14 @@ form {
 
 /* Nav */
 
-nav {
+.nav {
   height: 84px;
   background: #FFF;
   margin-bottom: 40px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
 }
 
-nav .container {
+.nav .container {
   height: 100%;
   display: flex;
   justify-content: space-between;
