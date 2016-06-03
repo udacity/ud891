@@ -42,7 +42,6 @@ a {
 
 a:hover,
 a:focus {
-  text-decoration: underline;
   outline: none;
 }
 
