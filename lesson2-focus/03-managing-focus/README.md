@@ -3,4 +3,5 @@ so is to use the [Web Server for Chrome extension](https://chrome.google.com/web
 
 Make sure your settings look like this:
 
-[](./images/settings.png)
+<img width="508" alt="Chrome 200 OK settings" src="https://cloud.githubusercontent.com/assets/1066253/15949782/e321b31e-2e5e-11e6-9d0f-f26b14c9a214.png">
+
