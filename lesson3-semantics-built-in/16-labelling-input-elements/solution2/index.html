@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Navigating by headings</title>
-    <meta name="description" content="A demo page for naviating by heading">
+    <title>Introducing ChromeVox Lite</title>
+    <meta name="description" content="A basic form with ChromeVox Lite">
 
     <!-- Mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-      iframe#funion {
+      iframe#flight-booking {
           position: fixed;
           top: 0;
           left: 0;
@@ -22,7 +22,7 @@
     </style>
   </head>
   <body>
-    <iframe id="funion" src="../../lesson2-focus/02-dom-order/index-solution.html"></iframe>
+    <iframe id="flight-booking" src="./flight-booking.html"></iframe>
     <script>
       function injectChromeVox(frame) {
         var templates = document.querySelectorAll('template');
@@ -57,7 +57,7 @@
         }
         appendNext();
       }
-      var frame = document.getElementById('funion');
+      var frame = document.getElementById('flight-booking');
       frame.addEventListener('load', injectChromeVox.bind(null, frame));
     </script>
 
@@ -113,7 +113,7 @@
         window.Audio = function() {};
 
         // blur out the page content
-//        document.querySelector('.wrapper').classList.add('blur');
+        // document.querySelector('.wrapper').classList.add('blur');
       </script>
     </template>
 

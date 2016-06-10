@@ -1,0 +1,61 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-size: 120%;
+}
+
+header {
+  margin-bottom: 48px;
+  border-bottom: 1px solid #AAA;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+nav a.logo {
+    flex: 1;
+}
+
+nav {
+    display: flex;
+    align-items: flex-end;
+}
+
+.tabs {
+    float: right;
+}
+
+.tab {
+    display: inline-block;
+    background-color: #D2D2D2;
+    padding: 10px 15px;
+    margin: 0px 2px;
+}
+
+.tab-link {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a {
+    color: black;
+}
+
+ul.menu a,
+ul.menu button {
+    float: right;
+}
+
+ul.menu button {
+    display: inline;
+    border: none;
+    text-decoration: underline;
+    font-family: inherit;
+    font-size: inherit;
+    background-color: inherit;
+    padding: 0;
+}
