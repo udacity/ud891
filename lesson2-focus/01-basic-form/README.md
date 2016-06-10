@@ -1,5 +1,14 @@
 Navigate the page using nothing but your keyboard.
-Ask the user to book a flight to a specific city on specific dates.
-Page should disable mouse if possible
-Page should verify correct values are in place when user clicks submit
-Page should give the user a code to put in the udacity video to verify everything worked.
+You'll need to search for a ticket that matches the following criteria:
+
+The ticket should...
+
+- Be a round trip
+- to Melbourne
+- leaving on 10/12/2017
+- returning on 10/23/2017
+- window seat
+- and you DO NOT want to receive promotional offers 😀
+
+If you've filled out the form correctly then pressing the Search button should
+give you a notification that you've passed.
