@@ -1,0 +1,35 @@
+.demo {
+    margin: 50px;
+}
+
+.radiogroup {
+  list-style: none;
+}
+
+.radio {
+  position: relative;
+}
+
+.radio::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid black;
+  position: absolute;
+  left: -18px;
+  top: 3px;
+  border-radius: 50%;
+}
+
+.radio[checked]::after {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  background: red;
+  position: absolute;
+  left: -16px;
+  top: 5px;
+  border-radius: 50%;
+}

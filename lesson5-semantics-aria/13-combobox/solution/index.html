@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Custom checkboxes</title>
+    <meta name="description" content="Custom checkboxes with a screen reader">
+
+    <!-- Mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      iframe#content {
+          position: fixed;
+          top: 0;
+          left: 0;
+          margin: 0;
+          border: 0;
+          padding: 0;
+          width: 100vw;
+          height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe id="content" src="combobox.html"></iframe>
+    <script>
+      function injectChromeVox(frame) {
+        var templates = document.querySelectorAll('template');
+        var frameHead = frame.contentDocument.head;
+        var frameBody = frame.contentDocument.body;
+
+        var i = 0;
+        function appendNext() {
+          var template = templates[i++];
+          if (!template)
+            return;
+
+          var clone = frame.contentDocument.importNode(template.content, true);
+          var firstElementChild = clone.firstElementChild;
+            if (firstElementChild.tagName === "SCRIPT" && firstElementChild.hasAttribute('src') ||
+                firstElementChild.tagName === "LINK" && firstElementChild.hasAttribute('href')) {
+            firstElementChild.onload = appendNext;
+          } else {
+            window.setTimeout(appendNext, 0);
+          }
+          switch (template.className) {
+          case "head":
+            frameHead.appendChild(clone);
+            return;
+          case "start":
+            frameBody.insertBefore(clone, frameBody.firstElementChild);
+            return;
+          case "end":
+            frameBody.appendChild(clone);
+            return;
+          }
+        }
+        appendNext();
+      }
+      var frame = document.getElementById('content');
+      frame.addEventListener('load', injectChromeVox.bind(null, frame));
+    </script>
+
+    <template class="head">
+      <link rel="stylesheet" href="../../lesson3-semantics-built-in/02-chromevox-lite/embed.css">
+    </template>
+
+    <template class="start">
+      <button class="hide-unless-focused" id="enable-cvox">Enable ChromeVox Lite</button>
+    </template>
+
+    <template class="end">
+      <style>
+        .cvoxembed {
+        z-index: 3;
+        width: 100%;
+        height: 100px;
+        background: rgba(0, 0, 0, 0);
+        position: fixed;
+        left: 0px;
+        bottom: -50px;
+        right: 0px;
+        border: 0;
+        display: flex;
+        flex-direction: row;
+        font-family: arial, helvetica, sans-serif;
+        font-size: 10pt;
+        transition: all 0.2s ease-in-out;
+        }
+
+        body[cvox-enabled] .cvoxembed {
+        bottom: 0px;
+        }
+      </style>
+
+      <iframe id="cvoxembed" class="cvoxembed" aria-hidden="true" src="../../lesson3-semantics-built-in/02-chromevox-lite/chromevox_embed.html"></iframe>
+    </template>
+
+    <template class="end">
+      <script>
+        // First inject stubs that do nothing.
+        window.accessibility = {};
+        window.accessibility.speak = function(text, queueMode, params) {
+        }
+        window.accessibility.isSpeaking = function() {
+        }
+        window.accessibility.stop = function() {
+        }
+        window.accessibility.braille = function() {};
+
+        // Prevent ChromeVox from playing an earcon on startup.
+        window.saveAudio = window.Audio;
+        window.Audio = function() {};
+      </script>
+    </template>
+
+    <template class="end">
+      <script src="../../lesson3-semantics-built-in/02-chromevox-lite/chromeandroidvox.js"></script>
+    </template>
+
+    <template class="end">
+      <script>
+          // Now disable ChromeVox.
+          window.setTimeout(function() {
+              // Hide chromevox indicator
+              var cvoxIndicator = document.querySelector('.cvox_indicator_container');
+              if (cvoxIndicator)
+                  cvoxIndicator.parentElement.removeChild(cvoxIndicator);
+          }, 101);
+          cvox.ChromeVox.host.activateOrDeactivateChromeVox(false);
+          cvox.ChromeVoxEventWatcher.focusFollowsMouse=false;
+          cvox.ChromeVox.host.mustRedispatchClickEvent = function() { return false; }
+
+          var embed = document.getElementById('cvoxembed');
+
+          // ChromeVox embed commands.
+          function cvoxEmbedEnable() {
+              if (document.body.hasAttribute('cvox-enabled'))
+                return;
+
+              embed.classList.add('cvoxembed-enabled');
+              window.setTimeout(function() {
+                document.body.setAttribute('cvox-enabled', true);
+                cvox.ChromeVox.host.activateOrDeactivateChromeVox(true);
+                cvox.ChromeVoxEventWatcher.focusFollowsMouse=false;
+                cvox.ChromeVox.executeUserCommand('jumpToTop');
+                embed.contentWindow.postMessage({ command: 'enable' }, '*');
+             }, 200);
+          }
+
+          function cvoxEmbedDisable() {
+              if (!document.body.hasAttribute('cvox-enabled'))
+                return;
+              document.body.removeAttribute('cvox-enabled');
+              window.accessibility.stop();
+              cvox.ChromeVox.host.activateOrDeactivateChromeVox(false);
+              embed.classList.remove('cvoxembed-enabled');
+          }
+
+          function cvoxEmbedNext() {
+              cvox.ChromeVox.executeUserCommand('forward');
+          }
+          function cvoxEmbedPrevious() {
+              cvox.ChromeVox.executeUserCommand('backward');
+          }
+          function cvoxEmbedTop() {
+              cvox.ChromeVox.executeUserCommand('jumpToTop');
+          }
+          function cvoxEmbedHeading() {
+              cvox.ChromeVox.executeUserCommand('nextHeading');
+          }
+          function cvoxEmbedClick() {
+              cvox.ChromeVox.executeUserCommand('forceClickOnCurrentItem');
+          }
+
+          // Listen for messages from the iframe.
+          window.addEventListener('message', function(e) {
+              switch (e.data) {
+              case 'enable': cvoxEmbedEnable(); break;
+              case 'disable': cvoxEmbedDisable(); break;
+              case 'next': cvoxEmbedNext(); break;
+              case 'previous': cvoxEmbedPrevious(); break;
+              case 'heading': cvoxEmbedHeading(); break;
+              case 'top': cvoxEmbedTop(); break;
+              case 'click': cvoxEmbedClick(); break;
+              }
+          });
+
+          // Stop talking if the user changes tab
+          window.addEventListener('blur', function(e) {
+              window.accessibility.stop();
+          });
+
+          // Stop talking if the user changes tab
+          window.addEventListener('blur', function(e) {
+              window.accessibility.stop();
+          });
+
+
+          cvoxEmbedDisable();
+          embed.contentWindow.postMessage({ command: 'setLang',
+                                            lang: document.documentElement.lang }, '*');
+
+          // Finally replace the stubs with a real implementation now
+          // that ChromeVox won't speak on startup.
+          window.accessibility.speak = function(text, queueMode, params) {
+              embed.contentWindow.postMessage({ command: 'speak',
+                                                text: text,
+                                                queueMode: queueMode,
+                                                params: params}, '*');
+          }
+          window.accessibility.isSpeaking = function() {
+          }
+          window.accessibility.stop = function() {
+             embed.contentWindow.postMessage({ command: 'stop' }, '*');
+          }
+          window.accessibility.braille = function() {};
+          window.Audio = window.saveAudio;
+          cvox.ChromeVox.earcons.audioMap = {};
+
+          document.getElementById('enable-cvox').addEventListener('click', function() {
+            cvoxEmbedEnable();
+          });
+      </script>
+    </template>
+  </body>
+</html>
