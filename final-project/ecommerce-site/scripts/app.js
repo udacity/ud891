@@ -128,7 +128,7 @@ var appData = {
       "description": "Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore. Ut enim ad ipsum minim."
     }, {
       "tag": "Traveling",
-      "title": "A Litte House In The Country",
+      "title": "A Little House In The Country",
       "img": "images/vacation.jpg",
       "img_alt": "A cottage with a large reflecting pool in front of it. In the background is a canyon and mountainside.",
       "description": "Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore. Ut enim ad ipsum minim."
