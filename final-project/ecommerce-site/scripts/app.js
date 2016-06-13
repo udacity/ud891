@@ -14,10 +14,10 @@ class App {
   }
 
   templatize(tmplID, hostID, data, section) {
-    let tmpl = Handlebars.compile(document.querySelector(tmplID).innerHTML);
+    var tmpl = Handlebars.compile(document.querySelector(tmplID).innerHTML);
     var context = data[section];
     context.section = section;
-    let html = tmpl(context);
+    var html = tmpl(context);
     document.querySelector(hostID).innerHTML = html;
   }
 
@@ -34,7 +34,7 @@ class App {
 
 }
 
-const appData = {
+var appData = {
   "top_posts": {
     "posts": [{
       "tag": "Food",
