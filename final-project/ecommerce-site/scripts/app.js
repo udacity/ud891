@@ -71,9 +71,9 @@ var appData = {
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
     }, {
       "tag": "Traveling",
-      "img": "images/decoration.jpg",
-      "img_alt": "A wall with wood planks containing old framed images, a sports coat, and boat oar",
-      "title": "Warm Moments",
+      "img": "images/travelling.jpg",
+      "img_alt": "A photograph of the back of a train as it rounds a mountain",
+      "title": "Explore the World",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
     }, {
       "tag": "Photography",
