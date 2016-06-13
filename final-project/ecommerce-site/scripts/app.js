@@ -45,7 +45,7 @@ var appData = {
     }, {
       "tag": "Nature",
       "img": "images/nature.jpg",
-      "img_alt": "A pile of citrus fruits, mostly limes and lemons",
+      "img_alt": "A man diving into a pool of water with his arms outstretched",
       "title": "Dive Into The Water",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
     }]
