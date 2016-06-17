@@ -10,5 +10,4 @@ The ticket should...
 - window seat
 - and you DO NOT want to receive promotional offers 😀
 
-If you've filled out the form correctly then pressing the Search button should
-give you a notification that you've passed.
+When you have all the field filled out correctly you can return to the lesson
