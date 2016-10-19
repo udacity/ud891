@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Udacity Lifestyle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script src="third_party/handlebars-v4.0.5.js"></script>
+  <script src="third_party/handlebars-grouped-each.js"></script>
+
+  <!-- Handlebars template for generating posts in the <main> element -->
+  <!-- The #grouped_each helper will generate a new .row for every 2 items -->
+  <script id="tmpl-main-posts" type="text/x-handlebars-template">
+    {{#grouped_each 2 posts}}
+    <div class="row">
+      {{#each this}}
+      <div class="card">
+        <div class="card__tag-wrapper">
+          <span class="tag card__tag">{{tag}}</span>
+        </div>
+        <div class="card__content-wrapper">
+          <a href="/placeholder.html" aria-labelledby="{{../../section}}-{{@index}}">
+            <img class="card__img" src="{{img}}" alt="{{img_alt}}" />
+            <h3 id="{{../../section}}-{{outer_index}}" class="card__title">{{title}}</h3>
+          </a>
+          <p class="card__description">
+            {{description}}
+          </p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    {{/grouped_each}}
+  </script>
+
+  <script id="tmpl-product" type="text/x-handlebars-template">
+    <div class="row">
+      <div class="card product-card">
+        <img class="product-card__img" src="{{img}}" alt="{{img_alt}}" />
+        <div class="product-card__content">
+          <div class="tag product-card__tag">Product Of The Month</div>
+          <h3 class="product-card__title">{{title}}</h3>
+          <div class="product-card__rating">
+            <div class="stars">
+              <div class="star">
+                <img src="images/star-off.png" alt="">
+              </div>
+              <div class="star">
+                <img src="images/star-off.png" alt="">
+              </div>
+              <div class="star">
+                <img src="images/star-off.png" alt="">
+              </div>
+              <div class="star">
+                <img src="images/star-off.png" alt="">
+              </div>
+              <div class="star">
+                <img src="images/star-off.png" alt="">
+              </div>
+            </div>
+          </div>
+          <div class="product-card__purchase-info">
+            <div class="product-card__prices">
+              <span class="product-card__price">{{price}}</span>
+            </div>
+            <div class="product-card__amount">
+              <div id="announcer" class="offscreen" aria-live="assertive"></div>
+              <div class="spinbutton" role="spinbutton" tabindex="0" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0">
+                <div class="number">0</div>
+                <div class="buttons">
+                  <button type="button" class="add" aria-label="+">&nbsp;</button>
+                  <button type="button" class="subtract" aria-label="-">&nbsp;</button>
+                </div>
+              </div>
+              <span class="product-card__shipping">
+                Free Shipping
+              </span>
+            </div>
+          </div>
+          <div class="btn-row btn-row_centered">
+            <button class="btn btn_full product-card__buy-btn">Add to cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </script>
+
+  <script id="tmpl-list-posts" type="text/x-handlebars-template">
+    {{#each posts}}
+    <div class="list-post">
+      <div class="tag list-post__tag">{{tag}}</div>
+      <a href="/placeholder.html" aria-labelledby="list-post-{{@index}}">
+        <h3 id="list-post-{{@index}}" class="list-post__title">
+          {{title}}
+        </h3>
+        <img class="list-post__img" src="{{img}}" alt="{{img_alt}}" />
+      </a>
+      <p class="list-post__description">
+        Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore. Ut enim ad ipsum minim.
+      </p>
+    </div>
+    {{/each}}
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display|PT+Sans" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="main.css">
+</head>
+
+<body class="unresolved">
+  <nav>
+    <div class="container">
+      <a href="/">
+        <h1 class="logo">Udacity Lifestyle</h1>
+      </a>
+      <!-- The focus ring on this shopping bag is a little ugly
+           Not a huge deal, but if you feel like trying to improve it you
+           certainly can! -->
+      <a href="/placeholder.html" class="shopping-bag"></a>
+    </div>
+  </nav>
+  <div class="content-wrapper">
+    <main>
+      <!-- This heading is important for screen reader navigation, but not
+           part of our design, so we move it offscreen -->
+      <h2 class="offscreen">Today's Posts</h2>
+      <div id="top-posts"></div>
+      <div id="product-of-the-month"></div>
+      <div id="todays-posts"></div>
+    </main>
+    <aside>
+      <div class="hot-list">
+        <h2 class="hot-list__header">Hot List</h2>
+        <div id="list-posts" class="list-post-wrapper"></div>
+        <div class="btn-row btn-row_spaced">
+          <a href="/placeholder.html" class="link">Write For Us</a>
+          <a href="/placeholder.html" class="link link_framed">See More</a>
+        </div>
+      </div>
+      <div class="subscribe-card">
+        <h3 id="sub-heading" class="subscribe-card__heading">
+          Subscribe To Stories
+        </h3>
+        <form action="/placeholder.html" method="post">
+          <input type="text" id="sub-name" class="subscribe-card__field">
+          <label id="sub-name-label" for="sub-name" class="subscribe-card__label">
+            Name
+          </label>
+          <input type="text" id="sub-email" class="subscribe-card__field">
+          <label id="sub-email-label" for="sub-email" class="subscribe-card__label">
+            E-Mail
+          </label>
+          <button id="sub-btn" class="btn btn_framed">
+            Yes, Please
+          </button>
+        </form>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Normally you'd want to minify all of these into a single file but -->
+  <!-- to keep the app simple we'll just leave the individual scripts -->
+  <!-- Feel free to add Gulp or Grunt to improve this :) -->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/shopping-bag.js"></script>
+  <script src="scripts/stars.js"></script>
+  <script src="scripts/number.js"></script>
+
+</body>
+
+</html>

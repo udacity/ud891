@@ -1,10 +1,10 @@
 var VK_UP = 38;
 var VK_DOWN = 40;
 
-var announcer = document.querySelector('#announcer');
-
-function announce(text) {
-  announcer.textContent = text;
+// Alert the user to the given new value for the number input
+function alertNewValue(newValue) {
+  // FIXME: implement
+  // hint: document.querySelector('#number-live');
 }
 
 function SpinButton(spinbutton) {
@@ -29,7 +29,9 @@ SpinButton.prototype = {
       return;
     this._number.textContent = newValue;
     this._el.setAttribute('aria-valuenow', newValue);
-    announce(newValue);
+
+    // Work around some screen readers not automatically speaking updated value
+    alertNewValue(newValue);
   },
 
   increment: function() {

@@ -1,0 +1,71 @@
+.demo {
+    margin: 50px;
+}
+
+.widget {
+    display: inline-block;
+}
+
+button[aria-haspopup] {
+    cursor: pointer;
+    display: inline-block;
+    user-select: none;
+    background-color: #EEE;
+    background-image: linear-gradient(#FCFCFC, #EEE);
+    border: 1px solid #D5D5D5;
+    border-radius: 3px;
+    font-family: Roboto, Helvetica, Arial, sans serif;
+    font-weight: bold;
+    padding: 6px 10px;
+}
+
+[role=combobox] button::after {
+    content: "";
+    display: inline-block;
+    margin-left: 3px;
+    position: relative;
+    top: 3px;
+    border-color: black transparent transparent;
+    border-width: 5px 4px;
+    border-style: solid;
+}
+
+[role=listbox] {
+    border: 1px solid #D5D5D5;
+    border-radius: 2px;
+    position: absolute;
+    font-family: Roboto, Helvetica, Arial, sans serif;
+    font-size: 13px;
+    padding: 5px;
+}
+
+[role=listbox] ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+[role=listbox] li {
+    padding: 2px 5px;
+    margin: 2px;
+    border-radius: 2px;
+}
+
+[role=option]:hover,
+[role=option]:focus,
+[role=option].active {
+    outline: none;
+    background-color: #EEE;
+}
+
+[role=option][aria-selected=true] {
+    background-color: navy;
+    color: white;
+}
+
+li.header {
+    font-weight: bold;
+    margin-left: -3px;
+    margin-bottom: 3px;
+    margin-top: 3px;
+}

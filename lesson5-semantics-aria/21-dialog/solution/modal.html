@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Modals and Keyboard Traps</title>
+    <meta name="description" content="Fixing tabindex">
+
+    <!-- Mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css">
+    <link href='http://fonts.googleapis.com/css?family=Courgette|Roboto:400,300' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+  <div class="wrapper">
+    <header>
+      <div class="container">
+        <h1>Udacity
+          <span>Down Under</span>
+        </h1>
+        <nav>
+          <a href="#">Flights</a>
+          <a href="#">Hotels</a>
+          <a href="#">Rental Cars</a>
+          <button class="modal-toggle">Sign in</button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="card">
+        <form>
+          <div class="trip-selector">
+            <label>
+              <input type="radio" checked name="tType" value="0"> One Way
+            </label>
+            <label>
+              <input type="radio" name="tType" value="1"> Round Trip
+            </label>
+            <label>
+              <input type="radio" name="tType" value="2"> Multi City
+            </label>
+          </div>
+
+          <div class="container">
+            <h2>Where ya headed, mate?</h2>
+            <div class="row">
+              <label for="fName">Full Name</label>
+              <input type="text" name="fName" id="fName">
+            </div>
+
+            <div class="row">
+              <label for="address">Enter your address</label>
+              <textarea id="address" name="addressTxt"></textarea>
+            </div>
+
+            <div class="row">
+              <div class="inline-control col-1">
+                <label for="depCity">Departure</label>
+                <input type="text" list="depCities" name="depCity" id="depCity">
+                <datalist id="depCities">
+                  <option value="Sydney">
+                  <option value="Melbourne">
+                  <option value="Brisbane">
+                  <option value="Perth">
+                  <option value="Adelaide">
+                </datalist>
+              </div>
+
+              <div class="inline-control col-1">
+                <label for="arrCity">Arrival</label>
+                <input type="text" list="arrCities" name="arrCity" id="arrCity">
+                <datalist id="arrCities">
+                  <option value="Sydney">
+                  <option value="Melbourne">
+                  <option value="Brisbane">
+                  <option value="Perth">
+                  <option value="Adelaide">
+                </datalist>
+              </div>
+
+              <div class="inline-control col-1">
+                <label for="dDate">Depart Date</label>
+                <input type="date" name="dDate" id="dDate">
+              </div>
+
+              <div class="inline-control col-1">
+                <label for="rDate">Return Date</label>
+                <input type="date" name="rDate" id="rDate">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="inline-control col-2">
+                <label for="seatType">Preferred seat type</label>
+                <select name="seatType" id="seatType">
+                  <option value="0">No preference</option>
+                  <option value="1">Aisle seat</option>
+                  <option value="2">Window seat</option>
+                </select>
+              </div>
+
+              <div class="inline-control sign-up col-1">
+                <label>
+                  <input type="checkbox" checked name="jLetter"> Receive promotional offers?
+                </label>
+              </div>
+
+              <div class="inline-control submit-form col-1">
+                <button type="submit" id="submitBtn">Search</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="col-1">
+          <a href="#">About us</a>
+        </div>
+        <div class="col-1">
+          <a href="#">Join our newsletter</a>
+        </div>
+        <div class="col-1">
+          <a href="#">Need Support?</a>
+        </div>
+        <div class="col-1">
+          <a href="#">© 2015 Udacity</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div class="modal" role="dialog" aria-labelledby="login">
+    <h1 id="login">Log in to Kangaroo Kilometres</h1>
+    <div class="field">
+      <label for="username">Frequent flyer number</label>
+      <input id="username" type="text" name="user">
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input id="password" type="password" name="pw">
+    </div>
+    <button id="signup">Log in</button>
+  </div>
+  <div class="modal-overlay"></div>
+  <script src="modal.js"></script>
+  </body>
+</html>

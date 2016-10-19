@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Listbox ARIA example</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="combobox.css">
+  </head>
+  <body>
+
+    <div class="demo">
+      <h2>Combo box example</h2>
+      <label>
+        Choose a drink:
+        <div class="widget">
+          <input type="text" role="combobox">
+          <div role="listbox" hidden tabindex="-1">
+            <ul role="presentation">
+              <li role="option">Coffee</li>
+              <li role="option">Tea</li>
+              <li role="option">Hot chocolate</li>
+              <li role="option">Water</li>
+              <li role="option">Cola</li>
+              <li role="option">Ginger Ale</li>
+              <li role="option">Orange juice</li>
+            </ul>
+          </div>
+        </div>
+      </label>
+    </div>
+
+    <script src="combobox.js"></script>
+
+  </body>
+</html>

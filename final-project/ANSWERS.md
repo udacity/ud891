@@ -1,0 +1,20 @@
+
+- Missing responsive viewport tag
+  - Students will need to add meta viewport with width=device-width and initial-scale=1
+- No lang set on <html>
+  - Student will need to add `lang=en`. This should get picked up by the a11y audit extension if they use it
+- `<a>` has outline: none;
+  - Students can either remove this, or replace it with their own outline styles
+- Body text is low contrast
+  - Students need to change body color to at least #757575; The a11y audit tool will point this out
+- Subscribe form elements are labeled with divs
+  - Student should replace these with `<label>`
+- Subscribe form submit button is a div
+  - Student should replace this with `<input type="submit">`
+- Hot List and Subscribe headings have tabindex=0
+  - Students should remove these tabindex attributes
+- Optional: Main content is missing a heading
+  - Students can add a heading. If they don’t like the appearance they can make it offscreen so it’s only visible to screen readers
+- Missing landmarks
+  - Students should replace divs with nav, main, and aside elements
+- Optional: Students can add a skip link to jump to main content

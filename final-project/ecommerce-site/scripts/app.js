@@ -2,16 +2,34 @@ class App {
 
   constructor() {
     this.data = appData;
-    this.templatize('#tmpl-main-posts', '#top-posts', this.data['top_posts']);
-    this.templatize('#tmpl-product', '#product-of-the-month', this.data['product']);
-    this.templatize('#tmpl-main-posts', '#todays-posts', this.data['todays_posts']);
-    this.templatize('#tmpl-list-posts', '#list-posts', this.data['hot_list']);
+    this.templatize('#tmpl-main-posts', '#top-posts', this.data, 'top_posts');
+    this.templatize('#tmpl-product', '#product-of-the-month', this.data, 'product');
+    this.templatize('#tmpl-main-posts', '#todays-posts', this.data, 'todays_posts');
+    this.templatize('#tmpl-list-posts', '#list-posts', this.data, 'hot_list');
+    // Control flash of unstyled content in the page as templates load
+    // When body has .unresolved it will be display: none;
+    document.body.classList.remove('unresolved');
+
+    this.addEventListeners();
   }
 
-  templatize(tmplID, hostID, context) {
+  templatize(tmplID, hostID, data, section) {
     let tmpl = Handlebars.compile(document.querySelector(tmplID).innerHTML);
+    var context = data[section];
+    context.section = section;
     let html = tmpl(context);
     document.querySelector(hostID).innerHTML = html;
+  }
+
+  addEventListeners() {
+    Array.from(document.querySelectorAll('.btn'))
+      .forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          alert(
+            'Oh hi! This is just a sample button. It doesn\'t do anything :)'
+          );
+        });
+      });
   }
 
 }
@@ -52,7 +70,7 @@ const appData = {
       "title": "Warm Moments",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
     }, {
-      "tag": "Travelling",
+      "tag": "Traveling",
       "img": "images/decoration.jpg",
       "img_alt": "A wall with wood planks containing old framed images, a sports coat, and boat oar",
       "title": "Warm Moments",
@@ -109,7 +127,7 @@ const appData = {
       "img_alt": "A pan sitting in a campfire cooking bright green vegetables and orange sausage",
       "description": "Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore. Ut enim ad ipsum minim."
     }, {
-      "tag": "Travelling",
+      "tag": "Traveling",
       "title": "A Litte House In The Country",
       "img": "images/vacation.jpg",
       "img_alt": "A cottage with a large reflecting pool in front of it. In the background is a canyon and mountainside.",

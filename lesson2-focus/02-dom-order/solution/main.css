@@ -1,0 +1,177 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin: 0 0 60px; /* bottom = newsletter height */
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+article h3 {
+  margin-top: 0;
+  font-size: 1.5em;
+  -webkit-margin-after: 0.83em;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+header {
+  margin-bottom: 48px;
+  box-shadow: 0 0 8px #BBB;
+  border-bottom: 1px solid #AAA;
+}
+
+.logo {
+  text-align: center;
+  font-size: 32px;
+  margin: 0;
+  padding: 16px 0;
+  border-bottom: 1px solid #DDD;
+}
+
+.offscreen {
+    position: absolute;
+    left: -10000px;
+    top: -10000px;
+}
+
+.menu {
+  padding: 16px 48px;
+}
+
+.menu a {
+  color: #000;
+  text-decoration: none;
+  font-size: 18px;
+  margin-right: 18px;
+}
+
+.menu a:last-child {
+  margin-right: 0;
+}
+
+.menu .btn-search img {
+  vertical-align: top;
+  margin-right: 8px;
+  width: 22px;
+  height: 22px;
+}
+
+article p {
+  line-height: 1.4;
+}
+
+.main-story {
+  clear: both;
+  overflow: hidden;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+}
+
+.main-story img {
+  width: 50%;
+}
+
+.main-story .info {
+  margin-right: 50%;
+  padding-right: 16px;
+}
+
+.tier-header {
+  border-top: 1px solid #AAA;
+  margin-bottom: 15px;
+}
+
+.tier-header h2 {
+  font-size: 17px;
+  font-weight: 400;
+  text-transform: uppercase;
+  padding: 5px 15px;
+  display: inline-block;
+  margin: 0;
+  color: #fff;
+  background: #006b3a;
+}
+
+.side-by-side .column {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.side-by-side article img {
+  max-width: 100%;
+}
+
+.side-by-side .column:first-child {
+  width: 70%;
+  padding-right: 16px;
+  border-right: 1px solid #AAA;
+}
+
+.side-by-side .column:last-child {
+  padding-left: 16px;
+  width: 29%; /* Account for whitespace gap from display: inline-block */
+}
+
+.side-by-side .column:last-child .headline {
+  font-size: 18px;
+}
+
+.three-col {
+  margin-bottom: 100px;
+}
+
+.three-col h2, .three-col h3 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.three-col .columns {
+  display: flex;
+}
+
+.three-col .columns article {
+  flex: 1;
+  margin-right: 18px;
+}
+
+.three-col img {
+  width: 100%;
+}
+
+.three-col .columns article:last-child {
+  margin-right: 0;
+}
+
+.newsletter {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  background: #000;
+  color: #FFF;
+  border-top: 1px solid #AAA;
+}
+
+.newsletter h3 {
+  display: inline-block;
+  margin-right: 16px;
+}
+
+/* Helpers */
+.pull-right {
+  float: right;
+}
