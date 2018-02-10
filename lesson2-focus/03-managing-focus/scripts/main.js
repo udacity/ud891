@@ -1,3 +1,5 @@
+var isFirstPage = true;
+
 page('/', function() {
   page.redirect('/what-is-vegemite');
 });
@@ -24,3 +26,10 @@ page('/:slug', function(context) {
 page({
   hashbang: true
 });
+
+if(isFirstPage) {
+  isFirstPage = false;
+  return;
+}
+
+newPage.document.querySelector('h2').focus();
