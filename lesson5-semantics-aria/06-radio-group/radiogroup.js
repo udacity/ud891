@@ -24,7 +24,7 @@
     this.el.addEventListener('click', this.handleClick.bind(this));
 
     // Any more initialization to do here?
-
+    this.el.setattribute('Role','radiogroup');
     var firstButton = true;
     for (var button of this.buttons) {
       if (firstButton) {
@@ -34,7 +34,7 @@
         button.tabIndex = "-1";
       }
 
-      // What about here?
+      button.setattribute('Role','radiogroup');
     }
 
   }
