@@ -38,10 +38,10 @@
       this.el.removeAttribute('checked');
 
       // Hmm.
-
+      this.el.setAttribute('aria-checked', 'false');
     } else {
       this.el.setAttribute('checked', '');
-
+      this.el.setAttribute('aria-checked', 'true');
       // Hmmmmm.
 
     }
