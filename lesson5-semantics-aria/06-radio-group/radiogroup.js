@@ -24,6 +24,10 @@
     this.el.addEventListener('click', this.handleClick.bind(this));
 
     // Any more initialization to do here?
+    
+    this.el.setAttribute('role','radiogroup');
+    
+    
 
     var firstButton = true;
     for (var button of this.buttons) {
@@ -35,6 +39,7 @@
       }
 
       // What about here?
+     button.setAttribute('role','radio');
     }
 
   }
@@ -100,6 +105,7 @@
     this.focusedButton.setAttribute('checked', '');
 
     // ... we probably want to do some stuff here, too ...
+    this.focusedButton.setAttribute('aria-checked','true');
 
   };
 
