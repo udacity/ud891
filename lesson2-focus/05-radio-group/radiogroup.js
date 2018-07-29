@@ -32,8 +32,8 @@
         e.preventDefault();
 
         // This seems like a good place to do some stuff :)
-
-        break;
+           
+       break;
 
       }
 
@@ -43,7 +43,8 @@
         e.preventDefault();
 
         // This seems like a good place to do some stuff :)
-
+        this.radioGroup.setCheckedToNextItem(this);
+        flag = true;    
         break;
       }
 
