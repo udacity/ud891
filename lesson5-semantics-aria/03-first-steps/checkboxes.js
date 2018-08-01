@@ -46,7 +46,7 @@
     } else {
       this.el.setAttribute('checked', '');
 
-      this.el.setAttribute('aria-checked', 'false');
+      this.el.setAttribute('aria-checked', 'true');
 
     }
   };
